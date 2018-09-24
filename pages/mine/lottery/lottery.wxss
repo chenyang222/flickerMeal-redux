@@ -1,0 +1,108 @@
+/* pages/mine/lottery/lottery.wxss */
+.lottery-topHeader{
+    width: 100%;
+    position: relative;
+  }
+  .lottery-topHeader image{
+    width: 100%;
+    display: block;
+  }
+  .lottery-topHeader text{
+    position: absolute;
+    top: 17%;
+    left: 37%;
+    font-size: 60rpx;
+    color: #ffffff;
+    transform: rotateZ(-5deg);
+    text-align: center;
+  }
+  
+  .lottery-dialBody{
+    width: 100%;
+    background-repeat: repeat-y;
+    position: relative;
+  }
+  .lottery-dialBody .dial{
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30rpx 0rpx;
+  }
+  .lottery-dialBody .start{
+    width:25%;
+    position: absolute;
+    top: 29%;
+    left: 38%;
+    z-index: 10;
+  }
+  
+  
+  .lotteryList{
+    width: 140rpx;
+    height: 140rpx;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -70rpx;
+    margin-left: -70rpx;
+  }
+  .lotteryList .lotteryBox{
+    width: 140rpx;
+    height: 140rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .lotteryList .lotteryBox view{
+    width: 140rpx;
+    height: 140rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .lotteryList .lotteryBox view text{
+    font-size: 20rpx;
+    color: #ff9e35;
+    text-align: center;
+    margin-bottom: 30rpx;
+  }
+  .lotteryList .lotteryBox view image{
+    width: 80rpx;
+  }
+  
+  .winRecord{
+    padding-bottom: 30rpx;
+  }
+  .winRecord .winRecordBorder{
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+  }
+  .winRecord .winRecordBox{
+    width: 80%;
+    margin: 0 auto;
+    padding: 15rpx 5%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-bottom: 1px solid #c9c9c9;
+  }
+  .winRecord .winRecordBox .winRecordBox-left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .winRecord .winRecordBox .winRecordBox-left image{
+    width: 80rpx;
+  }
+  .winRecord .winRecordBox .winRecordBox-left text{
+    font-size: 26rpx;
+    margin-left: 15rpx;
+  }
+  .winRecord .winRecordBox .winRecordBox-right text{
+    font-size: 22rpx;
+  }

@@ -1,10 +1,259 @@
 /**app.wxss**/
-.container {
+body{
+  font-family:SourceHanSansCN-Normal;
+}
+.btn{
+  width: 80%;
+  margin: 30rpx auto;
+  display: block;
+  line-height: 89rpx;
+  height: 89rpx;
+  border-radius: 30rpx;
+  background-color: #ff9e35;
+  color: #ffffff;
+  text-align: center;
+  font-size: 35rpx;
+}
+/* 机器列表 */
+.machine{
+  width: 90%;
+  padding: 3% 5%;
+  display: flex;
+  margin-top: 2%;
+  background-color: #ffffff;
+}
+.machine .machine-left{
+  width: 30%;
+  margin-right: 5%;
+  position: relative;
+}
+.machine .machine-left .machineImg{
+  width: 100%;
+}
+.machine .machine-left .machineIcon{
+  width: 75rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.machine .machine-right{
+  width: 65%;
+}
+.machine .machine-right .machineName{
+  display: flex;
+  justify-content: space-between;
+  height: 34rpx;
+  line-height: 34rpx;
+}
+.machine .machine-right .machineName text{
+  font-size: 24rpx;
+}
+.machine .machine-right .machineName .fly{
+  width: 35rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.machine .machine-right .manjian .manjianBox{
+  display: flex;
+  align-items: center;
+  margin-top: 15rpx;
+}
+.machine .machine-right .manjian .manjianBox image{
+  width: 50rpx;
+  height: 28rpx;
+  display: inline-block;
+  margin-right: 15rpx;
+}
+.machine .machine-right .manjian .manjianBox text{
+  font-size: 20rpx;
+  color:rgba(61,61,61,1);
+}
+/* 餐品列表 */
+.product{
+  width: 90%;
+  padding: 3% 5%;
+  display: flex;
+  margin-top: 2%;
+  background-color: #ffffff;
+  overflow:hidden;
+}
+.product .product-left{
+  width: 30%;
+  margin-right: 5%;
+  position: relative;
+}
+.product .product-left .productImg{
+  width: 100%;
+}
+.productIcon{
+  width: 69rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.product .product-right{
+  width: 65%;
+}
+.product .product-right .productName{
+  display: flex;
+  justify-content: space-between;
+  height: 34rpx;
+  line-height: 34rpx;
+}
+.product .product-right .productName text{
+  font-size: 24rpx;
+}
+.product .product-right .productName .fly{
+  width: 35rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+.product .product-right .intro{
+  margin-top: 15rpx;
+}
+.product .product-right .intro .recomentNum{
+  font-size:20rpx;
+  font-family:PingFangSC-Regular;
+  color:rgba(151,151,151,1);
+}
+.product .product-right .intro .addGoods{
+  margin-top: 15rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.product .product-right .intro .price{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  color:rgba(253,106,8,1);
+}
+.product .product-right .intro .add{
+  width:33rpx;
+  height:33rpx;
+  display: block;
+  margin-right: 15rpx;
+}
+/* 上下翻转 */
+.rotateY{
+  transform: rotateX(180deg);
+  transition: 1s;
+}
+
+/* 支付方式选择 */
+.paymentMethodList{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #f9f4f0;
+  margin-top: 10rpx;
+}
+.paymentMethodList .payBox{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.paymentMethodList .paymentMethodImg{
+  width:69rpx;
+  height:69rpx;
+  margin-right: 70rpx;
+}
+.selectedImg, .paymentNoSeleImg{
+  width:38rpx;
+  height:38rpx; 
+}
+.paymentMethodList .paymentMethodName{
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Medium;
+  color:rgba(102,102,102,1);
+}
+.paymentMethodList .yue-name{
+  font-size:30rpx;
+  font-family:SourceHanSansCN-Medium;
+  color:rgba(102,102,102,1);
+  display: block;
+}
+.paymentMethodList .shengyu-wrap{
+  font-size:22rpx;
+  font-family:SourceHanSansCN-Medium;
+  color:rgba(245,65,60,1);
+  display: block;
+}
+
+/* 我的优惠券，选择优惠券 */
+.selectCoupon{
+  width: 90%;
+  margin: 0 auto;
+}
+.selectCoupon .couponListBox{
+  width: 100%;
+  position: relative;
+  margin-top: 30rpx;
+}
+.selectCoupon .couponListBox .couponbg{
+  width: 100%;
+}
+.selectCoupon .couponListBox .couponInfo{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
   height: 100%;
   display: flex;
-  flex-direction: column;
+}
+.selectCoupon .couponListBox .couponInfo .couponInfo-left{
+  width: 33%;
+  height: 100%;
+  color: #ffffff;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-} 
+  justify-content: center;
+}
+.selectCoupon .couponInfo-left .iconMoney{
+  font-size: 40rpx;
+}
+.selectCoupon .couponInfo-left .money{
+  font-size: 80rpx;
+  font-weight: bold;
+}
+.selectCoupon .couponListBox .couponInfo .couponInfo-right{
+  width: 67%;
+  height: 100%;
+  position: relative;
+}
+.selectCoupon .couponInfo-right .couponName{
+  font-weight: bold;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+}
+.selectCoupon .couponItem{
+  display: flex;
+  align-items: center;
+  margin-top: 5rpx;
+}
+.selectCoupon .couponInfo-right .couponItem text{
+  padding-left: 15rpx;
+  font-size: 20rpx;
+}
+.selectCoupon .couponItem .default{
+  width: 20rpx;
+  height: 20rpx;
+  padding-left: 40rpx;
+}
+.selectCoupon .couponCanUse{
+  text-align: right;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #8e2c00;
+  padding-right: 30rpx;
+}
+.selectCoupon .isUseCoupon{
+  position: absolute;
+  top: 50%;
+  right: 30rpx;
+  margin-top: -19rpx;
+}

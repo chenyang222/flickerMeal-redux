@@ -1,8 +1,10 @@
+import regeneratorRuntime from '../libs/runtime';
 const globalUrl = 'https://shanchan.jergavin.com';
 // 接口请求
-const fetch = function ({ method = "GET", url, data = {}, requestBody, errFn }) {
+const fetch = async ({ method = "GET", url, data = {}, requestBody }) => {
   wx.showLoading({
     title: '加载中',
+    mask: true
   })
   // 本地存储获取token
   const token = wx.getStorageSync("token");
@@ -17,7 +19,7 @@ const fetch = function ({ method = "GET", url, data = {}, requestBody, errFn }) 
     header["Authorization"] = token;
   }
   // promise 封装 wx.request
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     wx.request({
       method: method,
       url: `${globalUrl}${url}`,
@@ -35,6 +37,13 @@ const fetch = function ({ method = "GET", url, data = {}, requestBody, errFn }) 
             duration: 1000,
             mask: true
           })
+          wx.setStorageSync('token', '');
+          wx.setStorageSync('oldDate', '');
+          setTimeout(() => {
+            wx.reLaunch({
+              url: '/pages/login/login'
+            })
+          },1000)
         } else {
           wx.showToast({
             title: response.data.errmsg,
@@ -42,12 +51,11 @@ const fetch = function ({ method = "GET", url, data = {}, requestBody, errFn }) 
             duration: 1000,
             mask: true
           })
-          if (errFn) errFn();
+          reject(response)
         }
       },
       fail: function (response) {
         wx.hideLoading()
-        reject(response)
       }
     })
   })

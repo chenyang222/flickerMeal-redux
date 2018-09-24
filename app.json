@@ -2,9 +2,23 @@
   "pages":[
     "pages/login/login",
     "pages/index/index",
+    "pages/position/position",
     "pages/shopCar/index",
     "pages/order/index",
     "pages/mine/index",
+    "pages/mine/notify/notify",
+    "pages/mine/setup/setup",
+    "pages/mine/aboutus/aboutus",
+    "pages/mine/address/address",
+    "pages/mine/addAddress/addAddress",
+    "pages/mine/editAddress/editAddress",
+    "pages/mine/balance/balance",
+    "pages/mine/pay/pay",
+    "pages/mine/coupon/coupon",
+    "pages/mine/recommend/recommend",
+    "pages/mine/feedBack/feedBack",
+    "pages/mine/join/join",
+    "pages/mine/lottery/lottery",
     "pages/logs/logs"
   ],
   "window": {

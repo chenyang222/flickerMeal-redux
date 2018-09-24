@@ -1,0 +1,112 @@
+/* pages/mine/addAddress/addAddress.wxss */
+  /*container  */
+  .container{
+    width: 100%;
+    background-color: #fff;
+    margin-top: 13rpx;
+  }
+  
+  .linkman{
+    width: 100%;
+    line-height: 80rpx;
+    display: flex;
+    align-items: center;
+  }
+  .linkman text{
+    width: 154rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #000000;
+  }
+  .insert{
+    position: relative;
+  }
+  .first .linkinput{
+    border-bottom: 1rpx solid #E6E6E6;
+  }
+  .linkinput{
+    width: 556rpx;
+    height: 80rpx;
+  }
+  .linkinput input{
+    width: 100%;
+    height: 100%;
+    font-size: 30rpx;
+  }
+  .chooseaddress{
+    position: absolute;
+    right: 25rpx;
+    top: 32rpx;
+    width: 16rpx;
+    height: 24rpx;
+  }
+  .radio{
+    width: 100%;
+    height: 59rpx;
+    line-height: 59rpx;
+    border-bottom: 1rpx solid #E6E6E6;
+  }
+  .choose{
+    width: 596rpx;
+    height: 59rpx;
+    /* float: right; */
+    display: flex;
+    font-size: 30rpx;
+    color: #000000;
+    margin-left: 114rpx;
+  }
+  .choose image{
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 13rpx;
+  }
+  .choose view:last-child{
+    margin-left: 47rpx;
+  }
+  .insert{
+    height: 88rpx;
+    line-height: 88rpx;
+    border-bottom: 1rpx solid #E6E6E6;
+  }
+  /* .insert:last-child{
+    border: none;
+  } */
+  .default{
+    width: 100%;
+    height: 90rpx;
+    line-height: 90rpx;
+    border-top: 20rpx solid #f8f8f8;
+    font-size: 26rpx;
+    color: #666666;
+  }
+  .default image{
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 10rpx;
+  }
+  
+  /*  重写 checkbox 样式  */
+  /* 未选中的 背景样式 */
+  checkbox .wx-checkbox-input{
+     border-radius: 50%;/* 圆角 */
+     width: 40rpx; /* 背景的宽 */
+     height: 40rpx; /* 背景的高 */
+  }
+  /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked{
+     border: none;
+     background: orangered;
+  }
+  /* 选中后的 对勾样式 （白色对勾 可根据UI需求自己修改） */
+  checkbox .wx-checkbox-input.wx-checkbox-input-checked::before{
+     border-radius: 50%;/* 圆角 */
+     width: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+     height: 40rpx;/* 选中后对勾大小，不要超过背景的尺寸 */
+     line-height: 40rpx;
+     text-align: center;
+     font-size:30rpx; /* 对勾大小 30rpx */
+     color:#fff; /* 对勾颜色 白色 */
+     background: transparent;
+     transform:translate(-50%, -50%) scale(1);
+     -webkit-transform:translate(-50%, -50%) scale(1);
+  }

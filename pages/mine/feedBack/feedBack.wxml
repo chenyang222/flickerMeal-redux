@@ -1,0 +1,6 @@
+<view class='feedBack'>
+    <view class='comment'>
+        <textarea bindinput='bindValue' class='textarea' placeholder="请输入您的意见或者你想吃的餐品"></textarea>
+    </view>
+    <view class="btn" bindtap="submitbtn">提交</view>
+</view>

@@ -1,0 +1,4 @@
+<view class="position">
+    <text wx:if="{{!positionInfo}}" class="text" >暂无定位信息</text>
+    <button wx:if="{{!positionInfo}}" class="getPs" bindtap="getPosition">获取定位</button>
+</view>

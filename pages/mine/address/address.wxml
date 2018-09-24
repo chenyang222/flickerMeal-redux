@@ -1,0 +1,31 @@
+<!--pages/mine/address/address.wxml-->
+<!--地址列表  -->
+<view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart"
+    bindtouchmove="touchmove" wx:for="{{addressList}}" wx:key="index">
+    <view class="content">
+        <view class="item">
+            <view class='itemLeft'>
+                <image wx:if="{{item.defaultFlag == 0}}" src='{{imgdata}}/cf_ditu.png'></image>
+                <image wx:if="{{item.defaultFlag == 1}}" src='{{imgdata}}/cf_noDitu.png'></image>
+            </view>
+            <view class='itemCenter'>
+                <view class="itemCenterAddress"><text>{{item.address}}</text></view>
+                <view class='itemCenterName'><text>{{item.consignee}} </text><text>{{ item.mobile }}</text></view>
+                <view class='itemCenterDefalut'>
+                    <view>
+                        <image wx:if="{{item.defaultFlag == 0}}" src='{{imgdata}}/cf_defalut.png'></image>
+                        <image wx:if="{{item.defaultFlag == 1}}" data-item="{{item}}" bindtap="setDefaultAddress" src='{{imgdata}}/cf_noDefalut.png'
+                            id="{{item.id}}"></image>
+                    </view>
+                    <view style='margin-left:8rpx;'><text>设为默认收货地址</text></view>
+                </view>
+            </view>
+            <view class='itemRight'>
+                <image data-item="{{item}}" src='{{imgdata}}/cf_editAddress.png' bindtap='editAddress'></image>
+            </view>
+        </view>
+    </view>
+    <view class="del" catchtap="deleteAddress" id="{{item.id}}">删除</view>
+</view>
+<!--地址列表END  -->
+<navigator class='btn' url='../addAddress/addAddress'>新建地址</navigator>

@@ -1,12 +1,8 @@
 //app.js
 import regeneratorRuntime from './libs/runtime'
-import { createStore } from './libs/redux'
 import { Provider } from './libs/wechat-weapp-redux';
 //Reducer
-import reducers from './redux/reducer/index'
-const store = createStore(
-  reducers
-)
+import { store } from './redux/index'
 
 App(Provider(store)({
   globalData: {
@@ -15,13 +11,7 @@ App(Provider(store)({
     ak: 'NPfvQSlaxLvtuBWm4YDVwecQNoTACuUY', // 填写申请到的ak
     openid: ''
   },
-  async onLaunch () {
-    // 每次 state 更新时，打印日志
-    // 注意 subscribe() 返回一个函数用来注销监听器
-    const unsubscribe = store.subscribe(() =>
-      console.log(store.getState())
-    )
-  },
+  async onLaunch () {},
   // 登陆
   login: function () {
     // 本地存储获取token
@@ -29,7 +19,7 @@ App(Provider(store)({
     const oldDate = wx.getStorageSync("oldDate");
     if (token && !this.verifyToken(oldDate)) {
       wx.reLaunch({
-        url: '/pages/index/machine/machine'
+        url: '/pages/position/position'
       })
     } else {
       const that = this;
@@ -48,7 +38,7 @@ App(Provider(store)({
                   // 正常进入
                   that.handleToken(res.data)
                   wx.reLaunch({
-                    url: '/pages/index/machine/machine'
+                    url: '/pages/position/position'
                   })
                 } else if (res.data.errcode == 40004) {
                   // 此账号当前尚未注册

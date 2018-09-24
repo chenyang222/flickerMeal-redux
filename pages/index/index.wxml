@@ -1,5 +1,48 @@
 <!--index.wxml-->
-<view class="container">
-  <button bindtap="add">add</button>
-  <button bindtap="del">del</button>
+
+<!-- 头部 -->
+<view class="top-header" style="background-image: url('{{imgdata}}/indexbg.png')">
+  <!-- 当前定位 -->
+  <view class="location">
+    <image class="locationIcon" src="{{imgdata}}/zbl-dingwei.png"></image>
+    <text>{{positionInfo.currentCity}}</text>
+    <image class="locationSelect" src="{{imgdata}}/zbl-indexHeaderSele.png"></image>
+  </view>
+  <!-- 搜索栏 -->
+  <navigator url="/pages/index/search/search" hover-class="navigator-hover" class="search">
+    <image class="searchIcon" src="{{imgdata}}/searchIcon.png"></image>
+    <input class='searchInput' placeholder='搜索机器/餐品'/>
+  </navigator>
+</view>
+
+<!-- swiper轮播图 -->
+<view class="banner">
+  <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular="true" indicator-color="#D5D5D5" indicator-active-color="#F1A101">
+    <block wx:for="{{bannerList}}" wx:key="index">
+      <swiper-item>
+        <image src="{{item.url}}" mode="aspectFill" class="slide-image" width="750" height="244"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+
+<!-- 优惠券 -->
+<view class="couponPart">
+  <view class='couponBox' wx:for="{{ isShouAllList ? indexAllCouponList : indexCouponList }}" wx:for-item="item" wx:key="{{index}}">
+    <image class='bg' mode='widthFix' src="{{imgdata}}/couponBg.png"></image>
+    <view class='couponPrice'>
+      <text class='price'>{{item.amount}}</text>
+      <text class='unit'>{{item.type == 0 ? '元' : '折'}}</text>
+    </view>
+    <view class='nameBtn'>
+      <text class='name'>{{item.name}}</text>
+      <text bindtap='haveIndexCoupon' data-id='{{item.id}}' class='btn'>领取</text>
+    </view>
+  </view>
+</view>
+<view wx:if='{{indexAllCouponList.length > 0}}' bindtap='showAllCoupon' class="isCanGet">
+  <text>有{{indexAllCouponList.length}}张优惠券可领</text>
+  <image wx:if='{{isShouAllList}}' src="{{imgdata}}/youhuixiala.png"></image>
+  <image wx:else class='rotateY' src="{{imgdata}}/youhuixiala.png"></image>
 </view>

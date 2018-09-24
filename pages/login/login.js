@@ -138,7 +138,7 @@ Page({
           // token data 处理
           app.handleToken(res.data)
           wx.reLaunch({
-            url: '/pages/index/machine/machine'
+            url: '/pages/index/position/position'
           })
         } else {
           wx.showToast({

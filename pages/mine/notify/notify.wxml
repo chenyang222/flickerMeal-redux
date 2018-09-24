@@ -1,0 +1,10 @@
+<view class='msgnotification'>
+    <view class='msglist'>
+        <view wx:for="{{notifyList}}" wx:key="index" class='msgitem'>
+            <text><text></text>{{ item.title }}</text>
+            <text>{{ item.content }}</text>
+            <text>请注意查收</text>
+            <text>{{ item.createTime }}</text>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,13 @@
+<!--pages/mine/pay/pay.wxml-->
+<view class='join'>
+    <view class='yueimg'>
+        <image mode='widthFix' src='{{imgdata}}/yh_yue.png'></image>
+        <view class='rechargeBox'>
+            <view class='title'>账户余额</view>
+            <view class='rechargerule'>
+                ￥<text>{{ userInfo.balance }}</text>
+            </view>
+        </view>
+    </view>
+    <navigator class='btn' url="../balance/balance">充值</navigator>
+</view>
