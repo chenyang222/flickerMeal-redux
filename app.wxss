@@ -2,6 +2,12 @@
 body{
   font-family:SourceHanSansCN-Normal;
 }
+.fl{
+  float: left;
+}
+.fr{
+  float: right;
+}
 .btn{
   width: 80%;
   margin: 30rpx auto;

@@ -1,0 +1,70 @@
+<!--index.wxml-->
+<view class="container" wx:if="{{shopCarList.length > 0}}">
+    <view class='order-name'>
+        <text class='goname'>{{madichInfo.mName}}</text>
+    </view>
+    <view class="{{item.isTouchMove ? 'item-active' : 'item'}}" bindtouchstart='touchstart' bindtouchmove='touchmove' wx:for="{{shopCarList}}"
+        wx:key='index' data-index="{{index}}">
+        <view class='txt'>
+            <!-- 列表 -->
+            <view class='fan-list-wrap'>
+                <!-- list -->
+                <view class='fan-list'>
+                    <view class='fan-img-wrap'>
+                        <image class='fan-img' src='{{item.picture}}'></image>
+                    </view>
+                    <view class='fan-name-price'>
+                        <view class='fan-name-price-list1'>
+                            <text class='fan-name'>{{item.name}}</text>
+                        </view>
+                        <view class='fan-name-price-list2'>
+                            <view class='fan-ctl'>
+                                <image class='jian' data-cartId="{{item.cartId}}" data-buyNumber="{{item.buyNumber}}" src='{{imgdata}}/reduce.png' bindtap='reduce'></image>
+                                <text class='jiajian-num'>{{item.buyNumber}}</text>
+                                <image class='jia' src='{{imgdata}}/plus.png' data-cartId="{{item.cartId}}" data-buyNumber="{{item.buyNumber}}" bindtap='plus'></image>
+                            </view>
+                            <view class='fan-price'>￥
+                                <text>{{item.price}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='del' bindtap="del" data-index="{{index}}" data-cartId="{{item.cartId}}">删除</view>
+    </view>
+    <view class='heji'>
+        <view class='heji-left'>
+            <text>合计</text>
+            <view>￥
+                <text>{{totalMoney}}</text>
+            </view>
+        </view>
+        <view class='heji-right'>
+            <image class='del-icon' src='{{imgdata}}/delIcon.png' bindtap="delAll"></image>
+            <text class='jiesuan-btn' bindtap='toPay'>去结算</text>
+        </view>
+    </view>
+</view>
+<view wx:else class='car-kong'>
+    <view class='wujiesuan-wrap'>
+        <image class='wujiesuan' src='{{imgdata}}/kongCar.jpg'></image>
+    </view>
+    <view class='wujiesuan-txt'>
+        <text>暂无可结算的餐品</text>
+    </view>
+</view>
+<view class='pop' style='display:none;'></view>
+<!-- 抢购结算-》清空购物车弹窗 -->
+<view class='qingkong-car' style='display:none;'>
+    <view class='qingkong-tips'>
+        <text>删除餐品</text>
+        <view>
+            <text class='comfirm-del-all'>确认删除所有的餐品?</text>
+        </view>
+    </view>
+    <view class='qingkong-btn'>
+        <view style='border-right:1px solid #f2a437'>取消</view>
+        <view>删除</view>
+    </view>
+</view>

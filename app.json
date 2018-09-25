@@ -2,6 +2,10 @@
   "pages":[
     "pages/login/login",
     "pages/index/index",
+    "pages/index/search/search",
+    "pages/index/searchInfo/searchInfo",
+    "pages/index/recmandMeal/recmandMeal",
+    "pages/index/mealDetail/mealDetail",
     "pages/position/position",
     "pages/shopCar/index",
     "pages/order/index",

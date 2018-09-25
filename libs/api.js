@@ -30,12 +30,96 @@ const api = {
                 data: data
             })
         },
+        // 获取推荐套餐
+        getRecomtc ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodmachine/findProductByMacIdAndProductCatId',
+                data: data
+            })
+        },
+        // 获取机器餐品大类侧边栏
+        getMachineLeftNav ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodmachine/findProductCatByMacId',
+                data: data
+            })
+        },
+        // 获取今日购
+        getTodayBuy ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodmachine/findProductByMacIdAndProductCatId',
+                data: data
+            })
+        },
+        // 获取预定餐品列表
+        getWeekBuy ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodmachine/findProductByMacIdAndAdTime',
+                data: data
+            })
+        },
+        // 获取当前机器评价
+        getMachineEva ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodordercomment/findByMacId',
+                data: data
+            })
+        },
+        // 获取热门搜索
+        getHotSearch () {
+            return fetch({
+                url: '/fastfood/foodmachine/keyword/rank/top/10'
+            })
+        },
+        // 获取搜索结果
+        getSearchMachine ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodmachine/keyword/search',
+                data: data
+            })
+        },
+        // 添加到购物车
+        addBuyCar ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/shoppingcart/add',
+                data: data
+            })
+        },
     },
     // 获取我的信息
     getUserInfo () { 
         return fetch({
             url: '/account/user/info'
         })
+    },
+    shopCar: {
+        // 购物车列表
+        getShopCar ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/shoppingcart/list',
+                data: data
+            })
+        },
+        // 设置购物车餐品数量
+        setProductNumber ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/shoppingcart/set',
+                data: data
+            })
+        },
+        // 删除购物车餐品
+        deleteProduct ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/shoppingcart/remove',
+                data: data
+            })
+        },
+        // 清空购物车餐品
+        clearProduct () {
+            return fetch({
+                url: '/fastfood/shoppingcart/clear'
+            })
+        },
     },
     mine: {
         // 获取消息通知列表
