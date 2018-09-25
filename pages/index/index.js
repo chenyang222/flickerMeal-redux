@@ -23,7 +23,12 @@ const pageConfig = {
     getBanner();
   },
   async onShow() {
-    await getMachine(this.data.positionInfo.areaCode);
+    const data = {
+      areaCode: this.data.positionInfo.areaCode,
+      lat: this.data.positionInfo.location.lat,
+      lng: this.data.positionInfo.location.lng
+    }
+    await getMachine(data);
     if (this.data.machineList.length == 0) {
       return
     }

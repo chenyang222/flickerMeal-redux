@@ -174,12 +174,9 @@ export const getPosition = async () => {
     });
 }
 // 获取可用机器
-export const getMachine = async (areaCode) => {
+export const getMachine = async (data) => {
     const response = await api.getMachine({
-        data: {
-            // areaCode: areaCode
-            areaCode: '0,4,0'
-        }
+        data: data
     })
     store.dispatch({
         type: GET_MACHINE,
