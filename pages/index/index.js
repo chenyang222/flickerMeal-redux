@@ -2,7 +2,7 @@
 //获取应用实例
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getBanner, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar } from '../../redux/index';
+import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -16,11 +16,31 @@ const pageConfig = {
     todaymealId: '',
     prevOrdermealId: '',
     nowSelectTime: '',
-    getWeekList: []
+    getWeekList: [],
+    activitysText: '暂无活动'
   },
   async onLoad(options) {
     // 获取轮播
     getBanner();
+    // 获取活动
+    await getActivitys();
+    if (JSON.stringify(this.data.activitysList) != '{}') {
+      let activitysText = '';
+      for (let key in this.data.activitysList) {
+        console.info(this.data.activitysList[key])
+        if (this.data.activitysList[key]) {
+          if (this.data.activitysList[key].name == '首单N元') {
+            activitysText += '首次下单减免' + this.data.activitysList[key].amount + ','
+          }
+          if (this.data.activitysList[key].name == '连续折扣') {
+            activitysText += this.data.activitysList[key].remark + '订单金额满' + this.data.activitysList[key].joinRestrict + '享受累计折扣，初始' + this.data.activitysList[key].initDis + '折，每新增一单则折扣将增加' + this.data.activitysList[key].proIncr + '折' 
+          }
+        }
+      }
+      this.setData({
+        activitysText: activitysText
+      })
+    }
   },
   async onShow() {
     const data = {
@@ -174,6 +194,7 @@ const pageConfig = {
 const mapStateToPage = state => ({
   positionInfo: state.positionInfo,
   bannerList: state.bannerList,
+  activitysList: state.activitysList,
   machineList: state.machineList,
   machineInfo: state.machineInfo,
   indexAllCouponList: state.indexAllCouponList,

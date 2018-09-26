@@ -1,6 +1,6 @@
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getShopCar, setProductNumber, deleteProduct, clearProduct } from '../../redux/index';
+import { getShopCar, setProductNumber, deleteProduct, clearProduct, createOrderByShopCar } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -114,11 +114,34 @@ const pageConfig = {
       }
     })
   },
+  // 生成订单
+  async toPay () {
+    const macId = this.data.machineInfo.id;
+    let childs = [];
+    for (let i = 0; i < this.data.shopCarList.length; i++) {
+      let obj = {};
+      obj.cartId = this.data.shopCarList[i].cartId;
+      obj.macId = macId;
+      obj.buyNumber = this.data.shopCarList[i].buyNumber;
+      childs.push(obj);
+    }
+    const data = {
+      macId: macId,
+      body: JSON.stringify(childs)
+    }
+    const response = await createOrderByShopCar(data);
+    console.info(response)
+    const orderNo = response.orderNo;
+    wx.navigateTo({
+      url: "/pages/order/payment/payment?orderNo=" + orderNo,
+    })
+  }
 }
 
 const mapStateToPage = state => ({
   shopCarList: state.shopCarList,
-  machineInfo: state.machineInfo
+  machineInfo: state.machineInfo,
+  computeShopcar: state.computeShopcar
 })
 
 

@@ -269,3 +269,7 @@
 <view wx:if="{{machineList.length == 0}}" class="noMachine">
   <text>未获取到机器</text>
 </view>
+
+<view class="manjianPop">
+  <text>{{activitysText}}</text>
+</view>

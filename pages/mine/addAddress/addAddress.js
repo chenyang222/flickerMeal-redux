@@ -118,6 +118,7 @@ const pageConfig = {
             address: this.data.address,
             name: this.data.address,
             defaultFlag: this.data.isDefault == '' ? 1 : 0,
+            fulladdress: this.data.areaCode + this.data.address,
             pos: ''
         }
         addAddress(data)

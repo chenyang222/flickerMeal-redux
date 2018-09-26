@@ -16,6 +16,12 @@ const api = {
                 data: data
             })
         },
+        // 获取活动列表
+        getActivitys () {
+            return fetch({
+                url: '/operate/activitys/list'
+            })
+        },
         // 获取首页优惠券
         getIndexCoupon ({ data = {} }) {
             return fetch({
@@ -118,6 +124,39 @@ const api = {
         clearProduct () {
             return fetch({
                 url: '/fastfood/shoppingcart/clear'
+            })
+        },
+        // 购物车生成订单
+        createOrderByShopCar ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodorder/createOrderByShoppingCart',
+                data: data,
+                method: 'post',
+                requestBody: true
+            })
+        },
+    },
+    order: {
+        // 根据订单号获取订单信息
+        getOrderInfo ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodorder/findOrderInfoByUser',
+                data: data
+            })
+        },
+        // 获取订单可用优惠券
+        getOrderCoupon ({ data = {} }) {
+            return fetch({
+                url: '/operate/coupon/findByUserId',
+                method: 'post',
+                data: data
+            })
+        },
+        // 获取订单可用活动
+        getOrderActivitys ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodorder/calCheckTotalFeeByOrderNo',
+                data: data
             })
         },
     },

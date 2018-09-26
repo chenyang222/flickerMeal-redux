@@ -29,7 +29,8 @@ const pageConfig = {
 }
 
 const mapStateToPage = state => ({
-    recomtcList: state.recomtcList
+    recomtcList: state.recomtcList,
+    machineInfo: state.machineInfo
 })
 
 Page(connect(mapStateToPage)(pageConfig))

@@ -1,0 +1,90 @@
+<!--index.wxml-->
+<view class="container">
+    <view class='order-detail-address-wrap'>
+        <view class='order-address-icon-title-wrap'></view>
+    </view>
+    <view class='address-fenge'></view>
+    <view class='canpin-list-wrap'>
+        <!-- 列表 -->
+        <view class='fan-list-wrap' wx:for="{{orderInfo.childs}}" wx:for-item="item" wx:key="{{index}}">
+            <!-- list -->
+            <view class='fan-list'>
+                <view class='fan-img-wrap'>
+                    <image class='fan-img' src='{{item.productPic}}'></image>
+                </view>
+                <view class='fan-name-price'>
+                    <view class='fan-name-price-list1'>
+                        <text class='fan-name'>{{item.productName}}</text>
+                    </view>
+                    <view class='fan-name-price-list2'>
+                        <view class='fan-ctl'>
+                            <text>X</text>
+                            <text>{{item.buyNumber}}</text>
+                        </view>
+                        <view class='fan-price'>￥
+                            <text>{{item.buyNumber * item.price}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class='coupon' bindtap='toSelectCoupon'>
+        <view>优惠券</view>
+        <view class='textImages'>
+            <text>{{couponSelect}}</text>
+            <image class='iconRight' src='{{imgdata}}/cf_goright.png'></image>
+        </view>
+    </view>
+    <!-- 支付方式选择 -->
+    <view class='paymentMethod'>
+        <view class='paymentMethodList' data-paytype='2' bindtap='selectPaytype'>
+            <view class='payBox'>
+                <view>
+                    <image class='paymentMethodImg' src='{{imgdata}}/otherPaymentImg.png'></image>
+                </view>
+                <view>
+                    <text class='yue-name'>余额支付</text>
+                    <text class='shengyu-wrap'>剩余余额：{{userInfo.balance}}元</text>
+                </view>
+            </view>
+            <view>
+                <image wx:if="{{payType == 1}}" class='paymentNoSeleImg' src='{{imgdata}}/paymentNoSeleImg.png'></image>
+                <image wx:elif="{{payType == 2}}" class='selectedImg' src='{{imgdata}}/paymentSeleImg.png'></image>
+            </view>
+        </view>
+        <view class='paymentMethodList' data-paytype='1' bindtap='selectPaytype'>
+            <view class='payBox'>
+                <image class='paymentMethodImg' src='{{imgdata}}/weixinImg.png'></image>
+                <text class='paymentMethodName'>微信支付</text>
+            </view>
+            <view>
+                <image wx:if="{{payType == 2}}" class='paymentNoSeleImg' src='{{imgdata}}/paymentNoSeleImg.png'></image>
+                <image wx:elif="{{payType == 1}}" class='selectedImg' src='{{imgdata}}/paymentSeleImg.png'></image>
+            </view>
+        </view>
+    </view>
+    <!-- <view class='order-daifu'>
+      <view class='jian-name'>
+        <text class='jian-ming'>满减</text>
+        <text>在线支付立减优惠</text>
+      </view>
+      <view class='jian-price'>
+        <text>-</text>
+        <text>￥</text>
+        <text>10</text>
+      </view>
+    </view> -->
+    <view class='heji'>
+        <view class='heji-left'>
+            <text>合计</text>
+            <view>￥
+                <text>{{countAmountNum}}</text>
+            </view>
+            <!-- <text>已优惠10元</text> -->
+        </view>
+        <view class='heji-right'>
+            <text bindtap='toPay' class='jiesuan-btn'>确认支付</text>
+        </view>
+    </view>
+</view>

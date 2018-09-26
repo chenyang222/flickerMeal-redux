@@ -12,6 +12,7 @@ const GET_POSITIONINFO = 'GET_POSITIONINFO'; // 获取定位信息
 const GET_MACHINE = 'GET_MACHINE'; // 获取机器列表
 const SET_MACHINE = 'SET_MACHINE'; // 设置当前选中机器
 const BANNER_INDEX = 'BANNER_INDEX'; // 首页轮播banner
+const GET_ACTIVITYS = 'GET_ACTIVITYS'; // 获取活动列表
 const GET_INDEXCOUPON = 'GET_INDEXCOUPON'; // 获取首页优惠券
 const GET_RECOMTC = 'GET_RECOMTC'; // 获取推荐套餐
 const GET_MACHINELEFTNAV = 'GET_MACHINELEFTNAV'; // 获取机器餐品大类侧边栏
@@ -28,9 +29,14 @@ const GET_RECOMMEND = 'GET_RECOMMEND'; // 获取推荐信息
 const GET_LOTTERY = 'GET_LOTTERY'; // 获取所有奖品列表
 const GET_RECORD = 'GET_RECORD'; // 获取中奖纪录
 const GET_SHOPCAR = 'GET_SHOPCAR'; // 购物车列表
+const COMPUTE_SHOPCAR = 'COMPUTE_SHOPCAR'; // 购物车列表金额计算
+const GET_ORDERINFO = 'GET_ORDERINFO'; // 获取订单信息
+const GET_ORDERCOUPON = 'GET_ORDERCOUPON'; // 获取订单可用优惠券
+const GET_ORDERACTIVITYS = 'GET_ORDERACTIVITYS'; // 获取订单可用活动
 
 const initState = {
     bannerList: [],
+    activitysList: {},
     userInfo: {},
     addressList: [],
     notifyList: [],
@@ -50,15 +56,20 @@ const initState = {
     evaList: [],
     hotSearchList: [],
     searchMachineList: [],
-    shopCarList: []
+    shopCarList: [],
+    computeShopcar: '',
+    orderInfo: {},
+    orderCouponList: []
 }
 
 export const reducers = (state = initState, action) => {
     switch (action.type) {
-        case BANNER_INDEX:
+        case BANNER_INDEX: 
             return Object.assign({}, state, { bannerList: action.data });
         case GET_USETIFO:
             return Object.assign({}, state, { userInfo: action.data });
+        case GET_ACTIVITYS:
+            return Object.assign({}, state, { activitysList: action.data });
         case GET_ADDRESS:
             return Object.assign({}, state, { addressList: action.data.list });
         case GET_NOTIFY:
@@ -95,6 +106,14 @@ export const reducers = (state = initState, action) => {
             return Object.assign({}, state, { searchMachineList: action.data });
         case GET_SHOPCAR:
             return Object.assign({}, state, { shopCarList: action.data });
+        case COMPUTE_SHOPCAR:
+            return Object.assign({}, state, { computeShopcar: action.data });
+        case GET_ORDERINFO:
+            return Object.assign({}, state, { orderInfo: action.data });
+        case GET_ORDERCOUPON:
+            return Object.assign({}, state, { orderCouponList: action.data });
+        case GET_ORDERACTIVITYS:
+            return Object.assign({}, state, { orderInfo: action.data });
         default:
             return state;
     }
@@ -113,7 +132,7 @@ const unsubscribe = store.subscribe(() =>
 export const getPosition = async () => {
     // 新建百度地图对象 
     const BMap = new bmap.BMapWX({
-      ak: 'NPfvQSlaxLvtuBWm4YDVwecQNoTACuUY'
+      ak: 'SXloT6qpxpozRkGG7XcUu6104fzus5X9'
     });
     const fail = function () {
         store.dispatch({
@@ -200,6 +219,14 @@ export const getBanner = async () => {
     })
     store.dispatch({
       type: BANNER_INDEX,
+      data: response
+    })
+}
+// 获取活动
+export const getActivitys = async () => {
+    const response = await api.index.getActivitys();
+    store.dispatch({
+      type: GET_ACTIVITYS,
       data: response
     })
 }
@@ -562,9 +589,17 @@ export const getShopCar = async (macId) => {
             macId: macId
         }
     });
+    let totalMoney = 0;
+    for (let i = 0; i < response.length;i++) {
+      totalMoney += response[i].buyNumber * response[i].price * 100;
+    }
     store.dispatch({
-      type: GET_SHOPCAR,
-      data: response
+        type: COMPUTE_SHOPCAR,
+        data: totalMoney/100
+    })
+    store.dispatch({
+        type: GET_SHOPCAR,
+        data: response
     })
 }
 // 设置购物车餐品数量
@@ -591,4 +626,41 @@ export const clearProduct = async () => {
     } catch (res) {
         console.info(res)
     }
+}
+// 购物车生成订单
+export const createOrderByShopCar = async (data) => {
+    const response = await api.shopCar.createOrderByShopCar({
+        data: data
+    });
+    return response
+}
+// 根据订单号获取订单信息
+export const getOrderInfo = async (data) => {
+    const response = await api.order.getOrderInfo({
+        data: data
+    });
+    store.dispatch({
+        type: GET_ORDERINFO,
+        data: response
+    })
+}
+// 获取订单可用优惠券
+export const getOrderCoupon = async (data) => {
+    const response = await api.order.getOrderCoupon({
+        data: data
+    });
+    store.dispatch({
+        type: GET_ORDERCOUPON,
+        data: response
+    })
+}
+// 获取订单可用活动
+export const getOrderActivitys = async (data) => {
+    const response = await api.order.getOrderActivitys({
+        data: data
+    });
+    store.dispatch({
+        type: GET_ORDERACTIVITYS,
+        data: response
+    })
 }

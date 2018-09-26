@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -47,7 +47,13 @@
 				{
 					"id": -1,
 					"name": "添加地址",
-					"pathName": "pages/mine/addAddress/addAddress"
+					"pathName": "pages/mine/addAddress/addAddress",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "订单支付",
+					"pathName": "pages/order/payment/payment"
 				}
 			]
 		}

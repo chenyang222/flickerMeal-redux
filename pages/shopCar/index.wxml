@@ -37,7 +37,7 @@
         <view class='heji-left'>
             <text>合计</text>
             <view>￥
-                <text>{{totalMoney}}</text>
+                <text>{{computeShopcar}}</text>
             </view>
         </view>
         <view class='heji-right'>

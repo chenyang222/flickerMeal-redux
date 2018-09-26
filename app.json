@@ -9,6 +9,7 @@
     "pages/position/position",
     "pages/shopCar/index",
     "pages/order/index",
+    "pages/order/payment/payment",
     "pages/mine/index",
     "pages/mine/notify/notify",
     "pages/mine/setup/setup",
