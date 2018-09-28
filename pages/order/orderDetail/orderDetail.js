@@ -45,16 +45,16 @@ const pageConfig = {
       let payType;
       let activityFee;
       let activityType;
-      let foodOrCold;
+      let foodOrCold = false;
       let invoiceText = false;
       let takeFoodText = false;
       if (orderInfo.orderStatus == 1 || orderInfo.orderStatus == 2 || orderInfo.orderStatus == 3) {
         couponFee = orderInfo.couponFee ? orderInfo.couponFee : 0; // 优惠券
         activityFee = orderInfo.activityFee ? orderInfo.activityFee : 0; // 活动
-        if (orderInfo.invoiceFlag) {
+        if (orderInfo.invoiceFlag != 'undefined') {
           if (orderInfo.invoiceFlag == 0) {
             invoiceText = '个人'
-          } else if (orderInfo.invoiceFlag == 0) {
+          } else if (orderInfo.invoiceFlag == 1) {
             invoiceText = '单位'
           }
         }
@@ -73,13 +73,15 @@ const pageConfig = {
           payType = '抽奖兑换'
         }
         let date = new Date().getTime();
-        if (orderInfo.takeFoodTime > date) {
+        if (orderInfo.takeFoodTime < date) {
           takeFoodText = formatTime(orderInfo.takeFoodTime, timeFormat);
         }
-        if (orderInfo.warmFlag == 0) {
-          foodOrCold == '未加热'
-        } else if (orderInfo.warmFlag == 1) {
-          foodOrCold == '已加热'
+        if (orderInfo.warmFlag != 'undefined') {
+          if (orderInfo.warmFlag == 0) {
+            foodOrCold == '未加热'
+          } else if (orderInfo.warmFlag == 1) {
+            foodOrCold == '已加热'
+          }
         }
       }
       this.setData({
@@ -120,8 +122,9 @@ const pageConfig = {
         warmFlag: 0
       }
       await getHotOrCold(data)
-      // 重新加载当前页面
-      this.onLoad();
+      this.setData({
+        foodOrCold: '未加热'
+      })
     },
     async getHot () {
       const orderNo = this.data.orderInfo.orderNo;
@@ -130,8 +133,9 @@ const pageConfig = {
         warmFlag: 1
       }
       await getHotOrCold(data)
-      // 重新加载当前页面
-      this.onLoad();
+      this.setData({
+        foodOrCold: '已加热'
+      })
     },
     // 申请电子发票
     applyEleInvoice: function (e) {

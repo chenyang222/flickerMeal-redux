@@ -135,9 +135,8 @@
   </view>
   <view class='btns'>
     <!-- <navigator url="">联系客服</navigator> -->
-    <button open-type='share'>分享</button>
-    <button bindtap="getCold">取冷餐</button>
-    <button bindtap="getHot">取热餐</button>
+    <button wx:if="{{foodOrCold == false}}" bindtap="getCold">取冷餐</button>
+    <button wx:if="{{foodOrCold == false}}" bindtap="getHot">取热餐</button>
   </view>
   <view class='orderBody'>
     <view class='meals'>
@@ -187,10 +186,10 @@
         <text class="basic-left">订单时间:</text>
         <text class="basic-right">{{createTimeText}}</text>
       </view>
-      <view wx:if="{{takeFoodText}}">
+      <!-- <view wx:if="{{takeFoodText}}">
         <text class="basic-left">取餐时间:</text>
         <text class="basic-right">{{takeFoodText}}</text>
-      </view>
+      </view> -->
       <view wx:if="{{foodOrCold}}">
         <text class="basic-left">餐品温度:</text>
         <text class="basic-right">{{foodOrCold}}</text>
@@ -224,7 +223,8 @@
   </view>
   <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
   <view class='btns'>
-    <button data-orderNo="{{orderInfo.orderNo}}" bindtap='applyEleInvoice'>申请电子发票</button>
+    <button wx:if="{{!orderInfo.invoiceFlag}}" data-orderNo="{{orderInfo.orderNo}}" bindtap='applyEleInvoice'>申请电子发票</button>
+    <button open-type='share'>分享</button>
     <navigator wx:if="{{orderStatus != 3}}" url="/pages/order/evaluate/evaluate?orderNo={{orderInfo.orderNo}}">评价</navigator>
   </view>
   <view class='orderBody'>
@@ -275,10 +275,10 @@
         <text class="basic-left">订单时间:</text>
         <text class="basic-right">{{createTimeText}}</text>
       </view>
-      <view wx:if="{{takeFoodText}}">
+      <!-- <view wx:if="{{takeFoodText}}">
         <text class="basic-left">取餐时间:</text>
         <text class="basic-right">{{takeFoodText}}</text>
-      </view>
+      </view> -->
       <view wx:if="{{foodOrCold}}">
         <text class="basic-left">餐品温度:</text>
         <text class="basic-right">{{foodOrCold}}</text>
