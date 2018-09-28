@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -59,7 +59,13 @@
 				{
 					"id": -1,
 					"name": "百度地图显示机器位置",
-					"pathName": "pages/index/machineBaiduMap/machineBaiduMap"
+					"pathName": "pages/index/machineBaiduMap/machineBaiduMap",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "评价",
+					"pathName": "pages/order/evaluate/evaluate"
 				}
 			]
 		}

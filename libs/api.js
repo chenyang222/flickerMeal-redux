@@ -174,6 +174,55 @@ const api = {
                 url: '/fastfood/foodorder/findOrderByUser'
             })
         },
+        // 订单余额支付
+        getPayByBalance (data) {
+            return fetch({
+                url: '/fastfood/foodorder/balancePayForOrder',
+                data: data
+            })
+        },
+        // 订单余额支付
+        getPayByWechat (data) {
+            return fetch({
+                url: '/fastfood/foodorder/wxAppPayForOrder',
+                data: data
+            })
+        },
+        // 取冷餐还是热餐
+        getHotOrCold (data) {
+            return fetch({
+                url: '/fastfood/foodorder/modifyWarmFlag',
+                data: data
+            })
+        },
+        // 添加发票
+        applyEleInvoice (data) {
+            return fetch({
+                url: '/account/userinvoice/save',
+                data: data
+            })
+        },
+        // 获取发票列表
+        getInvoiceList () {
+            return fetch({
+                url: '/account/userinvoice/findByUserId'
+            })
+        },
+        // 申请发票信息
+        selectInvoice (data) {
+            return fetch({
+                url: '/fastfood/foodorder/addInvoice',
+                data: data
+            })
+        },
+        // 删除发票
+        deleteInvoice (data) {
+            console.info(data)
+            return fetch({
+                url: '/account/userinvoice/delete',
+                data: data
+            })
+        }
     },
     mine: {
         // 获取消息通知列表

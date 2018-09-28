@@ -1,0 +1,97 @@
+/* pages/shopCar/index.wxss */
+.evaluate{
+  width: 90%;
+  padding: 5%;
+  background-color: #ffffff;
+}
+.evaluate .evaluateHeader{
+  display: flex;
+  align-items: center;
+}
+.evaluate .evaluateHeader .machineImg{
+  width: 60rpx;
+  height: 60rpx;
+}
+.evaluate .evaluateHeader .machineName{
+  font-size: 24rpx;
+  margin-left: 30rpx;
+}
+
+.evaluate .massBox{
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center;
+}
+.evaluate .massBox text{
+  font-size: 26rpx;
+  color: #c7c7c7;
+  margin-right: 30rpx;
+}
+.evaluate .massBox .plx, .evaluate .massBox .noplx{
+  width: 45rpx;
+  height: 45rpx;
+  margin-left: 15rpx;
+}
+.evaluate .textarea{
+  margin-top: 30rpx;
+  width: 100%;
+}
+.evaluate .textarea textarea{
+  width: auto;
+  display: block;
+  height: 300rpx;
+  background-color: #c9c9c93a;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  border-radius: 5rpx;
+  padding: 15rpx;
+}
+
+/* 上传动态图片  */
+.evaluate .uploadImgs{
+  width: 100%;
+  background-color: #4f4f4f;
+  border-radius: 15rpx;
+  margin-top: 30rpx;
+}
+.evaluate .allImgs{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.evaluate .allImgs image{
+  width: 147rpx;
+  height: 147rpx;
+  margin: 24rpx;
+}
+.evaluate .clickAdd{
+  width: 147rpx;
+  height: 147rpx;
+}
+/* 餐品列表 */
+.evaluate .meals{
+  margin-top: 30rpx;
+}
+.evaluate .meals .mealsBox{
+  display: flex;
+  justify-content: space-between;
+}
+.evaluate .meals .mealsBox text{
+  font-size: 24rpx;
+  font-weight: bold;
+}
+.evaluate .meals .mealsBox image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 40rpx;
+  margin-right: 30rpx;
+}
+
+/* 提交 */
+.evaluate .submit{
+  width: 100%;
+  background-color: #ff9e35;
+  margin-top: 60rpx;
+  color: #ffffff;
+}

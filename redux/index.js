@@ -34,6 +34,7 @@ const GET_ORDERINFO = 'GET_ORDERINFO'; // 获取订单信息
 const GET_ORDERCOUPON = 'GET_ORDERCOUPON'; // 获取订单可用优惠券
 const GET_ORDERACTIVITYS = 'GET_ORDERACTIVITYS'; // 获取订单可用活动
 const GET_ALLORDERS = 'GET_ALLORDERS'; // 获取订单列表
+const GET_INVOICE = 'GET_INVOICE'; // 获取发票列表
 
 const initState = {
     bannerList: [],
@@ -61,7 +62,8 @@ const initState = {
     computeShopcar: '',
     orderInfo: {},
     orderCouponList: [],
-    orderList: []
+    orderList: [],
+    invoiceList: []
 }
 
 export const reducers = (state = initState, action) => {
@@ -118,6 +120,8 @@ export const reducers = (state = initState, action) => {
             return Object.assign({}, state, { orderInfo: action.data });
         case GET_ALLORDERS:
             return Object.assign({}, state, { orderList: action.data });
+        case GET_INVOICE:
+            return Object.assign({}, state, { invoiceList: action.data });
         default:
             return state;
     }
@@ -129,9 +133,9 @@ export const store = createStore(
 
 // 每次 state 更新时，打印日志
 // 注意 subscribe() 返回一个函数用来注销监听器
-const unsubscribe = store.subscribe(() =>
-    console.log(store.getState())
-)
+// const unsubscribe = store.subscribe(() =>
+//     console.log(store.getState())
+// )
 // 获取当前定位信息
 export const getPosition = async () => {
     // 新建百度地图对象 
@@ -707,3 +711,133 @@ export const getOrders = async () => {
         data: response
     })
 }
+// 订单余额支付
+export const getPayByBalance = async (data) => {
+    try{
+        await api.order.getPayByBalance(data);
+        wx.showToast({
+            title: '支付成功',
+            icon: 'none',
+            duration: 3000,
+            mask: true
+        })
+        setTimeout(function () {
+            wx.redirectTo({
+              url: '/pages/order/orderDetail/orderDetail?orderNo=' + data.orderNo,
+            })
+          }, 3000)
+    } catch (res) {
+        console.info(res)
+    }
+}
+// 订单微信支付
+export const getPayByWechat = async (data) => {
+    try{
+        const response = await api.order.getPayByWechat(data);
+        wx.requestPayment({
+            'timeStamp': response.timeStamp,
+            'nonceStr': response.nonceStr,
+            'package': response.package,
+            'signType': response.signType,
+            'paySign': response.paySign,
+            'success': function (res) {
+                wx.showToast({
+                    title: '支付成功',
+                    icon: 'none',
+                    duration: 1000,
+                    mask: true
+                })
+                setTimeout(function () {
+                    wx.redirectTo({
+                        url: '/pages/order/orderDetail/orderDetail?orderNo=' + data.orderNo,
+                    })
+                }, 3000)
+            },
+            'fail': function (res) {
+                wx.showToast({
+                    title: '支付失败',
+                    icon: 'none',
+                    duration: 1000,
+                    mask: true
+                })
+            }
+        })
+    } catch (res) {
+        console.info(res)
+    }
+}
+// 取冷餐还是热餐
+export const getHotOrCold = async (data) => {
+    try{
+        await api.order.getHotOrCold(data);
+        wx.showToast({
+            title: '操作成功',
+            icon: 'none',
+            duration: 1500,
+            mask: true
+        })
+    } catch (res) {
+        console.info(res)
+    }
+}
+// 添加发票
+export const applyEleInvoice = async (data) => {
+    try {
+        await api.order.applyEleInvoice(data);
+        wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+        })
+        setTimeout(function () {
+            wx.navigateBack({
+                delta: 1
+            })
+        }, 1000)
+    } catch (res) {
+        console.info(res)
+    }
+}
+// 获取发票列表
+export const getInvoiceList = async (data) => {
+    const response = await api.order.getInvoiceList(data);
+    store.dispatch({
+        type: GET_INVOICE,
+        data: response
+    })
+}
+// 申请发票
+export const selectInvoice = async (data) => {
+    try {
+        await api.order.selectInvoice(data);
+        wx.showToast({
+            title: '申请成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+        })
+        setTimeout(function () {
+            wx.navigateBack({
+                delta: 1
+            })
+        }, 2000)
+    } catch (res) {
+        console.info(res)
+    }
+}
+// 申请发票
+export const deleteInvoice = async (data) => {
+    try {
+        await api.order.deleteInvoice(data);
+        wx.showToast({
+            title: '删除成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+        })
+    } catch (res) {
+        console.info(res)
+    }
+}
+

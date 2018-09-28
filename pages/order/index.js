@@ -1,6 +1,6 @@
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getOrders } from '../../redux/index';
+import { getOrders, indexCreateOrder } from '../../redux/index';
 import { sToMinutes } from '../../utils/util';
 const app = getApp();
 
@@ -49,7 +49,6 @@ const pageConfig = {
     // 获取订单列表
     await getOrders();
     payTime(this)
-
   },
   // 点击tab切换
   swichNav: function (e) {
@@ -74,10 +73,61 @@ const pageConfig = {
       url: "/pages/order/orderDetail/orderDetail?orderNo=" + orderNo,
     })
   },
+  // 去付款
+  toPay: function (e) {
+    const orderNo = e.target.dataset.orderno;
+    wx.navigateTo({
+      url: "/pages/order/payment/payment?orderNo=" + orderNo,
+    })
+  },
+  // 再来一单
+  async makeOther (e) {
+    const item = e.currentTarget.dataset.item;
+    const macId = this.data.machineInfo.id;
+    const weekProductList = item.childs; // 预定餐品
+    let childs = [];
+    for (let i = 0; i < weekProductList.length; i++) {
+      if (weekProductList[i].buyNumber > 0) {
+        let obj = {};
+        obj.macId = macId;
+        obj.productId = weekProductList[i].productId;
+        obj.aisleId = weekProductList[i].aisleId;
+        obj.buyNumber = weekProductList[i].buyNumber;
+        childs.push(obj)
+      }
+    }
+
+    let data = {};
+    let body = {};
+    body.childs = childs;
+    body.macId = macId;
+    data.body = JSON.stringify(body);
+
+    const response = await indexCreateOrder(data);
+    const orderNo = response.orderNo;
+    wx.navigateTo({
+      url: "/pages/order/payment/payment?orderNo=" + orderNo,
+    })
+  },
+  // 评价
+  toEvaluate: function (e) {
+    const orderNo = e.currentTarget.dataset.orderno;
+    wx.navigateTo({
+      url: "/pages/order/evaluate/evaluate?orderNo=" + orderNo,
+    })    
+  },
+  // 申请电子发票
+  applyEleInvoice: function (e) {
+    const orderNo = e.target.dataset.orderno;
+    wx.navigateTo({
+      url: "/pages/order/selectEleInvoice/selectEleInvoice?orderNo=" + orderNo,
+    })
+  }
 }
 
 const mapStateToPage = state => ({
-  orderList: state.orderList
+  orderList: state.orderList,
+  machineInfo: state.machineInfo
 })
 
 

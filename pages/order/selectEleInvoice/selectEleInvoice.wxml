@@ -1,0 +1,22 @@
+<!--pages/order/selectEleInvoice/selectEleInvoice.wxml-->
+<view>
+  
+  <view wx:if="{{invoiceList == 0}}">
+    <text class='warn'>暂无发票信息，您可点击新增发票</text>
+  </view>
+  
+  <view class='invoice' wx:for="{{invoiceList}}" wx:for-item="item" wx:key="{{index}}">
+    <view class='invoiceListBox' data-item='{{item}}' bindtap="selectInvoice" >
+      <view>{{item.flag == 1 ? '单位' : '个人'}}</view>
+      <view>抬头 : {{item.title}}</view>
+      <view wx:if="{{item.flag == 1}}">税号 : {{item.ird}}</view>
+      <view>邮箱 : {{item.email}}</view>
+    </view>
+    <view class='selectBox'>
+      <image data-id="{{item.id}}" bindtap="deleteInvoice" class='paymentNoSeleImg' src='{{imgdata}}/reduce.png'></image>
+    </view>
+  </view>
+
+</view>
+
+<button bindtap='toAddInvoice' class='addEleInvoice'>新增发票</button>
