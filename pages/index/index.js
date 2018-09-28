@@ -2,7 +2,7 @@
 //获取应用实例
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar } from '../../redux/index';
+import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -27,12 +27,11 @@ const pageConfig = {
     if (JSON.stringify(this.data.activitysList) != '{}') {
       let activitysText = '';
       for (let key in this.data.activitysList) {
-        console.info(this.data.activitysList[key])
         if (this.data.activitysList[key]) {
-          if (this.data.activitysList[key].name == '首单N元') {
+          if (key == 1) {
             activitysText += '首次下单减免' + this.data.activitysList[key].amount + ','
           }
-          if (this.data.activitysList[key].name == '连续折扣') {
+          if (key == 2) {
             activitysText += this.data.activitysList[key].remark + '订单金额满' + this.data.activitysList[key].joinRestrict + '享受累计折扣，初始' + this.data.activitysList[key].initDis + '折，每新增一单则折扣将增加' + this.data.activitysList[key].proIncr + '折' 
           }
         }
@@ -100,7 +99,11 @@ const pageConfig = {
   // 选中机器
   setMachine: function (e) {
     const item = e.currentTarget.dataset.item;
-    setMachine(item)
+    setMachine(item);
+    this.setData({
+      isShouAllList: false,
+      isShouAllMachine: false
+    })
     this.onShow();
   },
   // 切换tab
@@ -125,8 +128,9 @@ const pageConfig = {
       date.setTime(getTime + 24 * 60 * 60 * 1000 * (i + 1))
       const year = date.getFullYear();
       let month = date.getMonth() + 1;
-      const day = date.getDate();
+      let day = date.getDate();
       if (month < 10) month = '0' + month;
+      if (day < 10) day = '0' + day;
       const weekDay = date.getDay();
       let week;
       for (let j = 0; j < arr_week.length; j++) {
@@ -188,6 +192,88 @@ const pageConfig = {
         macId: macId
     }
     addBuyCar(data)
+  },
+  // 点击今日购---餐品类型
+  todaymealType: function (e) {
+    this.setData({
+      todaymealId: e.currentTarget.dataset.id
+    })
+  },
+  // 点击预定---餐品类型
+  prevOrdermealType: function (e) {
+    this.setData({
+      prevOrdermealId: e.currentTarget.dataset.id
+    });
+  },
+  editShoppingNum: function (id, num) {
+    const weekBuyList = this.data.weekBuyList; // 预定餐品
+    for (let i = 0; i < weekBuyList.length; i++) {
+      if (id == weekBuyList[i].productId) {
+        weekBuyList[i].buyNumber = num;
+      }
+    }
+    this.setData({
+      weekBuyList: weekBuyList
+    })
+  },  
+  //减
+  reduce: function (e) {
+    if (e.currentTarget.dataset.buynumber <= 0) {
+      return;
+    }
+    let num = e.currentTarget.dataset.buynumber - 1;
+    this.editShoppingNum(e.currentTarget.dataset.productid, num);
+  },
+  //加
+  plus: function (e) {
+    let num = e.currentTarget.dataset.buynumber + 1;
+    this.editShoppingNum(e.currentTarget.dataset.productid, num)
+  },
+  // 生成预定订单
+  async makeOrder () {
+    const nowSelectTime = this.data.nowSelectTime; // 预定时间
+    const weekBuyList = this.data.weekBuyList; // 预定餐品
+    const macId = this.data.machineInfo.id;
+    let childs = [];
+    for (let i = 0; i < weekBuyList.length; i++) {
+      if (weekBuyList[i].buyNumber > 0) {
+        let obj = {};
+        obj.macId = macId;
+        obj.productId = weekBuyList[i].productId;
+        obj.aisleId = weekBuyList[i].aisleId;
+        obj.buyNumber = weekBuyList[i].buyNumber;
+        childs.push(obj)
+      }
+    }
+    if (childs.length <= 0) {
+      return
+    }
+    let data = {};
+    let body = {};
+    body.childs = childs;
+    body.takeFoodTime = nowSelectTime;
+    body.macId = macId;
+    data.body = JSON.stringify(body);
+    console.info(data)
+    const response = await indexCreateOrder(data);
+    const orderNo = response.orderNo;
+    for (let i = 0; i < weekBuyList.length; i++) {
+      weekBuyList[i].buyNumber = 0;
+    }
+    this.setData({
+      weekBuyList: weekBuyList
+    })
+    wx.navigateTo({
+      url: "/pages/order/payment/payment?orderNo=" + orderNo,
+    })
+  },
+  toMachineBaiduMap: function (e) {
+    const lat = e.currentTarget.dataset.lat;
+    const lng = e.currentTarget.dataset.lng;
+
+    wx.navigateTo({
+      url: "/pages/index/machineBaiduMap/machineBaiduMap?lat=" + lat + "&lng=" + lng,
+    })
   }
 }
 

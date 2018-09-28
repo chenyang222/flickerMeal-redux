@@ -1,16 +1,19 @@
 import regeneratorRuntime from '../../../libs/runtime';
 import { connect } from '../../../libs/wechat-weapp-redux';
-import { getOrderInfo, getOrderCoupon, getOrderActivitys } from '../../../redux/index';
+import { getUserInfo, getOrderInfo, getOrderCoupon, getOrderActivitys } from '../../../redux/index';
 const app = getApp();
 
 const pageConfig = {
     data: {
         imgdata: app.globalData.imgdata,
-        couponSelect: '', // 优惠券选择
-        couponList: [], // 优惠券List
-        couponSelectId: '' // 选择的优惠券的id
+        couponSelectId: 'nouse', // 选择的优惠券的id
+        payType: 2, // 0=积分兑换 1=微信支付 2=余额支付
+        reduceType: 'coupon',
+        feeMoney: 0,
+        countAmountNum: 0
     },
     async onLoad(options) {
+        getUserInfo(); // 获取余额
         const orderNo = options.orderNo;
         // 获取订单信息
         // await getOrderInfo({
@@ -25,19 +28,67 @@ const pageConfig = {
             use: 0,
             flag: 0,
             macId: this.data.machineInfo.id
-        });
-        let length = 0;
-        let list = [];
-        for (let i = 0; i < this.data.orderCouponList.length; i++) {
-          if (this.data.orderInfo.orderAmount >= this.data.orderCouponList[i].useRestrict && this.data.orderCouponList[i].use == 0) {
-            length++;
-            list.push(this.data.orderCouponList[i])
-          }
+        }, this.data.orderInfo.orderAmount);
+
+        let couponSelectId = 'nouse';
+        let reduceType = 'coupon';
+        let feeMoney = 0;
+        let countAmountNum = this.data.orderInfo.orderAmount;
+        if (this.data.orderInfo.activityType) {
+            reduceType = this.data.orderInfo.activityType;
+            feeMoney = this.data.orderInfo.activityFee;
+            countAmountNum = this.data.orderInfo.payAmount;
         }
         this.setData({
-          couponSelect: length + '个可用',
-          couponList: list,
-          couponSelectId: 'nouse'
+          reduceType: reduceType,
+          feeMoney: feeMoney,
+          couponSelectId: couponSelectId,
+          countAmountNum: countAmountNum > 0 ? countAmountNum : 0
+        })
+    },
+    async onShow() {
+        if (this.data.couponSelectId == 'nouse') {
+            let reduceType = 'coupon';
+            let feeMoney = 0;
+            let countAmountNum = this.data.orderInfo.orderAmount;
+            if (this.data.orderInfo.activityType) {
+                reduceType = this.data.orderInfo.activityType;
+                feeMoney = this.data.orderInfo.activityFee;
+                countAmountNum = this.data.orderInfo.payAmount;
+            }
+            this.setData({
+              reduceType: reduceType,
+              feeMoney: feeMoney,
+              countAmountNum: countAmountNum > 0 ? countAmountNum : 0
+            })
+        } else {
+            let amount = '';
+            let countAmountNum = this.data.orderInfo.orderAmount;
+            for (let i = 0; i < this.data.orderCouponList.length; i++) {
+              if (this.data.couponSelectId == this.data.orderCouponList[i].id) {
+                amount = this.data.orderCouponList[i].amount;
+              }
+            }
+            let reduceType = 'coupon';
+            let feeMoney = amount;
+            countAmountNum = (this.data.orderInfo.orderAmount*100 - feeMoney*100)/100;
+            this.setData({
+              reduceType: reduceType,
+              feeMoney: feeMoney,
+              countAmountNum: countAmountNum > 0 ? countAmountNum : 0
+            })
+        }
+    },
+    // 切换支付方式
+    selectPaytype: function (e) {
+        this.setData({
+            payType: e.currentTarget.dataset.paytype
+        })    
+    },
+    // 去选择优惠券
+    toSelectCoupon: function () {
+        wx.navigateTo({
+            url: '/pages/order/selectCoupon/selectCoupon?couponSelectId=' + this.data.couponSelectId,
         })
     },
 

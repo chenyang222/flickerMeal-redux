@@ -33,6 +33,7 @@ const COMPUTE_SHOPCAR = 'COMPUTE_SHOPCAR'; // 购物车列表金额计算
 const GET_ORDERINFO = 'GET_ORDERINFO'; // 获取订单信息
 const GET_ORDERCOUPON = 'GET_ORDERCOUPON'; // 获取订单可用优惠券
 const GET_ORDERACTIVITYS = 'GET_ORDERACTIVITYS'; // 获取订单可用活动
+const GET_ALLORDERS = 'GET_ALLORDERS'; // 获取订单列表
 
 const initState = {
     bannerList: [],
@@ -59,7 +60,8 @@ const initState = {
     shopCarList: [],
     computeShopcar: '',
     orderInfo: {},
-    orderCouponList: []
+    orderCouponList: [],
+    orderList: []
 }
 
 export const reducers = (state = initState, action) => {
@@ -114,6 +116,8 @@ export const reducers = (state = initState, action) => {
             return Object.assign({}, state, { orderCouponList: action.data });
         case GET_ORDERACTIVITYS:
             return Object.assign({}, state, { orderInfo: action.data });
+        case GET_ALLORDERS:
+            return Object.assign({}, state, { orderList: action.data });
         default:
             return state;
     }
@@ -197,9 +201,24 @@ export const getMachine = async (data) => {
     const response = await api.getMachine({
         data: data
     })
+    let machineListArr = response;
+    for (let i = 0; i < machineListArr.length; i++) {
+      for (let j = 0; j < machineListArr[i].activitys.length; j++) {
+        if (machineListArr[i].activitys[j] == 1) {
+          machineListArr[i]['dude'] = 1;
+        } else if (machineListArr[i].activitys[j] == 2) {
+          machineListArr[i]['discount'] = 2;
+        }
+      }
+      if (machineListArr[i].juli < 1000) {
+        machineListArr[i]['showRange'] = machineListArr[i].juli + '米'
+      } else {
+        machineListArr[i]['showRange'] = machineListArr[i].juli/1000 + '千米'
+      }
+    }
     store.dispatch({
         type: GET_MACHINE,
-        data: response
+        data: machineListArr
     })
 }
 // 设置选中机器信息
@@ -302,6 +321,9 @@ export const getWeekBuy = async (data) => {
     const response = await api.index.getWeekBuy({
         data: data
     })
+    for (let i = 0; i < response.length; i++) {
+        response[i].buyNumber = 0;
+    }
     store.dispatch({
         type: GET_WEEKBUY,
         data: response
@@ -318,6 +340,13 @@ export const getMachineEva = async (macId) => {
         type: GET_MACHINEEVA,
         data: response
     })
+}
+// 首页生成订单
+export const indexCreateOrder = async (data) => {
+    const response = await api.index.indexCreateOrder({
+        data: data
+    });
+    return response
 }
 // 获取热门搜索
 export const getHotSearch = async () => {
@@ -645,13 +674,19 @@ export const getOrderInfo = async (data) => {
     })
 }
 // 获取订单可用优惠券
-export const getOrderCoupon = async (data) => {
+export const getOrderCoupon = async (data, orderAmount) => {
     const response = await api.order.getOrderCoupon({
         data: data
     });
+    let canUseCouponList = [];
+    for (let i = 0; i < response.length; i++) {
+        if (orderAmount >= response[i].useRestrict && response[i].use == 0) {
+            canUseCouponList.push(response[i])
+        }
+    }
     store.dispatch({
         type: GET_ORDERCOUPON,
-        data: response
+        data: canUseCouponList
     })
 }
 // 获取订单可用活动
@@ -661,6 +696,14 @@ export const getOrderActivitys = async (data) => {
     });
     store.dispatch({
         type: GET_ORDERACTIVITYS,
+        data: response
+    })
+}
+// 获取订单列表
+export const getOrders = async () => {
+    const response = await api.order.getOrders();
+    store.dispatch({
+        type: GET_ALLORDERS,
         data: response
     })
 }

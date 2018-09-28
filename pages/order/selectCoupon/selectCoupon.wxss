@@ -1,0 +1,11 @@
+/* pages/order/selectCoupon/selectCoupon.wxss */
+.notUseCoupon{
+  /* width: 100%; */
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffffff;
+  padding: 15rpx 30rpx; 
+}
+.notUseCoupon text{
+  font-size: 30rpx;
+}

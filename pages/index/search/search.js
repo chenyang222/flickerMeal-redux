@@ -30,6 +30,12 @@ const pageConfig = {
             });
         }
     },
+    //跳转首页
+    goIndex: function (e) {
+        wx.switchTab({
+            url: '../index',
+        })
+    },
     //点击搜索时
     searchGoods: function () {
         const that = this;

@@ -63,7 +63,14 @@
     <view class="machine-right">
       <view class="machineName">
         <text>{{machineInfo.name}}({{machineInfo.address}})</text>
-        <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
+        <view data-lat='{{machineInfo.lat}}' data-lng='{{machineInfo.lng}}' bindtap='toMachineBaiduMap'>
+          <text>距离{{ machineInfo.showRange }}</text>
+          <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
+        </view>
+      </view>
+      <view class="machine-activitys">
+          <image wx:if="{{ machineInfo.dude }}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/discount.png"></image>
+          <image wx:if="{{ machineInfo.discount }}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/dude.png"></image>
       </view>
     </view>
   </view>
@@ -77,7 +84,14 @@
       <view class="machine-right">
         <view class="machineName">
           <text>{{item.name}}({{item.address}})</text>
-          <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
+          <view data-lat='{{machineInfo.lat}}' data-lng='{{machineInfo.lng}}' bindtap='toMachineBaiduMap'>
+            <text>距离{{ machineInfo.showRange }}</text>
+            <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
+          </view>
+        </view>
+        <view class="machine-activitys">
+            <image wx:if="{{item.dude}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/discount.png"></image>
+            <image wx:if="{{item.discount}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/dude.png"></image>
         </view>
       </view>
     </view>

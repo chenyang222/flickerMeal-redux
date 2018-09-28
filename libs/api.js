@@ -91,6 +91,15 @@ const api = {
                 data: data
             })
         },
+        // 创建预定订单
+        indexCreateOrder ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodorder/createOrder',
+                data: data,
+                method: 'post',
+                requestBody: true
+            })
+        }
     },
     // 获取我的信息
     getUserInfo () { 
@@ -157,6 +166,12 @@ const api = {
             return fetch({
                 url: '/fastfood/foodorder/calCheckTotalFeeByOrderNo',
                 data: data
+            })
+        },
+        // 获取订单列表
+        getOrders () {
+            return fetch({
+                url: '/fastfood/foodorder/findOrderByUser'
             })
         },
     },

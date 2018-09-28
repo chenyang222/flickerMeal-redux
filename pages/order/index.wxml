@@ -1,0 +1,213 @@
+<view class='order-container'>
+
+    <!-- 切换 -->
+    <view class="swiper-tab">
+        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部订单</view>
+        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待支付</view>
+        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待取餐</view>
+        <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+        <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">售后</view>
+    </view>
+
+    <!-- 全部订单 -->
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+        <swiper-item>
+            <view class='all-order' style="height:{{winHeight}}px">
+                <view class='order-list' wx:for="{{orderList}}" wx:for-item="item" wx:key="{{index}}">
+                    <view class='order-list-title'>
+                        <view data-orderNo="{{item.orderNo}}" bindtap='toOrderDetail' class='dian-info'>
+                            <image class='order-list-icon' src='{{imgdata}}/orderTitleIcon.png'></image>
+                            <text class='order-list-name'>{{item.orderNo}}</text>
+                            <image class='order-list-more' src='{{imgdata}}/cf_goright.png'></image>
+                        </view>
+                        <!-- 已删除  -->
+                        <view wx:if="{{item.orderStatus == -2}}" class='shengTime'>
+                            <text class='order-list-time-title'>订单已删除</text>
+                        </view>
+                        <!-- 订单已取消  -->
+                        <view wx:if="{{item.orderStatus == -1}}" class='shengTime'>
+                            <text class='order-list-time-title'>订单已取消</text>
+                        </view>
+                        <!-- 剩余时间、去付款  -->
+                        <view wx:if="{{item.orderStatus == 0}}" class='shengTime'>
+                            <text class='time'>{{item.countDown}}</text>
+                        </view>
+                        <!-- 订单待取餐 -->
+                        <view wx:elif="{{item.orderStatus == 1}}" class='shengTime'>
+                            <text class='time'>订单待取餐</text>
+                        </view>
+                        <!-- 订单已完成 -->
+                        <view wx:elif="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='shengTime'>
+                            <text class='time'>订单已完成</text>
+                        </view>
+                    </view>
+                    <view class='order-list-ctninfo'>
+                        <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
+                            <text class='fl'>{{items.productName}}</text>
+                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                        </view>
+                    </view>
+                    <view class='zongjiWrap'>
+                        <view class='zongji fr'>
+                            <view wx:if="{{item.orderStatus == 0}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，应付
+                                <text>{{item.orderAmount}}</text>
+                            </view>
+                            <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toPay' class='fukuan'>去付款</view>
+                            <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，实付
+                                <text>{{item.payAmount}}</text>
+                            </view>
+                            <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>
+                        <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
+                        <view data-orderNo='{{item.orderNo}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
+                        <view wx:if="{{item.orderStatus != 3}}" class='pingjia fr ctl-btn-hou'>评价</view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- 待支付 -->
+        <swiper-item>
+            <view class='all-order' style="height:{{winHeight - 96}}px">
+                <!-- 去付款 -->
+                <view class='order-list' wx:for="{{orderList}}" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.orderStatus == 0}}">
+                    <view class='order-list-title'>
+                        <view data-orderNo="{{item.orderNo}}" bindtap='toOrderDetail' class='dian-info'>
+                            <image class='order-list-icon' src='{{imgdata}}/orderTitleIcon.png'></image>
+                            <text class='order-list-name'>{{item.orderNo}}</text>
+                            <image class='order-list-more' src='{{imgdata}}/cf_goright.png'></image>
+                        </view>
+                        <!-- 剩余时间、去付款  -->
+                        <view wx:if="{{item.orderStatus == 0}}" class='shengTime'>
+                            <text class='time'>{{item.countDown}}</text>
+                        </view>
+                    </view>
+                    <view class='order-list-ctninfo'>
+                        <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
+                            <text class='fl'>{{items.productName}}</text>
+                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                        </view>
+                    </view>
+                    <view class='zongjiWrap'>
+                        <view class='zongji fr'>
+                            <view wx:if="{{item.orderStatus == 0}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，应付
+                                <text>{{item.orderAmount}}</text>
+                            </view>
+                            <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toPay' class='fukuan'>去付款</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- 待取餐 -->
+        <swiper-item>
+            <view class='all-order' style="height:{{winHeight - 96}}px">
+                <!-- 去付款 -->
+                <view class='order-list' wx:for="{{orderList}}" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.orderStatus == 1}}">
+                    <view class='order-list-title'>
+                        <view data-orderNo="{{item.orderNo}}" bindtap='toOrderDetail' class='dian-info'>
+                            <image class='order-list-icon' src='{{imgdata}}/orderTitleIcon.png'></image>
+                            <text class='order-list-name'>{{item.orderNo}}</text>
+                            <image class='order-list-more' src='{{imgdata}}/cf_goright.png'></image>
+                        </view>
+                        <!-- 订单待取餐 -->
+                        <view wx:if="{{item.orderStatus == 1}}" class='shengTime'>
+                            <text class='time'>订单待取餐</text>
+                        </view>
+                    </view>
+                    <view class='order-list-ctninfo'>
+                        <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
+                            <text class='fl'>{{items.productName}}</text>
+                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                        </view>
+                    </view>
+                    <view class='zongjiWrap'>
+                        <view class='zongji fr'>
+                            <view wx:if="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，实付
+                                <text>{{item.payAmount}}</text>
+                            </view>
+                            <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- 已完成 -->
+        <swiper-item>
+            <view class='all-order' style="height:{{winHeight - 96}}px">
+                <!-- 去付款 -->
+                <view class='order-list' wx:for="{{orderList}}" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}">
+                    <view class='order-list-title'>
+                        <view data-orderNo="{{item.orderNo}}" bindtap='toOrderDetail' class='dian-info'>
+                            <image class='order-list-icon' src='{{imgdata}}/orderTitleIcon.png'></image>
+                            <text class='order-list-name'>{{item.orderNo}}</text>
+                            <image class='order-list-more' src='{{imgdata}}/cf_goright.png'></image>
+                        </view>
+                        <!-- 订单已完成 -->
+                        <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='shengTime'>
+                            <text class='time'>订单已完成</text>
+                        </view>
+                    </view>
+                    <view class='order-list-ctninfo'>
+                        <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
+                            <text class='fl'>{{items.productName}}</text>
+                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                        </view>
+                    </view>
+                    <view class='zongjiWrap'>
+                        <view class='zongji fr'>
+                            <view wx:if="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，实付
+                                <text>{{item.payAmount}}</text>
+                            </view>
+                            <view wx:if="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>
+                        <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
+                        <view data-orderNo='{{item.orderNo}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
+                        <view wx:if="{{item.orderStatus != 3}}" class='pingjia fr ctl-btn-hou'>评价</view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+        <!-- 售后 -->
+        <swiper-item>
+            <view class='all-order' style="height:{{winHeight - 96}}px">
+                <!-- 去付款 -->
+                <view class='order-list' wx:for="{{orderList}}" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.orderStatus == 4}}">
+                    <view class='order-list-title'>
+                        <view data-orderNo="{{item.orderNo}}" bindtap='toOrderDetail' class='dian-info'>
+                            <image class='order-list-icon' src='{{imgdata}}/orderTitleIcon.png'></image>
+                            <text class='order-list-name'>{{item.orderNo}}</text>
+                            <image class='order-list-more' src='{{imgdata}}/cf_goright.png'></image>
+                        </view>
+                        <!-- 订单已完成 -->
+                        <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='shengTime'>
+                            <text class='time'>订单已完成</text>
+                        </view>
+                    </view>
+                    <view class='order-list-ctninfo'>
+                        <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
+                            <text class='fl'>{{items.productName}}</text>
+                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                        </view>
+                    </view>
+                    <view class='zongjiWrap'>
+                        <view class='zongji fr'>
+                            <view wx:if="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='zongjiNum'>共
+                                <text>{{item.buyNumber}}</text>件商品，实付
+                                <text>{{item.payAmount}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+</view>

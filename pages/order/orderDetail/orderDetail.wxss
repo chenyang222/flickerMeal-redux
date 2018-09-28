@@ -1,0 +1,133 @@
+/* pages/order/orderDetail/orderDetail.wxss */
+.orderBox{
+  width: 100%;
+  padding-top: 40rpx;
+  padding-bottom: 15rpx; 
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+.orderBox .title{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  margin-top: 60rpx;
+  margin-bottom: 90rpx;
+}
+.orderBox image{
+  width: 10%;
+  margin-right: 25rpx;
+}
+.orderBox .title text{
+  font-size: 55rpx;
+  color: #ff9e35;
+}
+.orderBox .restTime{
+  width: 100%;
+  text-align: center;
+  color: #7c7c7c;
+  display: block;
+  font-size: 26rpx;
+  line-height: 100rpx;
+}
+.orderBox .btns{
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.orderBox .btns navigator, .orderBox .btns button{
+  display: inline-block;
+  padding: 0 40rpx;
+  line-height: 89rpx;
+  height: 89rpx;
+  border-radius: 30rpx;
+  background-color: #ff9e35;
+  color: #ffffff;
+  text-align: center;
+  font-size: 35rpx;
+  margin: 0;
+}
+
+.orderBody .product{
+  margin-top: 0rpx;
+}
+.orderBody .addGoods{
+  display: flex;
+  justify-content: space-between;
+  font-size: 40rpx;
+}
+.orderBody .addGoods .price{
+  font-size: 40rpx !important;
+}
+.orderBody .productName{
+  color: #7c7c7c;
+}
+.orderBody .total{
+  font-size:28rpx;
+  font-family:PingFangSC-Medium;
+  color:rgba(253,106,8,1);
+  font-weight: bold;
+  text-align: right;
+  display: block;
+  line-height: 35rpx;
+  background-color: #ffffff;
+  padding: 50rpx 5%;
+}
+
+.orderBody .basic{
+  margin-top: 15rpx;
+  background-color: #ffffff;
+  padding: 25rpx 5%;
+}
+.orderBody .basic .basic-left{
+  font-weight: bold;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  margin-right: 35rpx;
+}
+.orderBody .basic .basic-right{
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #7c7c7c;
+}
+.orderBody .getFoodtwoCode{
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+
+.orderFooter .topay{
+  width: 80%;
+  margin: 30rpx auto;
+  display: block;
+  line-height: 89rpx;
+  height: 89rpx;
+  border-radius: 30rpx;
+  background-color: #ff9e35;
+  color: #ffffff;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.orderBody .message{
+  margin-top: 15rpx;
+  background-color: #ffffff;
+  padding: 25rpx 5%;
+}
+.orderBody .message view{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.orderBody .message .message-left{
+  font-weight: bold;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  margin-right: 35rpx;
+}
+.orderBody .message .message-right{
+  line-height: 30rpx;
+  font-size: 20rpx;
+  color: #7c7c7c;
+}

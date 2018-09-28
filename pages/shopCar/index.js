@@ -130,7 +130,6 @@ const pageConfig = {
       body: JSON.stringify(childs)
     }
     const response = await createOrderByShopCar(data);
-    console.info(response)
     const orderNo = response.orderNo;
     wx.navigateTo({
       url: "/pages/order/payment/payment?orderNo=" + orderNo,

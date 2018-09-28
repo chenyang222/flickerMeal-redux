@@ -31,6 +31,14 @@ const pageConfig = {
                 page.onShow();
             }
         })
+    },
+    toMachineBaiduMap: function (e) {
+        const lat = e.currentTarget.dataset.lat;
+        const lng = e.currentTarget.dataset.lng;
+    
+        wx.navigateTo({
+          url: "/pages/index/machineBaiduMap/machineBaiduMap?lat=" + lat + "&lng=" + lng,
+        })
     }
 }
 

@@ -1,0 +1,269 @@
+<!--pages/order/orderDetail/orderDetail.wxml-->
+
+<!-- 订单状态 订单状态 -2=已删除，-1=已取消，0=待支付，1=已支付，2=已取单，3=已评价-->
+
+<!-- 已删除 -->
+<view class="orderBox" wx:if="{{orderInfo.orderStatus == -2}}">
+  <view class='title'>
+    <image mode="widthFix" src='{{imgdata}}/closeBtn.png'></image>
+    <text>订单已删除</text>
+  </view>
+  <view class='orderBody'>
+    <view class='meals'>
+      <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+        <view class="product-left">
+          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+        </view>
+        <view class="product-right">
+          <view class="productName">
+            <text>{{item.productName}}</text>
+          </view>
+          <view class="intro">
+            <view class='addGoods'>
+              <text>X {{item.buyNumber}}</text>
+              <view class="price">￥
+                <text>{{item.buyNumber * item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='basic'>
+      <view>
+        <text class="basic-left">订单号码:</text>
+        <text class="basic-right">{{orderNoText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">订单时间:</text>
+        <text class="basic-right">{{createTimeText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 已取消 -->
+<view class="orderBox" wx:if="{{orderInfo.orderStatus == -1}}">
+  <view class='title'>
+    <image mode="widthFix" src='{{imgdata}}/closeBtn.png'></image>
+    <text>订单已取消</text>
+  </view>
+  <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
+  <view class='orderBody'>
+    <view class='meals'>
+      <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+        <view class="product-left">
+          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+        </view>
+        <view class="product-right">
+          <view class="productName">
+            <text>{{item.productName}}</text>
+          </view>
+          <view class="intro">
+            <view class='addGoods'>
+              <text>X {{item.buyNumber}}</text>
+              <view class="price">￥
+                <text>{{item.buyNumber * item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='basic'>
+      <view>
+        <text class="basic-left">订单号码:</text>
+        <text class="basic-right">{{orderNoText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">订单时间:</text>
+        <text class="basic-right">{{createTimeText}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 待支付 -->
+<view class="orderBox" wx:if="{{orderInfo.orderStatus == 0}}">
+  <view class='title'>
+    <image mode="widthFix" src='{{imgdata}}/waitpay.png'></image>
+    <text>待支付</text>
+  </view>
+  <view class='orderBody'>
+    <view class='meals'>
+      <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+        <view class="product-left">
+          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+        </view>
+        <view class="product-right">
+          <view class="productName">
+            <text>{{item.productName}}</text>
+          </view>
+          <view class="intro">
+            <view class='addGoods'>
+              <text>X {{item.buyNumber}}</text>
+              <view class="price">￥
+                <text>{{item.buyNumber * item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='basic'>
+      <view>
+        <text class="basic-left">订单号码:</text>
+        <text class="basic-right">{{orderNoText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">订单时间:</text>
+        <text class="basic-right">{{createTimeText}}</text>
+      </view>
+    </view>
+  </view>
+  <navigator class='btn' url="/pages/order/payment/payment?orderNo={{orderInfo.orderNo}}">支付</navigator>
+</view>
+
+
+<!-- 待取餐 -->
+<view class="orderBox" wx:if="{{orderInfo.orderStatus == 1}}">
+  <view class='title'>
+    <image mode="widthFix" src='{{imgdata}}/waitget.png'></image>
+    <text>待取餐</text>
+  </view>
+  <view class='btns'>
+    <navigator url="">代取餐</navigator>
+    <navigator url="">联系客服</navigator>
+    <button open-type='share'>分享</button>
+  </view>
+  <view class='orderBody'>
+    <view class='meals'>
+      <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+        <view class="product-left">
+          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+        </view>
+        <view class="product-right">
+          <view class="productName">
+            <text>{{item.productName}}</text>
+          </view>
+          <view class="intro">
+            <view class='addGoods'>
+              <text>X {{item.buyNumber}}</text>
+              <view class="price">￥
+                <text>{{item.buyNumber * item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{orderInfo.couponFee}}" class='message'>
+      <view>
+        <text class='message-left'>优惠券</text>
+        <text class='message-right'>￥ -{{orderInfo.couponFee}}</text>
+      </view>
+    </view>
+    <view class='total'> 
+      <text>合计 ￥ {{total}}</text>
+    </view>
+    <view class='basic'>
+      <view>
+        <text class="basic-left">订单号码:</text>
+        <text class="basic-right">{{orderNoText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">订单时间:</text>
+        <text class="basic-right">{{createTimeText}}</text>
+      </view>
+      <view wx:if="{{takeFoodText}}">
+        <text class="basic-left">取餐时间:</text>
+        <text class="basic-right">{{orderInfo.takeFoodText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">支付方式:</text>
+        <text class="basic-right">{{orderInfo.payType}}</text>
+      </view>
+      <view>
+        <text class="basic-left">发票信息:</text>
+        <text class="basic-right">个人</text>
+      </view>
+      <view>
+        <text class="basic-left">取餐码:</text>
+        <text class="basic-right"> {{takeFoodCode}}</text>
+      </view>
+      <view>
+        <text class="basic-left">取餐二维码:</text>
+      </view>
+      <image class='getFoodtwoCode' mode="widthFix" src='{{orderInfo.qrCode}}'></image>      
+    </view>
+  </view>
+</view>
+
+
+<!-- 已取餐 -->
+<view class="orderBox" wx:if="{{orderInfo.orderStatus == 2 || orderInfo.orderStatus == 3}}">
+  <view class='title'>
+    <image mode="widthFix" src='{{imgdata}}/close.png'></image>
+    <text>订单已完成</text>
+  </view>
+  <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
+  <view class='btns'>
+    <navigator url="">申请电子发票</navigator>
+    <navigator url="/pages/order/evaluate/evaluate?orderNo={{orderInfo.orderNo}}">评价</navigator>
+  </view>
+  <view class='orderBody'>
+    <view class='meals'>
+      <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
+        <view class="product-left">
+          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+        </view>
+        <view class="product-right">
+          <view class="productName">
+            <text>{{item.productName}}</text>
+          </view>
+          <view class="intro">
+            <view class='addGoods'>
+              <text>X {{item.buyNumber}}</text>
+              <view class="price">￥
+                <text>{{item.buyNumber * item.price}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{orderInfo.couponFee}}" class='message'>
+      <view>
+        <text class='message-left'>优惠券</text>
+        <text class='message-right'>￥ -{{orderInfo.couponFee}}</text>
+      </view>
+    </view>
+    <view class='total'> 
+      <text>合计 ￥ {{total}}</text>
+    </view>
+    <view class='basic'>
+      <view>
+        <text class="basic-left">订单号码:</text>
+        <text class="basic-right">{{orderNoText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">订单时间:</text>
+        <text class="basic-right">{{createTimeText}}</text>
+      </view>
+      <view wx:if="{{takeFoodText}}">
+        <text class="basic-left">取餐时间:</text>
+        <text class="basic-right">{{orderInfo.takeFoodText}}</text>
+      </view>
+      <view>
+        <text class="basic-left">支付方式:</text>
+        <text class="basic-right">{{orderInfo.payType}}</text>
+      </view>
+      <view>
+        <text class="basic-left">发票信息:</text>
+        <text class="basic-right">个人</text>
+      </view>
+      <image class='getFoodtwoCode' mode="widthFix" src='{{orderInfo.qrCode}}'></image>      
+    </view>
+  </view>
+</view>

@@ -32,7 +32,7 @@
     <view class='coupon' bindtap='toSelectCoupon'>
         <view>优惠券</view>
         <view class='textImages'>
-            <text>{{couponSelect}}</text>
+            <text>{{orderCouponList.length}}个可用</text>
             <image class='iconRight' src='{{imgdata}}/cf_goright.png'></image>
         </view>
     </view>
@@ -64,24 +64,24 @@
             </view>
         </view>
     </view>
-    <!-- <view class='order-daifu'>
+    <view wx:if="{{feeMoney != 0}}" class='order-daifu'>
       <view class='jian-name'>
-        <text class='jian-ming'>满减</text>
-        <text>在线支付立减优惠</text>
+        <text wx:if="{{reduceType == 1}}">首单减免</text>
+        <text wx:if="{{reduceType == 2}}">连续折扣</text>
+        <text wx:if="{{couponSelectId != 'nouse'}}">优惠券</text>
       </view>
       <view class='jian-price'>
         <text>-</text>
         <text>￥</text>
-        <text>10</text>
+        <text>{{feeMoney}}</text>
       </view>
-    </view> -->
+    </view>
     <view class='heji'>
         <view class='heji-left'>
             <text>合计</text>
             <view>￥
                 <text>{{countAmountNum}}</text>
             </view>
-            <!-- <text>已优惠10元</text> -->
         </view>
         <view class='heji-right'>
             <text bindtap='toPay' class='jiesuan-btn'>确认支付</text>
