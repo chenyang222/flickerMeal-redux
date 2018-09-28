@@ -45,10 +45,19 @@ const pageConfig = {
       let payType;
       let activityFee;
       let activityType;
+      let foodOrCold;
+      let invoiceText = false;
       let takeFoodText = false;
       if (orderInfo.orderStatus == 1 || orderInfo.orderStatus == 2 || orderInfo.orderStatus == 3) {
         couponFee = orderInfo.couponFee ? orderInfo.couponFee : 0; // 优惠券
         activityFee = orderInfo.activityFee ? orderInfo.activityFee : 0; // 活动
+        if (orderInfo.invoiceFlag) {
+          if (orderInfo.invoiceFlag == 0) {
+            invoiceText = '个人'
+          } else if (orderInfo.invoiceFlag == 0) {
+            invoiceText = '单位'
+          }
+        }
         if (orderInfo.activityType == 1) {
           activityType = '首单减免'
         } else if (orderInfo.activityType == 2) {
@@ -67,6 +76,11 @@ const pageConfig = {
         if (orderInfo.takeFoodTime > date) {
           takeFoodText = formatTime(orderInfo.takeFoodTime, timeFormat);
         }
+        if (orderInfo.warmFlag == 0) {
+          foodOrCold == '未加热'
+        } else if (orderInfo.warmFlag == 1) {
+          foodOrCold == '已加热'
+        }
       }
       this.setData({
         orderNoText: orderNo.substr(0,10),
@@ -78,7 +92,9 @@ const pageConfig = {
         activityFee: activityFee ? activityFee : '',
         activityType: activityType ? activityType : '',
         takeFoodText: takeFoodText,
-        orderStatus: orderInfo.orderStatus
+        orderStatus: orderInfo.orderStatus,
+        foodOrCold: foodOrCold,
+        invoiceText: invoiceText
       })
       if (orderInfo.orderStatus == 0) {
         payTime(orderInfo.createTime, this)
@@ -97,21 +113,32 @@ const pageConfig = {
         }
       }
     },
-    getCold: function () {
+    async getCold () {
       const orderNo = this.data.orderInfo.orderNo;
       const data = {
         orderNo: orderNo,
         warmFlag: 0
       }
-      getHotOrCold(data)
+      await getHotOrCold(data)
+      // 重新加载当前页面
+      this.onLoad();
     },
-    getHot: function () {
+    async getHot () {
       const orderNo = this.data.orderInfo.orderNo;
       const data = {
         orderNo: orderNo,
         warmFlag: 1
       }
-      getHotOrCold(data)
+      await getHotOrCold(data)
+      // 重新加载当前页面
+      this.onLoad();
+    },
+    // 申请电子发票
+    applyEleInvoice: function (e) {
+      const orderNo = e.target.dataset.orderno;
+      wx.navigateTo({
+        url: "/pages/order/selectEleInvoice/selectEleInvoice?orderNo=" + orderNo,
+      })
     }
 }
 

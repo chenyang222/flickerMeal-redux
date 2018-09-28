@@ -134,7 +134,7 @@
     <text>待取餐</text>
   </view>
   <view class='btns'>
-    <navigator url="">联系客服</navigator>
+    <!-- <navigator url="">联系客服</navigator> -->
     <button open-type='share'>分享</button>
     <button bindtap="getCold">取冷餐</button>
     <button bindtap="getHot">取热餐</button>
@@ -191,13 +191,17 @@
         <text class="basic-left">取餐时间:</text>
         <text class="basic-right">{{takeFoodText}}</text>
       </view>
+      <view wx:if="{{foodOrCold}}">
+        <text class="basic-left">餐品温度:</text>
+        <text class="basic-right">{{foodOrCold}}</text>
+      </view>
       <view>
         <text class="basic-left">支付方式:</text>
         <text class="basic-right">{{payType}}</text>
       </view>
-      <view>
+      <view wx:if="{{invoiceText}}">
         <text class="basic-left">发票信息:</text>
-        <text class="basic-right">个人</text>
+        <text class="basic-right">{{invoiceText}}</text>
       </view>
       <view>
         <text class="basic-left">取餐码:</text>
@@ -220,8 +224,8 @@
   </view>
   <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
   <view class='btns'>
-    <navigator url="">申请电子发票</navigator>
-    <navigator url="/pages/order/evaluate/evaluate?orderNo={{orderInfo.orderNo}}">评价</navigator>
+    <button data-orderNo="{{orderInfo.orderNo}}" bindtap='applyEleInvoice'>申请电子发票</button>
+    <navigator wx:if="{{orderStatus != 3}}" url="/pages/order/evaluate/evaluate?orderNo={{orderInfo.orderNo}}">评价</navigator>
   </view>
   <view class='orderBody'>
     <view class='meals'>
@@ -275,13 +279,17 @@
         <text class="basic-left">取餐时间:</text>
         <text class="basic-right">{{takeFoodText}}</text>
       </view>
+      <view wx:if="{{foodOrCold}}">
+        <text class="basic-left">餐品温度:</text>
+        <text class="basic-right">{{foodOrCold}}</text>
+      </view>
       <view>
         <text class="basic-left">支付方式:</text>
         <text class="basic-right">{{payType}}</text>
       </view>
-      <view>
+      <view wx:if="{{invoiceText}}">
         <text class="basic-left">发票信息:</text>
-        <text class="basic-right">个人</text>
+        <text class="basic-right">{{invoiceText}}</text>
       </view>
     </view>
   </view>
