@@ -1,6 +1,6 @@
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getOrders, indexCreateOrder } from '../../redux/index';
+import { getOrders, indexCreateOrder, getOrderConfig } from '../../redux/index';
 import { sToMinutes } from '../../utils/util';
 const app = getApp();
 
@@ -10,7 +10,7 @@ const payTime = function (that) {
   var data = that.data.orderList;
   for (var i = 0; i < data.length; i++) {
       if (data[i].orderStatus == 0) {
-          const time = 20 * 60 - (date - data[i].createTime) / 1000;
+          const time = that.data.orderConfig.timeOut * 60 - (date - data[i].createTime) / 1000;
           if (time > 0) {
               data[i].countDown = '剩余支付时间' + sToMinutes(time);
           } else {
@@ -44,6 +44,7 @@ const pageConfig = {
         });
       }
     })
+    getOrderConfig();
   },
   async onShow() {
     // 获取订单列表
@@ -127,7 +128,8 @@ const pageConfig = {
 
 const mapStateToPage = state => ({
   orderList: state.orderList,
-  machineInfo: state.machineInfo
+  machineInfo: state.machineInfo,
+  orderConfig: state.orderConfig
 })
 
 

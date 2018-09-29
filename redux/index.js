@@ -35,6 +35,7 @@ const GET_ORDERCOUPON = 'GET_ORDERCOUPON'; // 获取订单可用优惠券
 const GET_ORDERACTIVITYS = 'GET_ORDERACTIVITYS'; // 获取订单可用活动
 const GET_ALLORDERS = 'GET_ALLORDERS'; // 获取订单列表
 const GET_INVOICE = 'GET_INVOICE'; // 获取发票列表
+const GET_ORDERCONFIG = 'GET_ORDERCONFIG'; // 获取订单设置
 
 const initState = {
     bannerList: [],
@@ -63,7 +64,8 @@ const initState = {
     orderInfo: {},
     orderCouponList: [],
     orderList: [],
-    invoiceList: []
+    invoiceList: [],
+    orderConfig: {}
 }
 
 export const reducers = (state = initState, action) => {
@@ -122,6 +124,8 @@ export const reducers = (state = initState, action) => {
             return Object.assign({}, state, { orderList: action.data });
         case GET_INVOICE:
             return Object.assign({}, state, { invoiceList: action.data });
+        case GET_ORDERCONFIG:
+            return Object.assign({}, state, { orderConfig: action.data });
         default:
             return state;
     }
@@ -133,9 +137,9 @@ export const store = createStore(
 
 // 每次 state 更新时，打印日志
 // 注意 subscribe() 返回一个函数用来注销监听器
-// const unsubscribe = store.subscribe(() =>
-//     console.log(store.getState())
-// )
+const unsubscribe = store.subscribe(() =>
+    console.log(store.getState())
+)
 // 获取当前定位信息
 export const getPosition = async () => {
     // 新建百度地图对象 
@@ -841,3 +845,11 @@ export const deleteInvoice = async (data) => {
     }
 }
 
+// 获取订单设置
+export const getOrderConfig = async (data) => {
+    const response = await api.order.getOrderConfig(data);
+    store.dispatch({
+        type: GET_ORDERCONFIG,
+        data: response
+    })
+}

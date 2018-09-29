@@ -222,7 +222,13 @@ const api = {
                 url: '/account/userinvoice/delete',
                 data: data
             })
-        }
+        },
+        // 获取订单设置
+        getOrderConfig () {
+            return fetch({
+                url: '/fastfood/foodorder/findOrderConfig'
+            })
+        },
     },
     mine: {
         // 获取消息通知列表

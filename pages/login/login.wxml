@@ -2,7 +2,7 @@
 <view class="container">
   <view class="top">
     <image mode='widthFix' src="{{imgdata}}/login_bg.png"></image>
-    <view class="btn">
+    <view class="loginBtn">
       <text class="right_btn tab_btn tab_btn_active">手机短信登录</text>
     </view>
   </view>

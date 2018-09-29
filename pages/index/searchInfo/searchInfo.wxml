@@ -15,12 +15,12 @@
             </view>
             <view class="machine-right">
                 <view class="machineName">
-                    <text>{{item.name}}({{item.address}})</text>
-                    <view data-lat='{{machineInfo.lat}}' data-lng='{{machineInfo.lng}}' bindtap='toMachineBaiduMap'>
-                        <text>距离{{ machineInfo.showRange }}</text>
+                    <text>{{item.name}}{{item.address ? '(' + item.address + ')' : ''}}</text>
+                    <view data-lat='{{item.lat}}' data-lng='{{item.lng}}' bindtap='toMachineBaiduMap'>
                         <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
                     </view>
                 </view>
+                <text class="range">距离{{ item.showRange }}</text>
                 <view class="machine-activitys">
                     <image wx:if="{{item.dude}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/discount.png"></image>
                     <image wx:if="{{item.discount}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/dude.png"></image>

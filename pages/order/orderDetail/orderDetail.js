@@ -9,7 +9,7 @@ const timeFormat = ['-', '-', ' ', ':', ':', ' '];
 const payTime = function (createTime, that) {
   var date = new Date().getTime();
   var overTimeText = '';
-  const time = 20 * 60 - (date - createTime) / 1000;
+  const time = that.data.orderConfig.timeOut * 60 - (date - createTime) / 1000;
   if (time > 0) {
     overTimeText = '剩余支付时间 : ' + sToMinutes(time);
     that.setData({
@@ -147,7 +147,8 @@ const pageConfig = {
 }
 
 const mapStateToPage = state => ({
-  orderInfo: state.orderInfo
+  orderInfo: state.orderInfo,
+  orderConfig: state.orderConfig
 })
 
 Page(connect(mapStateToPage)(pageConfig))
