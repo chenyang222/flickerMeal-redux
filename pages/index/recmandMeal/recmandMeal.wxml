@@ -3,9 +3,9 @@
     <!-- 列表 -->
     <view class="product" wx:for="{{recomtcList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-            <image data-item='{{item}}' bindtap='toMealDetail' class="productImg" mode="widthFix" src="{{item.picture}}"></image>
-            <image wx:if="{{item.label == 2}}" class="productIcon" mode='widthFix' src="{{imgdata}}/hotPushIcon.png"></image>
-            <image wx:elif="{{item.label == 1}}" class="productIcon" mode='widthFix' src="{{imgdata}}/newmeal.png"></image>
+            <image data-item='{{item}}' bindtap='toMealDetail' class="productImg" mode="aspectFit" src="{{item.picture}}"></image>
+            <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
+            <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
         </view>
         <view class="product-right">
             <view class="productName">

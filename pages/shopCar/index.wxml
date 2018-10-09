@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container" wx:if="{{shopCarList.length > 0}}">
     <view class='order-name'>
-        <text class='goname'>{{madichInfo.mName}}</text>
+        <text class='goname'>{{machineInfo.name}}</text>
     </view>
     <view class="{{item.isTouchMove ? 'item-active' : 'item'}}" bindtouchstart='touchstart' bindtouchmove='touchmove' wx:for="{{shopCarList}}"
         wx:key='index' data-index="{{index}}">

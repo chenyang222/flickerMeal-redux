@@ -124,8 +124,14 @@
   text-align: center;
   margin-top: 10rpx;
 }
+.indexMachine{
+  background-color: #f8f8f8;
+  padding: 30rpx 0rpx;
+}
 .isCanGet{
-  float: right;
+  width: 60%;
+  padding: 0 5% 0 35%;
+  background-color: #ffffff;
   text-align: right;
   margin-right: 3%;
   font-size:24rpx;
@@ -133,12 +139,20 @@
   color:rgba(102,102,102,1);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.isCanGet image{
+.isCanGet view{
+  display: flex;
+  align-items: center;
+}
+.isCanGet .dw{
+  width:30rpx;
+  height:40rpx;
+  margin-right: 15rpx;
+}
+.isCanGet .pullDown{
   width:20rpx;
   height:9rpx;
-  margin-left: 15rpx;
-  float: right; 
 }
 
 /* 推荐餐品 */

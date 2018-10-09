@@ -70,11 +70,11 @@ body{
 .machine .machine-right .machineName{
   display: flex;
   justify-content: space-between;
-  height: 34rpx;
-  line-height: 34rpx;
 }
-.machine .machine-right .machineName text{
-  font-size: 24rpx;
+.machine .machine-right .machineName .name{
+  font-size: 34rpx;
+  margin-top: 5rpx;
+  margin-bottom: 5rpx;
 }
 .machine .machine-right .machineName view{
   display:flex;
@@ -129,10 +129,11 @@ body{
 }
 .product .product-left .productImg{
   width: 100%;
-  max-height: 140rpx;
+  height: 140rpx;
 }
 .productIcon{
   width: 69rpx;
+  height: 38rpx;
   position: absolute;
   top: 0;
   left: 0;

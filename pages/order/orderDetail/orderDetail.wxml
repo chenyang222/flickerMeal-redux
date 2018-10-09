@@ -12,7 +12,7 @@
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+          <image class="productImg" mode="aspectFit" src="{{item.productPic}}"></image>
         </view>
         <view class="product-right">
           <view class="productName">
@@ -54,7 +54,7 @@
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+          <image class="productImg" mode="aspectFit" src="{{item.productPic}}"></image>
         </view>
         <view class="product-right">
           <view class="productName">
@@ -85,7 +85,7 @@
 </view>
 
 <!-- 待支付 -->
-<view class="orderBox" wx:if="{{orderStatus == 0}}">
+<view class="orderBox" wx:if="{{orderStatus === 0}}">
   <view class='title'>
     <image mode="widthFix" src='{{imgdata}}/waitpay.png'></image>
     <text>待支付</text>
@@ -95,7 +95,7 @@
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+          <image class="productImg" mode="aspectFit" src="{{item.productPic}}"></image>
         </view>
         <view class="product-right">
           <view class="productName">
@@ -142,7 +142,7 @@
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+          <image class="productImg" mode="aspectFit" src="{{item.productPic}}"></image>
         </view>
         <view class="product-right">
           <view class="productName">
@@ -231,7 +231,7 @@
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view class="product-left">
-          <image class="productImg" mode="widthFix" src="{{item.productPic}}"></image>
+          <image class="productImg" mode="aspectFit" src="{{item.productPic}}"></image>
         </view>
         <view class="product-right">
           <view class="productName">

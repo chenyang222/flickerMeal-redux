@@ -7,7 +7,7 @@ page {
     padding: 25rpx;
     border-bottom: 1px dashed #cacaca;
     background-color: #fff;
-    /* margin-top: 100rpx; */
+    margin-bottom:30rpx;
   }
   .goname {
     font-size: 30rpx;

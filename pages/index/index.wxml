@@ -54,7 +54,7 @@
 
 <!-- 机器列表 -->
 
-<view wx:if="{{machineList.length > 0}}">
+<view class="indexMachine" wx:if="{{machineList.length > 0}}">
 
   <view class="machine">
     <view class="machine-left">
@@ -66,12 +66,14 @@
     </view>
     <view class="machine-right">
       <view class="machineName">
-        <text>{{machineInfo.name}}{{machineInfo.address ? '(' + machineInfo.address + ')' : ''}}</text>
+        <text class="name">{{machineInfo.name}}{{machineInfo.address ? '(' + machineInfo.address + ')' : ''}}</text>
+      </view>
+      <view class="machineName">
+        <text class="range">距离{{ machineInfo.showRange }}</text>
         <view data-lat='{{machineInfo.lat}}' data-lng='{{machineInfo.lng}}' bindtap='toMachineBaiduMap'>
           <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
         </view>
-      </view>
-      <text class="range">距离{{ machineInfo.showRange }}</text>
+      </view>      
       <view class="machine-activitys">
           <image wx:if="{{ machineInfo.dude }}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/discount.png"></image>
           <image wx:if="{{ machineInfo.discount }}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/dude.png"></image>
@@ -87,12 +89,14 @@
       </view>
       <view class="machine-right">
         <view class="machineName">
-          <text>{{item.name}}{{item.address ? '(' + item.address + ')' : ''}}</text>
+          <text class="name">{{item.name}}{{item.address ? '(' + item.address + ')' : ''}}</text>
+        </view>
+        <view class="machineName">
+          <text class="range">距离{{ item.showRange }}</text>
           <view data-lat='{{machineInfo.lat}}' data-lng='{{machineInfo.lng}}' bindtap='toMachineBaiduMap'>
             <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
           </view>
-        </view>
-        <text class="range">距离{{ item.showRange }}</text>
+        </view>        
         <view class="machine-activitys">
             <image wx:if="{{item.dude}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/discount.png"></image>
             <image wx:if="{{item.discount}}" class="machineActivitysImg" mode="widthFix" src="{{imgdata}}/dude.png"></image>
@@ -102,9 +106,12 @@
   </view>
 
   <view bindtap='showAllMachine' class="isCanGet">
-    <text>附近还有{{machineList.length - 1 > 0 ? machineList.length - 1 : 0}}个闪餐机器</text>
-    <image wx:if='{{isShouAllMachine}}' src="{{imgdata}}/youhuixiala.png"></image>
-    <image wx:else class='rotateY' src="{{imgdata}}/youhuixiala.png"></image>
+    <view>
+      <image class="dw" src="{{imgdata}}/fj-dingwei.png"></image>
+      <text>附近还有{{machineList.length - 1 > 0 ? machineList.length - 1 : 0}}个闪餐机器</text>
+    </view>
+    <image class="pullDown" wx:if='{{isShouAllMachine}}' src="{{imgdata}}/youhuixiala.png"></image>
+    <image wx:else class='rotateY pullDown' src="{{imgdata}}/youhuixiala.png"></image>
   </view>
 
 </view>
@@ -126,9 +133,9 @@
   </view>
   <view class='recomentContent'>
     <view class='recomentBox' wx:for="{{recomtcList}}" wx:for-item="item" wx:key="{{index}}">
-      <image data-item='{{item}}' bindtap='toMealDetail' class="picture" src="{{item.picture}}"></image>
-      <image wx:if="{{item.label == 2}}" class="productIcon" mode='widthFix' src="{{imgdata}}/hotPushIcon.png"></image>
-      <image wx:elif="{{item.label == 1}}" class="productIcon" mode='widthFix' src="{{imgdata}}/newmeal.png"></image>
+      <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="picture" src="{{item.picture}}"></image>
+      <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
+      <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
       <text class='reName'>{{item.productName}}</text>
       <view wx:if="{{item.hotNum}}" class="recomentNum">推荐指数
         <text>{{item.hotNum}}</text>
@@ -178,9 +185,9 @@
         <view class="tabCtnR fr">
           <view class="product" wx:for="{{todayBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == todaymealId}}">
             <view class="product-left">
-              <image data-item='{{item}}' bindtap='toMealDetail' mode='widthFix' class="productImg" src="{{item.picture}}"></image>
-              <image wx:if="{{item.label == 2}}" class="productIcon" mode='widthFix' src="{{imgdata}}/hotPushIcon.png"></image>
-              <image wx:elif="{{item.label == 1}}" class="productIcon" mode='widthFix' src="{{imgdata}}/newmeal.png"></image>
+              <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="productImg" src="{{item.picture}}"></image>
+              <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
+              <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
             </view>
             <view class="product-right">
               <view class="productName">
@@ -221,9 +228,9 @@
           <button class='btn' bindtap='makeOrder'>生成预定订单</button>
           <view class="product" wx:for="{{weekBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == prevOrdermealId}}">
             <view class="product-left">
-              <image data-item='{{item}}' data-type='yd' bindtap='toMealDetail' mode='widthFix' class="productImg" src="{{item.picture}}"></image>
-              <image wx:if="{{item.label == 2}}" class="productIcon" mode='widthFix' src="{{imgdata}}/hotPushIcon.png"></image>
-              <image wx:elif="{{item.label == 1}}" class="productIcon" mode='widthFix' src="{{imgdata}}/newmeal.png"></image>
+              <image data-item='{{item}}' data-type='yd' bindtap='toMealDetail' mode='aspectFit' class="productImg" src="{{item.picture}}"></image>
+              <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
+              <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
             </view>
             <view class="product-right">
               <view class="productName">
