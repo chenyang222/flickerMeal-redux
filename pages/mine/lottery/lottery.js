@@ -66,6 +66,12 @@ const pageConfig = {
                     }, 1500)
                 }, 7000)
             })
+            .catch((res) => {
+                console.info(res)
+                that.setData({
+                    start: false
+                })
+            })
     }
 }
 

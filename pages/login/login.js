@@ -92,6 +92,10 @@ Page({
   },
   // 确定注册
   comfirmRegist: function () {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     console.info(app.globalData.openid)
     // 手机号判断拦截
     if (this.data.phoneNum == '') {
@@ -138,8 +142,9 @@ Page({
           // token data 处理
           app.handleToken(res.data)
           wx.reLaunch({
-            url: '/pages/index/position/position'
+            url: '/pages/position/position'
           })
+          wx.hideLoading();
         } else {
           wx.showToast({
             title: res.data.errmsg,

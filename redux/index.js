@@ -617,7 +617,11 @@ export const getRecord = async () => {
 }
 // 点击抽奖
 export const lotteryDraw = () => {
-    return api.mine.lotteryDraw();
+    try{
+        return api.mine.lotteryDraw();
+    } catch (res) {
+        console.info(res)
+    }
 }
 // 购物车列表
 export const getShopCar = async (macId) => {
