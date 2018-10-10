@@ -2,7 +2,7 @@
 //获取应用实例
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder } from '../../redux/index';
+import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder, getHotSearch } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -19,9 +19,11 @@ const pageConfig = {
     getWeekList: [],
     activitysText: '暂无活动'
   },
-  async onLoad(options) {
+  async onLoad() {
     // 获取轮播
     getBanner();
+    // 获取热门搜索
+    getHotSearch();
     // 获取活动
     await getActivitys();
     if (JSON.stringify(this.data.activitysList) != '{}') {
@@ -270,9 +272,14 @@ const pageConfig = {
   toMachineBaiduMap: function (e) {
     const lat = e.currentTarget.dataset.lat;
     const lng = e.currentTarget.dataset.lng;
-
     wx.navigateTo({
       url: "/pages/index/machineBaiduMap/machineBaiduMap?lat=" + lat + "&lng=" + lng,
+    })
+  },
+  toSearch: function (e) {
+    const searchVal = e.currentTarget.dataset.item;
+    wx.navigateTo({
+      url: '/pages/index/searchInfo/searchInfo?from=searchpage&name=' + searchVal,
     })
   }
 }
@@ -289,7 +296,8 @@ const mapStateToPage = state => ({
   machineLeftNavList: state.machineLeftNavList,
   todayBuyList: state.todayBuyList,
   weekBuyList: state.weekBuyList,
-  evaList: state.evaList
+  evaList: state.evaList,
+  hotSearchList: state.hotSearchList.slice(0,5)
 })
 
 Page(connect(mapStateToPage)(pageConfig))

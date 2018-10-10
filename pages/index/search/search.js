@@ -1,6 +1,6 @@
 import regeneratorRuntime from '../../../libs/runtime';
 import { connect } from '../../../libs/wechat-weapp-redux';
-import { getHotSearch } from '../../../redux/index';
+// import { getHotSearch } from '../../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -14,8 +14,8 @@ const pageConfig = {
     async onShow() {
         // 设置历史搜索
         this.getSearchHistoryLatest();
-        // 获取热门搜索
-        getHotSearch();
+        // // 获取热门搜索
+        // getHotSearch();
     },
     //输入搜索内容
     bindKeyInput: function (e) {
@@ -38,7 +38,6 @@ const pageConfig = {
     },
     //点击搜索时
     searchGoods: function () {
-        const that = this;
         const searchVal = this.data.inputVal.trim();
         let HistorySearchList = wx.getStorageSync('HistorySearchList') ? wx.getStorageSync('HistorySearchList') : [];
         if (searchVal) {

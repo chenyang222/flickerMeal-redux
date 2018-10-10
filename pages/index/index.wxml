@@ -8,11 +8,17 @@
     <text>{{positionInfo.currentCity}}</text>
     <!-- <image class="locationSelect" src="{{imgdata}}/zbl-indexHeaderSele.png"></image> -->
   </view>
-  <!-- 搜索栏 -->
-  <navigator url="/pages/index/search/search" hover-class="navigator-hover" class="search">
-    <image class="searchIcon" src="{{imgdata}}/searchIcon.png"></image>
-    <input class='searchInput' placeholder='搜索机器/餐品'/>
-  </navigator>
+  <view>
+    <!-- 搜索栏 -->
+    <navigator url="/pages/index/search/search" hover-class="navigator-hover" class="search">
+      <image class="searchIcon" src="{{imgdata}}/searchIcon.png"></image>
+      <input class='searchInput' placeholder='搜索机器/餐品'/>
+    </navigator>
+    <!-- 热词 -->
+    <view class="hotSearch">
+      <text wx:for="{{hotSearchList}}" wx:for-item="item" wx:key="{{index}}" data-item="{{item}}" bindtap='toSearch'>{{item}}</text>
+    </view>
+  </view>
 </view>
 
 <!-- swiper轮播图 -->

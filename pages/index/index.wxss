@@ -36,7 +36,6 @@
 .top-header .search{
   width:90%;
   margin-left: 30rpx;
-  margin-bottom: 20rpx;
   height:60rpx;
   background:rgba(255,255,255,1);
   border-radius: 30rpx;
@@ -53,6 +52,18 @@
   font-size:24rpx;
   color:rgba(152,152,152,1);
   line-height:33rpx; 
+}
+.top-header .hotSearch{
+  width:85%;
+  margin-left: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5rpx;
+  margin-bottom: 20rpx;
+}
+.top-header .hotSearch text{
+  font-size: 24rpx;
+  color: #ffffff;
 }
 
 /* banner */

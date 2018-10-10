@@ -10,7 +10,7 @@ const pageConfig = {
         clickBtnRotate: 0,
         start: false
     },
-    async onLoad(options) {
+    async onLoad() {
         var animationRotate = wx.createAnimation({
             transformOrigin: "50% 61%",
             duration: 7000,
