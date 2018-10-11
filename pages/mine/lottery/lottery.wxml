@@ -25,7 +25,7 @@
             <text>{{item.name}}</text>
         </view>
         <view class='winRecordBox-right'>
-            <text>2018-03-27 17:24:56</text>
+            <text>{{item.createTime}}</text>
         </view>
     </view>
 </view>

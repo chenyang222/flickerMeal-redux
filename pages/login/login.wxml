@@ -25,5 +25,5 @@
   <view class="lg_btn">
     <view class="sub_lg" bindtap='comfirmRegist'></view>
   </view>
-  <view class="line"></view>
+  <!-- <view class="line"></view> -->
 </view>

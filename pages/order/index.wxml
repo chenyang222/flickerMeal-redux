@@ -54,6 +54,7 @@
                                 <text>{{item.orderAmount}}</text>
                             </view>
                             <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toPay' class='fukuan'>去付款</view>
+                            <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toCancel' class='fukuan'>取消</view>
                             <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='zongjiNum'>共
                                 <text>{{item.buyNumber}}</text>件商品，实付
                                 <text>{{item.payAmount}}</text>
@@ -98,6 +99,7 @@
                                 <text>{{item.orderAmount}}</text>
                             </view>
                             <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toPay' class='fukuan'>去付款</view>
+                            <view wx:if="{{item.orderStatus == 0}}" data-orderNo='{{item.orderNo}}' bindtap='toCancel' class='fukuan'>取消</view>
                         </view>
                     </view>
                 </view>

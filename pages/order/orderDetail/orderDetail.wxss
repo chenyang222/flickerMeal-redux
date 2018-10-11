@@ -133,3 +133,8 @@
   font-size: 20rpx;
   color: #7c7c7c;
 }
+.getFoodtwoCodeText{
+  display: block;
+  text-align: center;
+  font-size: 24rpx;
+}

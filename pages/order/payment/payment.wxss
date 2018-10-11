@@ -5,6 +5,9 @@ page {
 .order-detail-address-wrap{
   background-color: #fff;
 }
+.order-detail-address-wrap text{
+  font-size: 30rpx;
+}
 .order-address-icon-title{
   width:23rpx;
   height:28rpx; 

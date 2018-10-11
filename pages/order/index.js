@@ -81,6 +81,11 @@ const pageConfig = {
       url: "/pages/order/payment/payment?orderNo=" + orderNo,
     })
   },
+  // 取消订单
+  toCancel: function (e) {
+    const orderNo = e.target.dataset.orderno;
+    console.info('取消订单' + orderNo)
+  },
   // 再来一单
   async makeOther (e) {
     const item = e.currentTarget.dataset.item;

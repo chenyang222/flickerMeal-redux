@@ -133,11 +133,7 @@
     <image mode="widthFix" src='{{imgdata}}/waitget.png'></image>
     <text>待取餐</text>
   </view>
-  <view class='btns'>
-    <!-- <navigator url="">联系客服</navigator> -->
-    <button wx:if="{{foodOrCold == false}}" bindtap="getCold">取冷餐</button>
-    <button wx:if="{{foodOrCold == false}}" bindtap="getHot">取热餐</button>
-  </view>
+  <text class='restTime'>取餐前可根据现场排队情况选择是否取冷餐</text>
   <view class='orderBody'>
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
@@ -159,6 +155,11 @@
         </view>
       </view>
     </view>
+    <view class='btns'>
+      <!-- <navigator url="">联系客服</navigator> -->
+      <button wx:if="{{foodOrCold == false}}" bindtap="getCold">取冷餐</button>
+      <button wx:if="{{foodOrCold == false}}" bindtap="getHot">取热餐</button>
+    </view>    
     <view class='total'> 
       <text>合计 ￥ {{orderInfo.orderAmount}}</text>
     </view>    
@@ -209,7 +210,8 @@
       <view>
         <text class="basic-left">取餐二维码:</text>
       </view>
-      <image class='getFoodtwoCode' mode="widthFix" src='{{orderInfo.qrCode}}'></image>      
+      <image class='getFoodtwoCode' mode="widthFix" src='{{orderInfo.qrCode}}'></image>
+      <text class="getFoodtwoCodeText">当前取餐码只在下单当天24点前有效</text>
     </view>
   </view>
 </view>

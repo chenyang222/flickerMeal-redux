@@ -1,7 +1,8 @@
 <!--index.wxml-->
 <view class="container">
     <view class='order-detail-address-wrap'>
-        <view class='order-address-icon-title-wrap'></view>
+        <!-- <view class='order-address-icon-title-wrap'></view> -->
+        <text>自取订单</text>
     </view>
     <view class='address-fenge'></view>
     <view class='canpin-list-wrap'>
