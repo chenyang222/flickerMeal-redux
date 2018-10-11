@@ -338,6 +338,14 @@ const api = {
                     group: 'WX_APP_DZP'
                 }
             })
+        },
+        // 修改用户信息
+        fixUserInfo ({ data = {} }) {
+            return fetch({
+                url: '/account/user/modifyInfo',
+                method: 'post',
+                data: data
+            })
         }
     }
 }

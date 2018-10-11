@@ -71,7 +71,7 @@
 }
 
 .mine-body .item{
-    border-top: #eeeeee 1rpx solid;
+    border-bottom: #eeeeee 1rpx solid;
 }
 .mine-body .item{
     font-size: 28rpx;

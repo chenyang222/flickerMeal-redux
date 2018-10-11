@@ -4,17 +4,17 @@
         <navigator url="../mine/notify/notify">
             <image src="{{imgdata}}/cf_msg.png"></image>
         </navigator>
-        <text>我的信息</text>
-        <navigator url="../mine/setup/setup">
+        <!-- <text>我的信息</text> -->
+        <!-- <navigator url="../mine/setup/setup">
             <image src="{{imgdata}}/cf_setting.png"></image>
-        </navigator>
+        </navigator> -->
     </view>
     <view class='topMsg'>
         <view class='img'>
-            <image src='{{userInfo.headimgurl}}'></image>
+            <image src='{{userInfo.headimgurl ? userInfo.headimgurl : "/images/share.jpg"}}'></image>
         </view>
         <view class='right'>
-            <view class='name'>{{userInfo.userName}}</view>
+            <view class='name'>{{userInfo.nickname ? userInfo.nickname : userInfo.mobile}}</view>
             <view class='money'>
             <image src='{{imgdata}}/cf_qiandai.png'></image>
             <text> 余 额：¥ {{userInfo.balance}}</text>
@@ -64,6 +64,16 @@
         </view>
     </navigator>
 
+    <navigator class='item' url="../mine/lottery/lottery" id='theid'>
+        <view class='item_left'>
+            <image src='{{imgdata}}/cf_jifenchoujiang.png'></image>
+        </view>
+        <view class='item_center'>积分抽奖</view>
+        <view class='item_right'>
+            <image src='{{imgdata}}/cf_goright.png'></image>
+        </view>
+    </navigator>
+
     <navigator class='item' url="../mine/recommend/recommend">
         <view class='item_left'>
             <image src='{{imgdata}}/cf_tuijian.png'></image>
@@ -94,14 +104,24 @@
         </view>
     </navigator>
 
-    <navigator class='item' url="../mine/lottery/lottery" id='theid'>
+    <navigator class='item' id='theid' bindtap='toCall'>
         <view class='item_left'>
-            <image src='{{imgdata}}/cf_jifenchoujiang.png'></image>
+            <image src='{{imgdata}}/cf_kefu.png'></image>
         </view>
-        <view class='item_center'>积分抽奖</view>
+        <view class='item_center'>客服电话</view>
         <view class='item_right'>
             <image src='{{imgdata}}/cf_goright.png'></image>
         </view>
     </navigator>
-    
+
+    <navigator class='item' url="../mine/aboutus/aboutus">
+        <view class='item_left'>
+            <image src='{{imgdata}}/jqtj.png'></image>
+        </view>
+        <view class='item_center'>关于我们</view>
+        <view class='item_right'>
+            <image src='{{imgdata}}/cf_goright.png'></image>
+        </view>
+    </navigator>
+
 </view>

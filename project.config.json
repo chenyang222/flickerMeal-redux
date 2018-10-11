@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -65,7 +65,13 @@
 				{
 					"id": -1,
 					"name": "评价",
-					"pathName": "pages/order/evaluate/evaluate"
+					"pathName": "pages/order/evaluate/evaluate",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的信息",
+					"pathName": "pages/mine/permsg/permsg"
 				}
 			]
 		}

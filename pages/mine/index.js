@@ -11,6 +11,11 @@ const pageConfig = {
   async onShow() {
     // 获取用户信息
     getUserInfo();
+  },
+  toCall: function () {
+    wx.makePhoneCall({
+      phoneNumber: '400-6677-112'
+    })
   }
 }
 

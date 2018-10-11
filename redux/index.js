@@ -857,3 +857,20 @@ export const getOrderConfig = async (data) => {
         data: response
     })
 }
+
+// 修改用户信息
+export const fixUserInfo = async (data) => {
+    try {
+        await api.mine.fixUserInfo({
+            data: data
+        });
+        wx.showToast({
+            title: '修改成功',
+            icon: 'none',
+            duration: 2000,
+            mask: true
+        })
+    } catch (res) {
+        console.info(res)
+    }
+}

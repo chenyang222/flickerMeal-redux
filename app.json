@@ -30,6 +30,7 @@
     "pages/mine/feedBack/feedBack",
     "pages/mine/join/join",
     "pages/mine/lottery/lottery",
+    "pages/mine/permsg/permsg",
     "pages/logs/logs"
   ],
   "window": {
