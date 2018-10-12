@@ -874,3 +874,14 @@ export const fixUserInfo = async (data) => {
         console.info(res)
     }
 }
+
+// 取消订单
+export const cancelOrder = async (data) => {
+    try {
+        await api.order.cancelOrder({
+            data: data
+        });
+    } catch (res) {
+        console.info(res)
+    }
+}

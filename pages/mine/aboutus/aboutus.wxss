@@ -49,3 +49,9 @@
     font-size: 24rpx;
     color: #666666;
   }
+  .title{
+    font-weight: bold;
+    width: 95%;
+    margin: auto;
+    font-size: 24rpx;
+  }

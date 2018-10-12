@@ -1,6 +1,6 @@
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getOrders, indexCreateOrder, getOrderConfig } from '../../redux/index';
+import { getOrders, indexCreateOrder, getOrderConfig, cancelOrder } from '../../redux/index';
 import { sToMinutes } from '../../utils/util';
 const app = getApp();
 
@@ -82,9 +82,27 @@ const pageConfig = {
     })
   },
   // 取消订单
-  toCancel: function (e) {
+  async toCancel (e) {
     const orderNo = e.target.dataset.orderno;
-    console.info('取消订单' + orderNo)
+    const that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定要取消订单吗?',
+      async success (sm) {
+        if (sm.confirm) {
+          const data = {
+            orderNo: orderNo
+          }
+          // 用户点击了确定 可以调用删除方法了
+          await cancelOrder(data);
+          // 获取订单列表
+          await getOrders();
+          payTime(that)
+        } else if (sm.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
   // 再来一单
   async makeOther (e) {

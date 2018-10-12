@@ -40,10 +40,10 @@
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "rgba(124,124,124,1)",
+    "color": "#7C7C7C",
     "selectedColor": "#FF9E35",
     "backgroundColor": "#fff",
-    "borderStyle": "white",
+    "borderStyle": "#ffffff",
     "list": [
       {
         "text": "点餐",

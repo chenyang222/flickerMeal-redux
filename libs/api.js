@@ -229,6 +229,13 @@ const api = {
                 url: '/fastfood/foodorder/findOrderConfig'
             })
         },
+        // 取消订单
+        cancelOrder ({ data = {} }) {
+            return fetch({
+                url: '/fastfood/foodorder/cancelOrder',
+                data: data
+            })
+        }
     },
     mine: {
         // 获取消息通知列表

@@ -82,10 +82,13 @@
   justify-content: space-between;
 }
 .zongjiWrap .zongji .fukuan{
+  width: 100rpx;
+  height: 40rpx;
   margin-left: 45rpx;
   border-radius: 23rpx;
   color: #fff;
-  padding: 10rpx 20rpx;
+  text-align: center;
+  line-height: 40rpx;
   background: -webkit-linear-gradient(left top, #FF7E19 , #FFB72D); /* Safari 5.1 - 6.0 */
   background: -o-linear-gradient(bottom right, #FF7E19, #FFB72D); /* Opera 11.1 - 12.0 */
   background: -moz-linear-gradient(bottom right, #FF7E19, #FFB72D); /* Firefox 3.6 - 15 */

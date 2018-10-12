@@ -10,7 +10,7 @@
     <view class='searchList' wx:for="{{searchMachineList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view data-item='{{item}}' bindtap='setMachine' class="machine">
             <view class="machine-left">
-                <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
+                <image class="machineImg" mode="widthFix" src="{{imgdata}}/hotPushImg.png"></image>
                 <!-- <image class="machineIcon" src="{{imgdata}}/hotPushIcon.png"></image> -->
             </view>
             <view class="machine-right">
@@ -22,7 +22,7 @@
                     <view data-lat='{{item.lat}}' data-lng='{{item.lng}}' bindtap='toMachineBaiduMap'>
                         <image src="{{imgdata}}/blDingwei.png" class="fly"></image>
                     </view>
-                </view>                
+                </view>
                 <view class="machine-activitys">
                     <image wx:if="{{item.dude}}" class="machineActivitysImg" mode="aspectFit" src="{{imgdata}}/discount.png"></image>
                     <image wx:if="{{item.discount}}" class="machineActivitysImg" mode="aspectFit" src="{{imgdata}}/dude.png"></image>
