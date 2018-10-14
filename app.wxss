@@ -54,6 +54,7 @@ body{
 }
 .machine .machine-left .machineImg{
   width: 100%;
+  height: 200rpx;
 }
 .machine .machine-left .machineIcon{
   width: 75rpx;

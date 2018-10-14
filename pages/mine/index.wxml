@@ -11,10 +11,13 @@
     </view>
     <view class='topMsg'>
         <view class='img'>
-            <image src='{{userInfo.headimgurl ? userInfo.headimgurl : "/images/share.jpg"}}'></image>
+            <image bindtap="goPermsg" src='{{userInfo.headimgurl ? userInfo.headimgurl : "/images/share.jpg"}}'></image>
         </view>
         <view class='right'>
-            <view class='name'>{{userInfo.nickname ? userInfo.nickname : userInfo.mobile}}</view>
+            <view bindtap="goPermsg" class='name'>
+                {{userInfo.nickname ? userInfo.nickname : userInfo.mobile}}
+                <image src='{{imgdata}}/cf_go.png'></image>
+            </view>
             <view class='money'>
             <image src='{{imgdata}}/cf_qiandai.png'></image>
             <text> 余 额：¥ {{userInfo.balance}}</text>
@@ -24,12 +27,12 @@
             <text> 积 分：{{userInfo.score}}</text>
             </view>
         </view>
-        <navigator class='mineMsg' url="../mine/permsg/permsg">
+        <!-- <navigator class='mineMsg' url="../mine/permsg/permsg">
             <view class='msg' url="../mine/permsg/permsg">
             个人信息
             <image src='{{imgdata}}/cf_go.png'></image>
             </view>
-        </navigator>
+        </navigator> -->
     </view>
 </view>
 

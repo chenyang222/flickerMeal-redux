@@ -8,7 +8,7 @@
     <text>{{positionInfo.currentCity}}</text>
     <!-- <image class="locationSelect" src="{{imgdata}}/zbl-indexHeaderSele.png"></image> -->
   </view>
-  <view>
+  <view class="searchBox">
     <!-- 搜索栏 -->
     <navigator url="/pages/index/search/search" hover-class="navigator-hover" class="search">
       <image class="searchIcon" src="{{imgdata}}/searchIcon.png"></image>
@@ -64,7 +64,7 @@
 
   <view class="machine">
     <view class="machine-left">
-      <image class="machineImg" mode="widthFix" src="{{imgdata}}/hotPushImg.png"></image>
+      <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
       <view class="nowMachine">
         <view class="redDot"></view>
         <text>当前</text>
@@ -91,7 +91,7 @@
     <view data-item='{{item}}' bindtap='setMachine' wx:if="{{ item.id != machineInfo.id }}" class="machine" wx:for="{{ machineList }}"
       wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
       <view class="machine-left">
-        <image class="machineImg" mode="widthFix" src="{{imgdata}}/hotPushImg.png"></image>
+        <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
       </view>
       <view class="machine-right">
         <view class="machineName">
@@ -301,6 +301,6 @@
   <text>未获取到机器</text>
 </view>
 
-<view class="manjianPop">
+<view wx:if="{{activitysText.length > 0}}" class="manjianPop">
   <text>{{activitysText}}</text>
 </view>

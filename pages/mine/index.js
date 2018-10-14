@@ -16,6 +16,11 @@ const pageConfig = {
     wx.makePhoneCall({
       phoneNumber: '400-6677-112'
     })
+  },
+  goPermsg: function () {
+    wx.navigateTo({
+      url: "/pages/mine/permsg/permsg"
+    })
   }
 }
 

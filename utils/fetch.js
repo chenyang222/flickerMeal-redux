@@ -2,10 +2,10 @@ import regeneratorRuntime from '../libs/runtime';
 const globalUrl = 'https://shanchan.jergavin.com';
 // 接口请求
 const fetch = async ({ method = "GET", url, data = {}, requestBody }) => {
-  wx.showLoading({
-    title: '加载中',
-    mask: true
-  })
+  // wx.showLoading({
+  //   title: '加载中',
+  //   mask: true
+  // })
   // 本地存储获取token
   const token = wx.getStorageSync("token");
   let header = {};
@@ -26,7 +26,7 @@ const fetch = async ({ method = "GET", url, data = {}, requestBody }) => {
       data: data,
       header: header,
       success: function (response) {
-        wx.hideLoading()
+        // wx.hideLoading()
         // 接口返回 errcode 统一处理
         if (response.data.errcode == 0) {
           resolve(response.data.data)
@@ -55,7 +55,7 @@ const fetch = async ({ method = "GET", url, data = {}, requestBody }) => {
         }
       },
       fail: function (response) {
-        wx.hideLoading()
+        // wx.hideLoading()
       }
     })
   })

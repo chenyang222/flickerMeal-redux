@@ -42,7 +42,7 @@
     <view class='nickname public_shade' hidden="{{flag}}">
         <view class='public_center nickname_center'>
               <text class='nicktitle'>修改昵称</text>
-              <input value="{{searchinput}}" placeholder-class="phcolor" bindinput="bindReplaceInput" class='nickinput' placeholder='请输入昵称'></input>
+              <input value="{{searchinput}}" placeholder-class="phcolor" bindinput="bindReplaceInput" maxlength="16" class='nickinput' placeholder='请输入昵称(16个字符以内)'></input>
               <view class='confirmbtns'>
                   <text bindtap='nichhide'>取消</text>
                   <text bindtap='nickconfirm'>确认</text>

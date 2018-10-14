@@ -396,6 +396,7 @@ export const addBuyCar = async (data) => {
 // 获取userInfo
 export const getUserInfo = async () => {
     const response = await api.getUserInfo()
+    response.nickname = response.nickname.substr(0, 16)
     store.dispatch({
       type: GET_USETIFO,
       data: response

@@ -20,6 +20,10 @@ const pageConfig = {
     activitysText: '暂无活动'
   },
   async onLoad() {
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     // 获取轮播
     getBanner();
     // 获取热门搜索
@@ -42,12 +46,14 @@ const pageConfig = {
         activitysText: activitysText
       })
     }
+    wx.hideLoading()
   },
   async onShow() {
     const data = {
       areaCode: this.data.positionInfo.areaCode,
-      lat: this.data.positionInfo.location.lat,
-      lng: this.data.positionInfo.location.lng
+      // lat: this.data.positionInfo.location.lat,
+      // lng: this.data.positionInfo.location.lng
+      fulladdress: this.data.positionInfo.currentCity
     }
     await getMachine(data);
     if (this.data.machineList.length == 0) {

@@ -49,10 +49,16 @@
 .top-header .topMsg .img image{
     height: 95rpx;
     width: 95rpx;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.top-header .topMsg .money,.top-header .topMsg .jifen{
+    display: flex;
+    align-items: center;
 }
 .top-header .topMsg .money image,.top-header .topMsg .jifen image{
-    margin: 1rpx 0;
-    height: 25rpx;
+    margin-right: 5rpx;
+    height: 23rpx;
     width: 25rpx;
     vertical-align: middle;
 }
@@ -68,6 +74,11 @@
 .top-header .mineMsg{
     height: 40rpx;
     margin-right: 25rpx;
+}
+.top-header .name image{
+    width: 12rpx;
+    height: 22rpx;
+    margin-left: 15rpx;
 }
 
 .mine-body .item{
