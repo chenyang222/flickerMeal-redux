@@ -188,7 +188,7 @@
             data-id='{{itemName.id}}' bindtap='todaymealType'>{{itemName.name}}</text>
         </view>
         <!-- 商品列表 -->
-        <view class="tabCtnR fr">
+        <view class="tabCtnR fr" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
           <view class="product" wx:for="{{todayBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == todaymealId}}">
             <view class="product-left">
               <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="productImg" src="{{item.picture}}"></image>
@@ -226,7 +226,7 @@
           </view>
         </view>
         <!-- 预定列表 -->
-        <view class="tabCtnL fl">
+        <view class="tabCtnL fl" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
           <text wx:for="{{machineLeftNavList}}" wx:key="index" wx:for-item="itemName" class="{{prevOrdermealId == itemName.id ? 'jinrigouTypeSele' : '' }}"
             data-id='{{itemName.id}}' bindtap='prevOrdermealType'>{{itemName.name}}</text>
         </view>
