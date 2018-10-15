@@ -1,8 +1,8 @@
 <view class='aboutus'>
     <view class='aboutusbox'>
-        <view class='aboutuslogo'>
+        <!-- <view class='aboutuslogo'>
             <image src='{{imgdata}}/yh_aboutlogo.png'></image><text>关于我们</text>
-        </view>
+        </view> -->
         <image src='{{imgdata}}/aboutusBg.png' class='imgdata'></image>
         <view class="title">
             闪餐，让美食更近，让生活更简单！

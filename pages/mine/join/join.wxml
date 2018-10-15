@@ -4,13 +4,28 @@
     <image mode='widthFix' src='{{imgdata}}/join_bg.png'></image>
     <view class='join-content'>
         <view>
-            <text>闪餐邀请你一起关注科技，引领行业，影响世界。您可以填写下表或者拨打我们的加盟热线： 400-011098</text>
+            <text>闪餐，让美食更近，让生活更简单！欢迎加盟闪餐。加盟热线：400-6677-112</text>
         </view>
-        <input bindinput='inputName' placeholder="请输入您的姓名" />
-        <input bindinput='inputPhone' placeholder="请输入公司电话" />
-        <input bindinput='inputPosition' placeholder="请输入公司职位" />
-        <input bindinput='inputCompany' placeholder="请输入公司名称" />
-        <input bindinput='inputAddress' placeholder="请输入公司地址" />
+        <view class="inputBox">
+            <text>您的姓名：</text>
+            <input bindinput='inputName' placeholder="请输入您的姓名" />
+        </view>
+        <view class="inputBox">
+            <text>您的电话：</text>
+            <input bindinput='inputPhone' placeholder="请输入您的电话" />
+        </view>
+        <view class="inputBox">
+            <text>公司名称：</text>
+            <input bindinput='inputCompany' placeholder="请输入公司名称" />
+        </view>        
+        <view class="inputBox">
+            <text>公司职位：</text>
+            <input bindinput='inputPosition' placeholder="请输入公司职位" />
+        </view>
+        <view class="inputBox">
+            <text>公司地址：</text>
+            <input bindinput='inputAddress' placeholder="请输入公司地址" />
+        </view>        
     </view>
     <button bindtap='joinBtn' class='btn'>提交</button>
 </view>

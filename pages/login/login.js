@@ -44,10 +44,28 @@ Page({
   // 获取验证码
   getIdentifyingCode: function () {
     var that = this;
+    const phone = this.data.phoneNum;
+    const phoneCodeVerification = /^[1][3,4,5,7,8][0-9]{9}$/;
     // 手机号判断拦截
     if (this.data.phoneNum == '') {
       wx.showToast({
-        title: '手机号不能为空',
+        title: '手机号码不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return false
+    }
+    if (this.data.phoneNum.length != 11) {
+      wx.showToast({
+        title: '请正确输入11位手机号码',
+        icon: 'none',
+        duration: 2000
+      })
+      return false
+    }    
+    if (!phoneCodeVerification.test(phone)) {
+      wx.showToast({
+        title: '请输入有效的手机号码',
         icon: 'none',
         duration: 2000
       })

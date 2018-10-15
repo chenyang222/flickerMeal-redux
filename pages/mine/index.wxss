@@ -18,8 +18,8 @@
 }
 
 .top-header .name{
-    font-size: 28rpx;
-    line-height: 28rpx;
+    font-size: 34rpx;
+    line-height: 34rpx;
 }
 .top-header .topMsg{
     padding-top: 20rpx;
@@ -39,7 +39,7 @@
     height: 40rpx;
 }
 .top-header .right view text{
-    font-size: 22rpx;
+    font-size: 30rpx;
 }
 .top-header .topMsg .img{
     margin-left: 26rpx;
@@ -58,8 +58,8 @@
 }
 .top-header .topMsg .money image,.top-header .topMsg .jifen image{
     margin-right: 5rpx;
-    height: 23rpx;
-    width: 25rpx;
+    height: 34.5rpx;
+    width: 33rpx;
     vertical-align: middle;
 }
 .top-header .topMsg .msg{

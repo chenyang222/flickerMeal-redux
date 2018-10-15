@@ -1,7 +1,10 @@
 /* pages/order/orderDetail/orderDetail.wxss */
+page{
+  background-color:#f8f8f8;
+}
 .orderBox{
   width: 100%;
-  padding-top: 40rpx;
+  padding-top: 2rpx;
   padding-bottom: 15rpx; 
   display: flex;
   flex-direction: column;
@@ -11,11 +14,10 @@
   display: flex;
   align-items: center;
   justify-content:center;
-  margin-top: 60rpx;
-  margin-bottom: 90rpx;
 }
 .orderBox image{
   width: 10%;
+  height:100rpx;
   margin-right: 25rpx;
 }
 .orderBox .title text{
@@ -31,6 +33,7 @@
   line-height: 100rpx;
 }
 .orderBox .btns{
+  margin-top: 30rpx;
   margin-bottom: 30rpx;
   display: flex;
   justify-content: space-around;
@@ -38,16 +41,18 @@
 .orderBox .btns navigator, .orderBox .btns button{
   display: inline-block;
   padding: 0 25rpx;
-  line-height: 89rpx;
-  height: 89rpx;
+  line-height: 45rpx;
+  height: 45rpx;
   border-radius: 30rpx;
   background-color: #ff9e35;
   color: #ffffff;
   text-align: center;
-  font-size: 35rpx;
+  font-size: 28rpx;
   margin: 0;
 }
-
+.meals{
+  background-color: #ffffff;
+}
 .orderBody .product{
   margin-top: 0rpx;
 }
@@ -78,18 +83,21 @@
 }
 .orderBody .basic{
   margin-top: 15rpx;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   padding: 25rpx 5%;
+}
+.orderBody .basic view{
+  margin-top: 15rpx;
 }
 .orderBody .basic .basic-left{
   font-weight: bold;
   line-height: 30rpx;
-  font-size: 22rpx;
+  font-size: 30rpx;
   margin-right: 35rpx;
 }
 .orderBody .basic .basic-right{
   line-height: 30rpx;
-  font-size: 20rpx;
+  font-size: 30rpx;
   color: #7c7c7c;
 }
 .orderBody .getFoodtwoCode{
@@ -98,18 +106,24 @@
   margin: 0 auto;
 }
 
+.orderBody .basic .hight{
+  font-weight: bolder;
+  color: #ff9e35;
+  font-size: 32rpx;
+}
+
 
 .orderFooter .topay{
   width: 80%;
   margin: 30rpx auto;
   display: block;
-  line-height: 89rpx;
-  height: 89rpx;
+  line-height: 45rpx;
+  height: 45rpx;
   border-radius: 30rpx;
   background-color: #ff9e35;
   color: #ffffff;
   text-align: center;
-  font-size: 35rpx;
+  font-size: 28rpx;
 }
 
 .orderBody .message{
@@ -137,4 +151,5 @@
   display: block;
   text-align: center;
   font-size: 24rpx;
+  margin-top: 30rpx;
 }

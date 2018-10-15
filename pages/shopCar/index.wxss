@@ -193,8 +193,8 @@ page {
   }
   
   .wujiesuan {
-    width: 201rpx;
-    height: 187rpx;
+    width: 239rpx;
+    height: 269rpx;
   }
   
   .wujiesuan-wrap {

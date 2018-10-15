@@ -68,6 +68,13 @@
   border: 0;
   outline: none;
 }
+.my_ipt .warn{
+  font-size:24rpx;
+  color:#ffad39;
+  display:block;
+  text-align:center;
+  margin-top:13rpx;
+}
 .yzm{
   width: 190rpx;
   height: 59rpx;

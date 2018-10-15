@@ -85,7 +85,8 @@ const pageConfig = {
         }
       }
       this.setData({
-        orderNoText: orderNo.substr(0,10),
+        orderNoText: orderNo.substr(0, orderNo.length - 4),
+        orderNoLight: orderNo.substr(orderNo.length - 4, 4),
         createTimeText: createTimeText,
         payType: payType ? payType : '',
         takeFoodCode: orderInfo.takeFoodCode ? orderInfo.takeFoodCode : '',

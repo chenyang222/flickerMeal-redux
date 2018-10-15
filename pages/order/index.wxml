@@ -59,7 +59,6 @@
                                 <text>{{item.buyNumber}}</text>件商品，实付
                                 <text>{{item.payAmount}}</text>
                             </view>
-                            <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
                         </view>
                     </view>
                     <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>
@@ -133,7 +132,6 @@
                                 <text>{{item.buyNumber}}</text>件商品，实付
                                 <text>{{item.payAmount}}</text>
                             </view>
-                            <view wx:elif="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
                         </view>
                     </view>
                 </view>
@@ -167,7 +165,6 @@
                                 <text>{{item.buyNumber}}</text>件商品，实付
                                 <text>{{item.payAmount}}</text>
                             </view>
-                            <view wx:if="{{item.orderStatus == 1 || item.orderStatus == 2}}" class='fukuan'>确认收货</view>
                         </view>
                     </view>
                     <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>

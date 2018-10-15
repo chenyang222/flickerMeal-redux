@@ -15,17 +15,30 @@
   }
   .join-content view{
     text-indent: 30rpx;
+    display: flex;
+    justify-content: space-around;
   }
   .join-content view text{
     font-size: 24rpx;
     line-height: 32rpx;
   }
-  .join-content input{
-    padding-left: 15rpx;
+
+  .join-content .inputBox{
+    text-indent: 30rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    margin-top: 30rpx;
+  }
+  .join-content .inputBox text{
+    display: block;
+    width: 30%;
+    font-size: 34rpx;
+  }
+  .join-content .inputBox input{
+    width: 70%;
     font-size: 28rpx;
     line-height: 50rpx;
-    height: 50rpx;
-    margin-top: 30rpx;
     border-radius: 15rpx;
     background-color: #ebe9e9;
     display: block;

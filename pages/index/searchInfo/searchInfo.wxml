@@ -10,7 +10,7 @@
     <view class='searchList' wx:for="{{searchMachineList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
         <view data-item='{{item}}' bindtap='setMachine' class="machine">
             <view class="machine-left">
-                <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
+                <image class="machineImg" mode="aspectFit" src="{{ item.picture ?  item.picture : imgdata + '/hotPushImg.png' }}"></image>
                 <!-- <image class="machineIcon" src="{{imgdata}}/hotPushIcon.png"></image> -->
             </view>
             <view class="machine-right">

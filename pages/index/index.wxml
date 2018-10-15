@@ -64,7 +64,7 @@
 
   <view class="machine">
     <view class="machine-left">
-      <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
+      <image class="machineImg" mode="aspectFit" src="{{ machineInfo.picture ?  machineInfo.picture : imgdata + '/hotPushImg.png' }}"></image>
       <view class="nowMachine">
         <view class="redDot"></view>
         <text>当前</text>
@@ -91,7 +91,7 @@
     <view data-item='{{item}}' bindtap='setMachine' wx:if="{{ item.id != machineInfo.id }}" class="machine" wx:for="{{ machineList }}"
       wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
       <view class="machine-left">
-        <image class="machineImg" mode="aspectFit" src="{{imgdata}}/hotPushImg.png"></image>
+        <image class="machineImg" mode="aspectFit" src="{{ item.picture ?  item.picture : imgdata + '/hotPushImg.png' }}"></image>
       </view>
       <view class="machine-right">
         <view class="machineName">
@@ -139,7 +139,7 @@
   </view>
   <view class='recomentContent'>
     <view class='recomentBox' wx:for="{{recomtcList}}" wx:for-item="item" wx:key="{{index}}">
-      <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="picture" src="{{item.picture}}"></image>
+      <image data-item='{{item}}' bindtap='toMealDetail' mode='widthFix' class="picture" src="{{item.picture}}"></image>
       <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
       <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
       <text class='reName'>{{item.productName}}</text>
@@ -183,12 +183,12 @@
     <swiper-item>
       <view style="{{fixedFlag?'height:790rpx;overflow-y:scroll':'height:790rpx;overflow-y:hidden'}}">
         <!-- 侧边栏 -->
-        <view class="tabCtnL fl">
+        <view class="tabCtnL fl" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
           <text wx:for="{{machineLeftNavList}}" wx:key="index" wx:for-item="itemName" class="{{todaymealId == itemName.id?'jinrigouTypeSele':''}}"
             data-id='{{itemName.id}}' bindtap='todaymealType'>{{itemName.name}}</text>
         </view>
         <!-- 商品列表 -->
-        <view class="tabCtnR fr" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
+        <view class="tabCtnR" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
           <view class="product" wx:for="{{todayBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == todaymealId}}">
             <view class="product-left">
               <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="productImg" src="{{item.picture}}"></image>
@@ -230,7 +230,7 @@
           <text wx:for="{{machineLeftNavList}}" wx:key="index" wx:for-item="itemName" class="{{prevOrdermealId == itemName.id ? 'jinrigouTypeSele' : '' }}"
             data-id='{{itemName.id}}' bindtap='prevOrdermealType'>{{itemName.name}}</text>
         </view>
-        <view class="tabCtnR fr">
+        <view class="tabCtnR" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
           <button class='btn' bindtap='makeOrder'>生成预定订单</button>
           <view class="product" wx:for="{{weekBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == prevOrdermealId}}">
             <view class="product-left">

@@ -5,7 +5,7 @@
 <!-- 已删除 -->
 <view class="orderBox" wx:if="{{orderStatus == -2}}">
   <view class='title'>
-    <image mode="widthFix" src='{{imgdata}}/closeBtn.png'></image>
+    <image mode="aspectFit" src='{{imgdata}}/closeBtn.png'></image>
     <text>订单已删除</text>
   </view>
   <view class='orderBody'>
@@ -32,7 +32,7 @@
     <view class='basic'>
       <view>
         <text class="basic-left">订单号码:</text>
-        <text class="basic-right">{{orderNoText}}</text>
+        <text class="basic-right">{{orderNoText}}<text class="hight">{{orderNoLight}}(取餐排队号)</text></text>
       </view>
       <view>
         <text class="basic-left">订单时间:</text>
@@ -46,10 +46,10 @@
 <!-- 已取消 -->
 <view class="orderBox" wx:if="{{orderStatus == -1}}">
   <view class='title'>
-    <image mode="widthFix" src='{{imgdata}}/closeBtn.png'></image>
+    <image mode="aspectFit" src='{{imgdata}}/closeBtn.png'></image>
     <text>订单已取消</text>
   </view>
-  <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
+  <text class='restTime'>感谢您对闪餐支持，欢迎再次体验</text>
   <view class='orderBody'>
     <view class='meals'>
       <view class="product" wx:for="{{orderInfo.childs}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}">
@@ -74,7 +74,7 @@
     <view class='basic'>
       <view>
         <text class="basic-left">订单号码:</text>
-        <text class="basic-right">{{orderNoText}}</text>
+        <text class="basic-right">{{orderNoText}}<text class="hight">{{orderNoLight}}(取餐排队号)</text></text>
       </view>
       <view>
         <text class="basic-left">订单时间:</text>
@@ -87,7 +87,7 @@
 <!-- 待支付 -->
 <view class="orderBox" wx:if="{{orderStatus === 0}}">
   <view class='title'>
-    <image mode="widthFix" src='{{imgdata}}/waitpay.png'></image>
+    <image mode="aspectFit" src='{{imgdata}}/waitpay.png'></image>
     <text>待支付</text>
   </view>
   <text class='restTime'>{{overTimeText}}</text>
@@ -115,7 +115,7 @@
     <view class='basic'>
       <view>
         <text class="basic-left">订单号码:</text>
-        <text class="basic-right">{{orderNoText}}</text>
+        <text class="basic-right">{{orderNoText}}<text class="hight">{{orderNoLight}}(取餐排队号)</text></text>
       </view>
       <view>
         <text class="basic-left">订单时间:</text>
@@ -130,7 +130,7 @@
 <!-- 待取餐 -->
 <view class="orderBox" wx:if="{{orderStatus == 1}}">
   <view class='title'>
-    <image mode="widthFix" src='{{imgdata}}/waitget.png'></image>
+    <image mode="aspectFit" src='{{imgdata}}/waitget.png'></image>
     <text>待取餐</text>
   </view>
   <text class='restTime'>取餐前可根据现场排队情况选择是否取冷餐</text>
@@ -154,12 +154,7 @@
           </view>
         </view>
       </view>
-    </view>
-    <view class='btns'>
-      <!-- <navigator url="">联系客服</navigator> -->
-      <button wx:if="{{foodOrCold == false}}" bindtap="getCold">取冷餐</button>
-      <button wx:if="{{foodOrCold == false}}" bindtap="getHot">取热餐</button>
-    </view>    
+    </view> 
     <view class='total'> 
       <text>合计 ￥ {{orderInfo.orderAmount}}</text>
     </view>    
@@ -178,10 +173,15 @@
     <view class='total'> 
       <text>实付 ￥ {{orderInfo.payAmount}}</text>
     </view>
+    <view class='btns'>
+      <!-- <navigator url="">联系客服</navigator> -->
+      <button wx:if="{{foodOrCold == false}}" bindtap="getCold">取冷餐</button>
+      <button wx:if="{{foodOrCold == false}}" bindtap="getHot">取热餐</button>
+    </view>
     <view class='basic'>
       <view>
         <text class="basic-left">订单号码:</text>
-        <text class="basic-right">{{orderNoText}}</text>
+        <text class="basic-right">{{orderNoText}}<text class="hight">{{orderNoLight}}(取餐排队号)</text></text>
       </view>
       <view>
         <text class="basic-left">订单时间:</text>
@@ -205,7 +205,7 @@
       </view>
       <view>
         <text class="basic-left">取餐码:</text>
-        <text class="basic-right"> {{takeFoodCode}}</text>
+        <text class="basic-right">{{takeFoodCode}}</text>
       </view>
       <view>
         <text class="basic-left">取餐二维码:</text>
@@ -220,10 +220,10 @@
 <!-- 已取餐 -->
 <view class="orderBox" wx:if="{{orderStatus == 2 || orderStatus == 3}}">
   <view class='title'>
-    <image mode="widthFix" src='{{imgdata}}/close.png'></image>
+    <image mode="aspectFit" src='{{imgdata}}/close.png'></image>
     <text>订单已完成</text>
   </view>
-  <text class='restTime'>感谢您对闪餐支持，欢迎再次光临</text>
+  <text class='restTime'>感谢您对闪餐支持，欢迎再次体验</text>
   <view class='btns'>
     <button wx:if="{{!orderInfo.invoiceFlag}}" data-orderNo="{{orderInfo.orderNo}}" bindtap='applyEleInvoice'>申请电子发票</button>
     <button open-type='share'>分享</button>
@@ -271,7 +271,7 @@
     <view class='basic'>
       <view>
         <text class="basic-left">订单号码:</text>
-        <text class="basic-right">{{orderNoText}}</text>
+        <text class="basic-right">{{orderNoText}}<text class="hight">{{orderNoLight}}(取餐排队号)</text></text>
       </view>
       <view>
         <text class="basic-left">订单时间:</text>
