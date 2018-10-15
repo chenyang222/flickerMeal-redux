@@ -55,7 +55,7 @@ Page({
     }
     // 后台获取验证码
     wx.request({
-      url: "https://shanchan.jergavin.com/sms/send?mobile=" + that.data.phoneNum + "&app=true",
+      url: "https://api.i-shancan.com/sms/send?mobile=" + that.data.phoneNum + "&app=true",
       success: function (res) {
         wx.showToast({
           title: '获取验证码成功,请稍后',
@@ -135,7 +135,7 @@ Page({
     }
     // 注册绑定
     wx.request({
-      url: "https://shanchan.jergavin.com/oauth2/token/wechatApp/register",
+      url: "https://api.i-shancan.com/oauth2/token/wechatApp/register",
       data: data,
       success: function (res) {
         if (res.data.errcode == 0) {

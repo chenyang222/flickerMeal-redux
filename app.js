@@ -6,8 +6,8 @@ import { store } from './redux/index'
 
 App(Provider(store)({
   globalData: {
-    imgdata: 'https://shanchan.jergavin.com/wxapp/images',//正常图片展示的地址
-    api: 'https://shanchan.jergavin.com', // 接口请求api
+    imgdata: 'https://api.i-shancan.com/wxapp/images',//正常图片展示的地址
+    api: 'https://api.i-shancan.com', // 接口请求api
     ak: 'NPfvQSlaxLvtuBWm4YDVwecQNoTACuUY', // 填写申请到的ak
     openid: ''
   },
@@ -28,7 +28,7 @@ App(Provider(store)({
           if (res.code) {
             //发起网络请求
             wx.request({
-              url: "https://shanchan.jergavin.com/oauth2/token/wechatApp?js_code=" + res.code,
+              url: "https://api.i-shancan.com/oauth2/token/wechatApp?js_code=" + res.code,
               data: {
                 code: res.code
               },

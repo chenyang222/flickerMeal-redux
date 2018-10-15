@@ -122,7 +122,7 @@ const pageConfig = {
     let imgArr = [];
     for (let i = 0; i < imageList.length; i++) {
       wx.uploadFile({
-        url: 'https://shanchan.jergavin.com/fastfood/foodordercomment/upload',
+        url: 'https://api.i-shancan.com/fastfood/foodordercomment/upload',
         filePath: imageList[i],
         name: 'file',
         header: {

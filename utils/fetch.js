@@ -1,5 +1,5 @@
 import regeneratorRuntime from '../libs/runtime';
-const globalUrl = 'https://shanchan.jergavin.com';
+const globalUrl = 'https://api.i-shancan.com';
 // 接口请求
 const fetch = async ({ method = "GET", url, data = {}, requestBody }) => {
   // wx.showLoading({

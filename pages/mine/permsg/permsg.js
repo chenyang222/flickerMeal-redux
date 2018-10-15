@@ -54,7 +54,7 @@ const pageConfig = {
           })
           console.log(tempFilePaths[0])
           wx.uploadFile({
-            url: 'https://shanchan.jergavin.com/account/user/upload/headimgurl',
+            url: 'https://api.i-shancan.com/account/user/upload/headimgurl',
             filePath: tempFilePaths[0],
             name: 'file',
             header: { 
