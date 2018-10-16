@@ -115,6 +115,12 @@
   font-family:SourceHanSansCN-Normal;
   color:rgba(255,255,255,1);
 }
+.orderEleText{
+  font-size:22rpx;
+  color: #ff9e35;
+  text-align: right;
+  padding-right: 25rpx;
+}
 .order-list-ctl .zailai{
   background-color: #66adf5;
 }

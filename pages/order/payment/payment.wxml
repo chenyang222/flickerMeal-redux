@@ -39,6 +39,16 @@
     </view>
     <!-- 支付方式选择 -->
     <view class='paymentMethod'>
+        <view class='paymentMethodList' data-paytype='1' bindtap='selectPaytype'>
+            <view class='payBox'>
+                <image class='paymentMethodImg' src='{{imgdata}}/weixinImg.png'></image>
+                <text class='paymentMethodName'>微信支付</text>
+            </view>
+            <view>
+                <image wx:if="{{payType == 2}}" class='paymentNoSeleImg' src='{{imgdata}}/paymentNoSeleImg.png'></image>
+                <image wx:elif="{{payType == 1}}" class='selectedImg' src='{{imgdata}}/paymentSeleImg.png'></image>
+            </view>
+        </view>
         <view class='paymentMethodList' data-paytype='2' bindtap='selectPaytype'>
             <view class='payBox'>
                 <view>
@@ -52,16 +62,6 @@
             <view>
                 <image wx:if="{{payType == 1}}" class='paymentNoSeleImg' src='{{imgdata}}/paymentNoSeleImg.png'></image>
                 <image wx:elif="{{payType == 2}}" class='selectedImg' src='{{imgdata}}/paymentSeleImg.png'></image>
-            </view>
-        </view>
-        <view class='paymentMethodList' data-paytype='1' bindtap='selectPaytype'>
-            <view class='payBox'>
-                <image class='paymentMethodImg' src='{{imgdata}}/weixinImg.png'></image>
-                <text class='paymentMethodName'>微信支付</text>
-            </view>
-            <view>
-                <image wx:if="{{payType == 2}}" class='paymentNoSeleImg' src='{{imgdata}}/paymentNoSeleImg.png'></image>
-                <image wx:elif="{{payType == 1}}" class='selectedImg' src='{{imgdata}}/paymentSeleImg.png'></image>
             </view>
         </view>
     </view>

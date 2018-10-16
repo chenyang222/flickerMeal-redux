@@ -142,6 +142,10 @@ const pageConfig = {
   },
   // 申请电子发票
   applyEleInvoice: function (e) {
+    const payAmount = e.target.dataset.payamount;
+    if (payAmount < 100) {
+      return
+    }
     const orderNo = e.target.dataset.orderno;
     wx.navigateTo({
       url: "/pages/order/selectEleInvoice/selectEleInvoice?orderNo=" + orderNo,

@@ -7,7 +7,7 @@ const pageConfig = {
     data: {
         imgdata: app.globalData.imgdata,
         couponSelectId: 'nouse', // 选择的优惠券的id
-        payType: 2, // 0=积分兑换 1=微信支付 2=余额支付
+        payType: 1, // 0=积分兑换 1=微信支付 2=余额支付
         reduceType: 'coupon',
         feeMoney: 0,
         countAmountNum: 0,

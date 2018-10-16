@@ -161,18 +161,18 @@
   <!-- top header tab -->
   <view class="tab-h">
     <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichTab">
-      <image wx:if="{{currentTab==0}}" src="{{imgdata}}/jinrigou.png"></image>
-      <image wx:else src="{{imgdata}}/jinrigou_no.png"></image>
+      <image wx:if="{{currentTab==0}}" src="/images/jinrigou.png"></image>
+      <image wx:else src="/images/jinrigou_no.png"></image>
       <text>今日购</text>
     </view>
     <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichTab">
-      <image wx:if="{{currentTab==1}}" src="{{imgdata}}/blYuding.png"></image>
-      <image wx:else src="{{imgdata}}/blYuding_no.png"></image>
+      <image wx:if="{{currentTab==1}}" src="/images/blYuding.png"></image>
+      <image wx:else src="/images/blYuding_no.png"></image>
       <text>预定</text>
     </view>
     <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichTab">
-      <image wx:if="{{currentTab==2}}" src="{{imgdata}}/pingjia.png"></image>
-      <image wx:else src="{{imgdata}}/pingjia_no.png"></image>
+      <image wx:if="{{currentTab==2}}" src="/images/pingjia.png"></image>
+      <image wx:else src="/images/pingjia_no.png"></image>
       <text>评价</text>
     </view>
   </view>
