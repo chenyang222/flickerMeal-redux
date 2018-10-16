@@ -39,7 +39,7 @@
 
 </view>
 
-<view wx:if="{{invoiceType == 0}}">
+<view wx:if="{{invoiceType == 1}}">
   <text class='warn'>可咨询公司财务部门获得税号或社会信用代码</text>
 </view>
 

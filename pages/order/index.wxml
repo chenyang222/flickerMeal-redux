@@ -61,13 +61,15 @@
                             </view>
                         </view>
                     </view>
-                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>
-                        <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
-                        <view wx:if="{{!item.invoiceFlag}}" data-orderNo='{{item.orderNo}}' data-payAmount='{{item.payAmount}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
-                        <view data-orderNo='{{item.orderNo}}' wx:if="{{item.orderStatus != 3}}" bindtap='toEvaluate' class='pingjia fr ctl-btn-hou'>评价</view>
-                    </view>
-                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='orderEleText'>
-                        提示：订单金额满100元可申请开发票
+                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}">
+                        <view class='order-list-ctl'>
+                            <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
+                            <view wx:if="{{!item.invoiceFlag}}" data-orderNo='{{item.orderNo}}' data-payAmount='{{item.payAmount}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
+                            <view data-orderNo='{{item.orderNo}}' wx:if="{{item.orderStatus != 3}}" bindtap='toEvaluate' class='pingjia fr ctl-btn-hou'>评价</view>
+                        </view> 
+                        <view wx:if="{{!item.invoiceFlag}}" class='orderEleText'>
+                            提示：订单金额满100元可申请开发票
+                        </view>                    
                     </view>
                 </view>
             </view>
@@ -170,13 +172,15 @@
                             </view>
                         </view>
                     </view>
-                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='order-list-ctl'>
-                        <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
-                        <view wx:if="{{!item.invoiceFlag}}" data-orderNo='{{item.orderNo}}' data-payAmount='{{item.payAmount}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
-                        <view data-orderNo='{{item.orderNo}}' wx:if="{{item.orderStatus != 3}}" bindtap='toEvaluate' class='pingjia fr ctl-btn-hou'>评价</view>
-                    </view>
-                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}" class='orderEleText'>
-                        提示：订单金额满100元可申请开发票
+                    <view wx:if="{{item.orderStatus == 2 || item.orderStatus == 3}}">
+                        <view class='order-list-ctl'>
+                            <view data-item='{{item}}' bindtap='makeOther' class='zailai fr ctl-btn-hou'>再来一单</view>
+                            <view wx:if="{{!item.invoiceFlag}}" data-orderNo='{{item.orderNo}}' data-payAmount='{{item.payAmount}}' bindtap='applyEleInvoice' class='applic-fapiao fr ctl-btn-fapiao'>申请电子发票</view>
+                            <view data-orderNo='{{item.orderNo}}' wx:if="{{item.orderStatus != 3}}" bindtap='toEvaluate' class='pingjia fr ctl-btn-hou'>评价</view>
+                        </view> 
+                        <view wx:if="{{!item.invoiceFlag}}" class='orderEleText'>
+                            提示：订单金额满100元可申请开发票
+                        </view>                    
                     </view>
                 </view>
             </view>

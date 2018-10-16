@@ -36,7 +36,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -71,7 +71,13 @@
 				{
 					"id": -1,
 					"name": "我的信息",
-					"pathName": "pages/mine/permsg/permsg"
+					"pathName": "pages/mine/permsg/permsg",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "产参",
+					"pathName": "pages/order/applyEleInvoice/applyEleInvoice"
 				}
 			]
 		}
