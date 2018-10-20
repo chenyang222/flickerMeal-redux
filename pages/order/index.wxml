@@ -44,7 +44,7 @@
                     <view class='order-list-ctninfo'>
                         <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
                             <text class='fl'>{{items.productName}}</text>
-                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                            <text class='fr'>{{items.price}}x{{items.buyNumber}}</text>
                         </view>
                     </view>
                     <view class='zongjiWrap'>
@@ -93,7 +93,7 @@
                     <view class='order-list-ctninfo'>
                         <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
                             <text class='fl'>{{items.productName}}</text>
-                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                            <text class='fr'>{{items.price}}x{{items.buyNumber}}</text>
                         </view>
                     </view>
                     <view class='zongjiWrap'>
@@ -128,7 +128,7 @@
                     <view class='order-list-ctninfo'>
                         <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
                             <text class='fl'>{{items.productName}}</text>
-                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                            <text class='fr'>{{items.price}}x{{items.buyNumber}}</text>
                         </view>
                     </view>
                     <view class='zongjiWrap'>
@@ -161,7 +161,7 @@
                     <view class='order-list-ctninfo'>
                         <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
                             <text class='fl'>{{items.productName}}</text>
-                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                            <text class='fr'>{{items.price}}x{{items.buyNumber}}</text>
                         </view>
                     </view>
                     <view class='zongjiWrap'>
@@ -204,7 +204,7 @@
                     <view class='order-list-ctninfo'>
                         <view class='row' wx:for="{{item.childs}}" wx:for-item="items" wx:key="{{indexItems}}">
                             <text class='fl'>{{items.productName}}</text>
-                            <text class='fr'>{{items.price}}X{{items.buyNumber}}</text>
+                            <text class='fr'>{{items.price}}x{{items.buyNumber}}</text>
                         </view>
                     </view>
                     <view class='zongjiWrap'>

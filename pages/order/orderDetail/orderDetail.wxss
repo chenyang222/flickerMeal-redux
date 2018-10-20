@@ -55,6 +55,9 @@ page{
 }
 .orderBody .product{
   margin-top: 0rpx;
+  justify-content: space-between;
+  border-bottom:1px solid #f8f8f8;
+  padding: 1% 5%;
 }
 .orderBody .addGoods{
   display: flex;
@@ -66,9 +69,17 @@ page{
 }
 .orderBody .productName{
   color: #7c7c7c;
+  font-size: 36rpx;
+}
+.orderBody .productPrice{
+  margin-left: 35rpx;
+  font-size: 40rpx;
+}
+.orderBody .productNumber{
+  font-size: 36rpx;
 }
 .orderBody .total{
-  font-size:28rpx;
+  font-size:40rpx;
   font-family:PingFangSC-Medium;
   color:rgba(253,106,8,1);
   font-weight: bold;
@@ -94,6 +105,10 @@ page{
   line-height: 30rpx;
   font-size: 30rpx;
   margin-right: 35rpx;
+}
+.orderBody .basic .vrCodeColor{
+  color: #ff9e35 !important;
+  font-weight: bold;
 }
 .orderBody .basic .basic-right{
   line-height: 30rpx;

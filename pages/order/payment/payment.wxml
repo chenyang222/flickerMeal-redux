@@ -19,7 +19,7 @@
                     </view>
                     <view class='fan-name-price-list2'>
                         <view class='fan-ctl'>
-                            <text>X</text>
+                            <text>x</text>
                             <text>{{item.buyNumber}}</text>
                         </view>
                         <view class='fan-price'>￥

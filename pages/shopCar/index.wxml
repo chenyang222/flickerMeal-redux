@@ -48,10 +48,10 @@
 </view>
 <view wx:else class='car-kong'>
     <view class='wujiesuan-wrap'>
-        <image class='wujiesuan' src='{{imgdata}}/kongCar.jpg'></image>
+        <image class='wujiesuan' src='/images/kongCar.png'></image>
     </view>
     <view class='wujiesuan-txt'>
-        <text>暂无可结算的餐品</text>
+        <text>还没有添加您想要的商品</text>
     </view>
 </view>
 <view class='pop' style='display:none;'></view>

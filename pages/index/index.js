@@ -26,8 +26,6 @@ const pageConfig = {
     })
     // 获取轮播
     getBanner();
-    // 获取热门搜索
-    getHotSearch();
     // 获取活动
     await getActivitys();
     if (JSON.stringify(this.data.activitysList) != '{}') {
@@ -63,6 +61,8 @@ const pageConfig = {
       await setMachine(this.data.machineList[0])
     }
     const macid = this.data.machineInfo.id;
+    // 获取热门搜索
+    getHotSearch();
     // 获取优惠券
     getIndexCoupon(macid);
     // 获取推荐套餐
