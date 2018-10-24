@@ -38,37 +38,5 @@
     "navigationBarTextStyle": "black",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light"
-  },
-  "tabBar": {
-    "color": "#7C7C7C",
-    "selectedColor": "#FF9E35",
-    "backgroundColor": "#fff",
-    "borderStyle": "#ffffff",
-    "list": [
-      {
-        "text": "点餐",
-        "pagePath": "pages/index/index",
-        "iconPath": "images/cf_nav1.png",
-        "selectedIconPath": "images/cf_nav1on.png"
-      },
-      {
-        "text": "购物车",
-        "pagePath": "pages/shopCar/index",
-        "iconPath": "images/cf_nav3.png",
-        "selectedIconPath": "images/cf_nav3on.png"
-      },
-      {
-        "text": "订单",
-        "pagePath": "pages/order/index",
-        "iconPath": "images/cf_nav2.png",
-        "selectedIconPath": "images/cf_nav2on.png"
-      },
-      {
-        "text": "我的",
-        "pagePath": "pages/mine/index",
-        "iconPath": "images/cf_nav4.png",
-        "selectedIconPath": "images/cf_nav4on.png"
-      }
-    ]
   }
 }

@@ -220,3 +220,27 @@
         </swiper-item>
     </swiper>
 </view>
+
+<view class="tabBar">
+    <navigator open-type="reLaunch" class="part" url="/pages/index/index">
+        <image src="/images/cf_nav1.png"></image>
+        <!-- <image src="/images/cf_nav1on.png"></image> -->
+        <text>点餐</text>
+    </navigator>
+    <navigator open-type="reLaunch" class="part" url="/pages/shopCar/index">
+        <image src="/images/cf_nav3.png"></image>
+        <!-- <image src="/images/cf_nav3on.png"></image> -->
+        <text>购物车</text>
+        <text class="showCarNumber">{{ shopCarNumber }}</text>
+    </navigator>
+    <view class="part">
+        <!-- <image src="/images/cf_nav2.png"></image> -->
+        <image src="/images/cf_nav2on.png"></image>
+        <text class="active">订单</text>
+    </view>
+    <navigator open-type="reLaunch" class="part" url="/pages/mine/index">
+        <image src="/images/cf_nav4.png"></image>
+        <!-- <image src="/images/cf_nav4on.png"></image> -->
+        <text>我的</text>
+    </navigator>
+</view>

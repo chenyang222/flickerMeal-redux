@@ -140,7 +140,8 @@ const pageConfig = {
 const mapStateToPage = state => ({
   shopCarList: state.shopCarList,
   machineInfo: state.machineInfo,
-  computeShopcar: state.computeShopcar
+  computeShopcar: state.computeShopcar,
+  shopCarNumber: state.shopCarNumber
 })
 
 

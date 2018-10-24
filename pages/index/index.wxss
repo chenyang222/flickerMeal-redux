@@ -235,8 +235,15 @@
 }
 .recomendPart .recomentContent .recomentBox .recomentNum{
   font-size:20rpx;
+  line-height: 35rpx;
   font-family:PingFangSC-Regular;
   color:rgba(151,151,151,1);
+  display: flex;
+  justify-content: space-between;
+}
+.recomendPart .recomentContent .recomentBox .recomentNum .stock{
+  color: #666587;
+  font-size: 18rpx;
 }
 .recomendPart .recomentContent .recomentBox .addGoods{
   display: flex;
@@ -343,7 +350,7 @@
 
 .manjianPop{
   position: fixed;
-  bottom: 0;
+  bottom: 110rpx;
   font-size:22rpx;
   font-family:PingFangSC-Regular;
   color:rgba(255,255,255,1);

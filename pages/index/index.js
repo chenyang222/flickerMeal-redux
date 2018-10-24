@@ -2,7 +2,7 @@
 //获取应用实例
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder, getHotSearch } from '../../redux/index';
+import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder, getHotSearch, getShopCar } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -67,6 +67,8 @@ const pageConfig = {
     getIndexCoupon(macid);
     // 获取推荐套餐
     getRecomtc(macid);
+    // 获取购物车
+    getShopCar(macid);
     // 获取机器餐品大类侧边栏
     await getMachineLeftNav(macid);
     this.setData({
@@ -190,7 +192,7 @@ const pageConfig = {
     })
   },
   //添加到购物车
-  addBuyCar: function (e) {
+  async addBuyCar (e) {
     const aisleId = e.currentTarget.dataset.aisleid;
     const productId = e.currentTarget.dataset.productid;
     const macId = this.data.machineInfo.id;
@@ -199,7 +201,9 @@ const pageConfig = {
         productId: productId,
         macId: macId
     }
-    addBuyCar(data)
+    await addBuyCar(data);
+    // 获取购物车
+    getShopCar(macId);
   },
   // 点击今日购---餐品类型
   todaymealType: function (e) {
@@ -303,7 +307,8 @@ const mapStateToPage = state => ({
   todayBuyList: state.todayBuyList,
   weekBuyList: state.weekBuyList,
   evaList: state.evaList,
-  hotSearchList: state.hotSearchList.slice(0,5)
+  hotSearchList: state.hotSearchList.slice(0,5),
+  shopCarNumber: state.shopCarNumber
 })
 
 Page(connect(mapStateToPage)(pageConfig))

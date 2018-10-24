@@ -25,7 +25,8 @@ const pageConfig = {
 }
 
 const mapStateToPage = state => ({
-    userInfo: state.userInfo
+  userInfo: state.userInfo,
+  shopCarNumber: state.shopCarNumber
 })
 
 Page(connect(mapStateToPage)(pageConfig))

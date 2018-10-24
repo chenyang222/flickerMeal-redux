@@ -161,8 +161,15 @@ body{
 }
 .product .product-right .intro .recomentNum{
   font-size:20rpx;
+  line-height: 35rpx;
   font-family:PingFangSC-Regular;
   color:rgba(151,151,151,1);
+  display: flex;
+  justify-content: space-between;
+}
+.product .product-right .intro .recomentNum .stock{
+  color: #666587;
+  font-size: 18rpx;
 }
 .product .product-right .intro .addGoods{
   margin-top: 15rpx;
@@ -322,8 +329,54 @@ body{
   z-index: 99999999;
 }
 .public_center{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-  }
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.tabBar{
+  height:110rpx;
+  width:100%;
+  background:white;
+  position:fixed;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: space-around;
+}
+.tabBar .part{
+  height:110rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.tabBar .part image{
+  display: inline-block;
+  margin-top:20rpx;
+  width:50rpx;
+  height:50rpx;
+}
+.tabBar .part text{
+  height:40rpx;
+  line-height:40rpx;
+  text-align: center;
+  color:#7C7C7C;
+  font-size: 20rpx;
+}
+.tabBar .part .active{
+  color:#FF9E35;
+}
+.tabBar .part .showCarNumber{
+  position: absolute;
+  top: 8rpx;
+  right: -17rpx;
+  width:35rpx;
+  height:35rpx;
+  border-radius: 50%;
+  line-height: 35rpx;
+  text-align: center;
+  background-color: #000000;
+  color: #ffffff;
+}

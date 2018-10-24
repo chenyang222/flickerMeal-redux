@@ -29,6 +29,7 @@ const GET_RECOMMEND = 'GET_RECOMMEND'; // 获取推荐信息
 const GET_LOTTERY = 'GET_LOTTERY'; // 获取所有奖品列表
 const GET_RECORD = 'GET_RECORD'; // 获取中奖纪录
 const GET_SHOPCAR = 'GET_SHOPCAR'; // 购物车列表
+const GET_SHOPCARNUM = 'GET_SHOPCARNUM'; // 购物车列表数量
 const COMPUTE_SHOPCAR = 'COMPUTE_SHOPCAR'; // 购物车列表金额计算
 const GET_ORDERINFO = 'GET_ORDERINFO'; // 获取订单信息
 const GET_ORDERCOUPON = 'GET_ORDERCOUPON'; // 获取订单可用优惠券
@@ -60,6 +61,7 @@ const initState = {
     hotSearchList: [],
     searchMachineList: [],
     shopCarList: [],
+    shopCarNumber: 0,
     computeShopcar: '',
     orderInfo: {},
     orderCouponList: [],
@@ -112,6 +114,8 @@ export const reducers = (state = initState, action) => {
             return Object.assign({}, state, { searchMachineList: action.data });
         case GET_SHOPCAR:
             return Object.assign({}, state, { shopCarList: action.data });
+        case GET_SHOPCARNUM:
+            return Object.assign({}, state, { shopCarNumber: action.data });
         case COMPUTE_SHOPCAR:
             return Object.assign({}, state, { computeShopcar: action.data });
         case GET_ORDERINFO:
@@ -194,7 +198,7 @@ export const getPosition = async () => {
             type: GET_POSITIONINFO,
             data: positionInfo
         })
-        wx.switchTab({
+        wx.reLaunch({
             url: '../index/index'
         });
     };
@@ -632,8 +636,10 @@ export const getShopCar = async (macId) => {
         }
     });
     let totalMoney = 0;
+    let shopCarNumber = 0;
     for (let i = 0; i < response.length;i++) {
       totalMoney += response[i].buyNumber * response[i].price * 100;
+      shopCarNumber += response[i].buyNumber;
     }
     store.dispatch({
         type: COMPUTE_SHOPCAR,
@@ -642,6 +648,10 @@ export const getShopCar = async (macId) => {
     store.dispatch({
         type: GET_SHOPCAR,
         data: response
+    })
+    store.dispatch({
+        type: GET_SHOPCARNUM,
+        data: shopCarNumber
     })
 }
 // 设置购物车餐品数量

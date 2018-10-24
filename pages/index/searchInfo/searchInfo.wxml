@@ -41,8 +41,14 @@
                     <text>{{items.productName}}</text>
                 </view>
                 <view class="intro">
-                    <view wx:if="{{items.hotNum}}" class="recomentNum">推荐指数
-                        <text>{{items.hotNum}}</text>
+                    <view class="recomentNum">
+                        <view wx:if="{{item.hotNum}}">
+                            推荐指数
+                            <text>{{item.hotNum}}</text>
+                        </view>
+                        <view class="stock">
+                            剩余<text>{{item.stock}}</text>
+                        </view>
                     </view>
                     <view class='addGoods'>
                         <view class="price">￥

@@ -156,7 +156,8 @@ const pageConfig = {
 const mapStateToPage = state => ({
   orderList: state.orderList,
   machineInfo: state.machineInfo,
-  orderConfig: state.orderConfig
+  orderConfig: state.orderConfig,
+  shopCarNumber: state.shopCarNumber
 })
 
 

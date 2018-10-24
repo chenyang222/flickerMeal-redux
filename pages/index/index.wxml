@@ -143,8 +143,14 @@
       <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
       <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
       <text class='reName'>{{item.productName}}</text>
-      <view wx:if="{{item.hotNum}}" class="recomentNum">推荐指数
-        <text>{{item.hotNum}}</text>
+      <view class="recomentNum">
+        <view wx:if="{{item.hotNum}}">
+            推荐指数
+            <text>{{item.hotNum}}</text>
+        </view>
+        <view class="stock">
+            剩余<text>{{item.stock}}</text>
+        </view>
       </view>
       <view class='addGoods'>
         <view class="price">￥
@@ -157,7 +163,7 @@
 </view>
 
 <!-- tab -->
-<view wx:if="{{machineList.length > 0}}">
+<view style="padding-bottom: 110rpx" wx:if="{{machineList.length > 0}}">
   <!-- top header tab -->
   <view class="tab-h">
     <view class="tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="swichTab">
@@ -200,8 +206,14 @@
                 <text>{{item.productName}}</text>
               </view>
               <view class="intro">
-                <view wx:if="{{item.hotNum}}" class="recomentNum">推荐指数
-                  <text>{{item.hotNum}}</text>
+                <view class="recomentNum">
+                  <view wx:if="{{item.hotNum}}">
+                      推荐指数
+                      <text>{{item.hotNum}}</text>
+                  </view>
+                  <view class="stock">
+                      剩余<text>{{item.stock}}</text>
+                  </view>
                 </view>
                 <view class='addGoods'>
                   <view class="price">￥
@@ -243,8 +255,14 @@
                 <text>{{item.productName}}</text>
               </view>
               <view class="intro">
-                <view wx:if="{{item.hotNum}}" class="recomentNum">推荐指数
-                  <text>{{item.hotNum}}</text>
+                <view class="recomentNum">
+                  <view wx:if="{{item.hotNum}}">
+                      推荐指数
+                      <text>{{item.hotNum}}</text>
+                  </view>
+                  <view class="stock">
+                      剩余<text>{{item.stock}}</text>
+                  </view>
                 </view>
                 <view class='addGoods'>
                   <view class="price">￥
@@ -303,4 +321,28 @@
 
 <view wx:if="{{activitysText.length > 0}}" class="manjianPop">
   <text>{{activitysText}}</text>
+</view>
+
+<view class="tabBar">
+  <view class="part">
+      <!-- <image src="/images/cf_nav1.png"></image> -->
+      <image src="/images/cf_nav1on.png"></image>
+      <text class="active">点餐</text>
+  </view>
+  <navigator open-type="reLaunch" class="part" url="/pages/shopCar/index">
+      <image src="/images/cf_nav3.png"></image>
+      <!-- <image src="/images/cf_nav3on.png"></image> -->
+      <text>购物车</text>
+      <text class="showCarNumber">{{ shopCarNumber }}</text>
+  </navigator>
+  <navigator open-type="reLaunch" class="part" url="/pages/order/index">
+    <image src="/images/cf_nav2.png"></image>
+    <!-- <image src="/images/cf_nav2on.png"></image> -->
+    <text>订单</text>
+  </navigator>
+  <navigator open-type="reLaunch" class="part" url="/pages/mine/index">
+    <image src="/images/cf_nav4.png"></image>
+    <!-- <image src="/images/cf_nav4on.png"></image> -->
+    <text>我的</text>
+  </navigator>
 </view>
