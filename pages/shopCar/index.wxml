@@ -80,7 +80,7 @@
         <!-- <image src="/images/cf_nav3.png"></image> -->
         <image src="/images/cf_nav3on.png"></image>
         <text class="active">购物车</text>
-        <text class="showCarNumber">{{ shopCarNumber }}</text>
+        <text wx:if="{{shopCarNumber > 0}}" class="showCarNumber">{{ shopCarNumber }}</text>
     </view>
     <navigator open-type="reLaunch" class="part" url="/pages/order/index">
         <image src="/images/cf_nav2.png"></image>

@@ -231,7 +231,7 @@
         <image src="/images/cf_nav3.png"></image>
         <!-- <image src="/images/cf_nav3on.png"></image> -->
         <text>购物车</text>
-        <text class="showCarNumber">{{ shopCarNumber }}</text>
+        <text wx:if="{{shopCarNumber > 0}}" class="showCarNumber">{{ shopCarNumber }}</text>
     </navigator>
     <view class="part">
         <!-- <image src="/images/cf_nav2.png"></image> -->
