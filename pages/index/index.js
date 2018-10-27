@@ -2,7 +2,7 @@
 //获取应用实例
 import regeneratorRuntime from '../../libs/runtime';
 import { connect } from '../../libs/wechat-weapp-redux';
-import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder, getHotSearch, getShopCar } from '../../redux/index';
+import { getBanner, getActivitys, getMachine, setMachine, getIndexCoupon, haveIndexCoupon, getRecomtc, getMachineLeftNav, getTodayBuy, getWeekBuy, getMachineEva, addBuyCar, indexCreateOrder, getHotSearch, getShopCar, setProductNumber, deleteProduct } from '../../redux/index';
 const app = getApp();
 
 const pageConfig = {
@@ -17,7 +17,9 @@ const pageConfig = {
     prevOrdermealId: '',
     nowSelectTime: '',
     getWeekList: [],
-    activitysText: '暂无活动'
+    activitysText: '暂无活动',
+    recomtcArr: [],
+    todayBuyArr: []
   },
   async onLoad() {
     wx.showLoading({
@@ -66,17 +68,38 @@ const pageConfig = {
     // 获取优惠券
     getIndexCoupon(macid);
     // 获取推荐套餐
-    getRecomtc(macid);
+    await getRecomtc(macid);
     // 获取购物车
-    getShopCar(macid);
+    await getShopCar(macid);
+    let recomtcArr = this.data.recomtcList;
+    let shopCarList = this.data.shopCarList;
+    for (let i = 0; i < recomtcArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (recomtcArr[i].productId == shopCarList[j].productId) {
+          recomtcArr[i].buyNumber = shopCarList[j].buyNumber;
+          recomtcArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
+    // 获取今日购
+    await getTodayBuy(macid);
+    let todayBuyArr = this.data.todayBuyList;
+    for (let i = 0; i < todayBuyArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (todayBuyArr[i].productId == shopCarList[j].productId) {
+          todayBuyArr[i].buyNumber = shopCarList[j].buyNumber;
+          todayBuyArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
     // 获取机器餐品大类侧边栏
     await getMachineLeftNav(macid);
     this.setData({
       todaymealId: this.data.machineLeftNavList.length > 0 ?  this.data.machineLeftNavList[0].id : '',
-      prevOrdermealId: this.data.machineLeftNavList.length > 0 ?  this.data.machineLeftNavList[0].id : ''
+      prevOrdermealId: this.data.machineLeftNavList.length > 0 ?  this.data.machineLeftNavList[0].id : '',
+      recomtcArr: recomtcArr,
+      todayBuyArr: todayBuyArr
     })
-    // 获取今日购
-    getTodayBuy(macid);
     // 获取预定时间列表
     this.getWeekMessage();
     // 获取预定餐品列表
@@ -193,17 +216,96 @@ const pageConfig = {
   },
   //添加到购物车
   async addBuyCar (e) {
-    const aisleId = e.currentTarget.dataset.aisleid;
-    const productId = e.currentTarget.dataset.productid;
-    const macId = this.data.machineInfo.id;
-    const data = {
-        aisleId: aisleId,
-        productId: productId,
-        macId: macId
+    const cartId = e.currentTarget.dataset.cartid;
+    if (cartId) {
+      let num = e.currentTarget.dataset.buynumber + 1;
+      const data = {
+        cartId: cartId,
+        checkStatus: 1,
+        buyNumber: num
+      }
+      await setProductNumber(data);
+    } else {
+      const aisleId = e.currentTarget.dataset.aisleid;
+      const productId = e.currentTarget.dataset.productid;
+      const macId = this.data.machineInfo.id;
+      const data = {
+          aisleId: aisleId,
+          productId: productId,
+          macId: macId
+      }
+      await addBuyCar(data);
+      // 获取购物车
+      await getShopCar(macId);
+      // 获取今日购
+      await getTodayBuy(macId);
     }
-    await addBuyCar(data);
-    // 获取购物车
-    getShopCar(macId);
+    let recomtcArr = this.data.recomtcList;
+    let shopCarList = this.data.shopCarList;
+    for (let i = 0; i < recomtcArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (recomtcArr[i].productId == shopCarList[j].productId) {
+          recomtcArr[i].buyNumber = shopCarList[j].buyNumber;
+          recomtcArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
+    let todayBuyArr = this.data.todayBuyList;
+    for (let i = 0; i < todayBuyArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (todayBuyArr[i].productId == shopCarList[j].productId) {
+          todayBuyArr[i].buyNumber = shopCarList[j].buyNumber;
+          todayBuyArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
+    this.setData({
+      recomtcArr: recomtcArr,
+      todayBuyArr: todayBuyArr
+    })
+  },
+  async reducePro (e) {
+    if (e.currentTarget.dataset.buynumber <= 1){
+      const data = {
+        cartId: e.target.dataset.cartid
+      }
+      await deleteProduct(data);
+    }
+    let num = e.currentTarget.dataset.buynumber - 1;
+    const data = {
+      cartId: e.currentTarget.dataset.cartid,
+      checkStatus: 1,
+      buyNumber: num
+    }
+    await setProductNumber(data);
+    const macId = this.data.machineInfo.id;
+    // 购物车列表
+    await getShopCar(macId)
+    // 获取今日购
+    await getTodayBuy(macId);
+    let recomtcArr = this.data.recomtcList;
+    let shopCarList = this.data.shopCarList;
+    for (let i = 0; i < recomtcArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (recomtcArr[i].productId == shopCarList[j].productId) {
+          recomtcArr[i].buyNumber = shopCarList[j].buyNumber;
+          recomtcArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
+    let todayBuyArr = this.data.todayBuyList;
+    for (let i = 0; i < todayBuyArr.length; i++) {
+      for (let j = 0; j < shopCarList.length; j++) {
+        if (todayBuyArr[i].productId == shopCarList[j].productId) {
+          todayBuyArr[i].buyNumber = shopCarList[j].buyNumber;
+          todayBuyArr[i].cartId = shopCarList[j].cartId;
+        }
+      }
+    }
+    this.setData({
+      recomtcArr: recomtcArr,
+      todayBuyArr: todayBuyArr
+    })
   },
   // 点击今日购---餐品类型
   todaymealType: function (e) {
@@ -308,6 +410,7 @@ const mapStateToPage = state => ({
   weekBuyList: state.weekBuyList,
   evaList: state.evaList,
   hotSearchList: state.hotSearchList.slice(0,5),
+  shopCarList: state.shopCarList,
   shopCarNumber: state.shopCarNumber
 })
 

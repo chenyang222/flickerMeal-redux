@@ -138,7 +138,7 @@
     </view>
   </view>
   <view class='recomentContent'>
-    <view class='recomentBox' wx:for="{{recomtcList}}" wx:for-item="item" wx:key="{{index}}">
+    <view class='recomentBox' wx:for="{{recomtcArr}}" wx:for-item="item" wx:key="{{index}}">
       <image data-item='{{item}}' bindtap='toMealDetail' mode='widthFix' class="picture" src="{{item.picture}}"></image>
       <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
       <image wx:elif="{{item.label == 1}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/newmeal.png"></image>
@@ -156,7 +156,9 @@
         <view class="price">￥
           <text>{{item.price}}</text>
         </view>
-        <image class='add' bindtap='addBuyCar' data-aisleId='{{item.aisleId}}' data-productId='{{item.productId}}' src="{{imgdata}}/blAdd.png"></image>
+        <image wx:if="{{ item.buyNumber }}" class='jian' data-cartId="{{item.cartId}}" data-buyNumber="{{item.buyNumber}}" src='{{imgdata}}/reduce.png' bindtap='reducePro'></image>
+        <text wx:if="{{ item.buyNumber }}" class='jiajian-num'>{{item.buyNumber}}</text>
+        <image class='add' bindtap='addBuyCar' data-aisleId='{{item.aisleId}}' data-buyNumber="{{item.buyNumber}}" data-productId='{{item.productId}}' src="{{imgdata}}/blAdd.png"></image>
       </view>
     </view>
   </view>
@@ -195,7 +197,7 @@
         </view>
         <!-- 商品列表 -->
         <view class="tabCtnR" style="{{fixedFlag?'height:790rpx':'height:790rpx'}}">
-          <view class="product" wx:for="{{todayBuyList}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == todaymealId}}">
+          <view class="product" wx:for="{{todayBuyArr}}" wx:for-index="index" wx:for-item="item" wx:key="{{index}}" wx:if="{{item.productCatId == todaymealId}}">
             <view class="product-left">
               <image data-item='{{item}}' bindtap='toMealDetail' mode='aspectFit' class="productImg" src="{{item.picture}}"></image>
               <image wx:if="{{item.label == 2}}" class="productIcon" mode='aspectFit' src="{{imgdata}}/hotPushIcon.png"></image>
@@ -219,7 +221,9 @@
                   <view class="price">￥
                     <text>{{item.price}}</text>
                   </view>
-                  <image class='add' bindtap='addBuyCar' data-aisleId='{{item.aisleId}}' data-productId='{{item.productId}}' src="{{imgdata}}/blAdd.png"></image>
+                  <image wx:if="{{ item.buyNumber }}" class='jian' data-cartId="{{item.cartId}}" data-buyNumber="{{item.buyNumber}}" src='{{imgdata}}/reduce.png' bindtap='reducePro'></image>
+                  <text wx:if="{{ item.buyNumber }}" class='jiajian-num'>{{item.buyNumber}}</text>
+                  <image class='add' bindtap='addBuyCar' data-aisleId='{{item.aisleId}}' data-buyNumber="{{item.buyNumber}}" data-productId='{{item.productId}}' src="{{imgdata}}/blAdd.png"></image>
                 </view>
               </view>
             </view>

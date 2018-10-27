@@ -212,8 +212,8 @@
   display: flex;
 }
 .recomendPart .recomentContent .recomentBox{
-  width: 27%;
-  margin: 3.3333%;
+  width: 28%;
+  margin: 2%;
   position: relative;
   /* margin-left: 0.333%; */
 }
@@ -248,6 +248,7 @@
 .recomendPart .recomentContent .recomentBox .addGoods{
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .recomendPart .recomentContent .recomentBox .price{
   font-size:28rpx;
@@ -255,11 +256,16 @@
   color:rgba(253,106,8,1);
 }
 .recomendPart .recomentContent .recomentBox .add{
-  width:41rpx;
-  height:41rpx;
+  width:30rpx;
+  height:30rpx;
   display: block;
-  margin-right: 15rpx;
+  /* margin-right: 15rpx; */
 }
+.recomendPart .recomentContent .recomentBox .jiajian-num{
+  line-height: 30rpx;
+  font-size: 20rpx;
+}
+
 
 /* 滑动tab */
 .tab-h{
@@ -362,13 +368,13 @@
 }
 
 .jia {
-  width: 41rpx;
-  height: 41rpx;
+  width: 30rpx;
+  height: 30rpx;
   float: left;
 }
 
 .jian {
-  width: 41rpx;
-  height: 41rpx;
+  width: 30rpx;
+  height: 30rpx;
   float: left;
 }

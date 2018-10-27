@@ -141,9 +141,9 @@ export const store = createStore(
 
 // 每次 state 更新时，打印日志
 // 注意 subscribe() 返回一个函数用来注销监听器
-const unsubscribe = store.subscribe(() =>
-    console.log(store.getState())
-)
+// const unsubscribe = store.subscribe(() =>
+//     console.log(store.getState())
+// )
 // 获取当前定位信息
 export const getPosition = async () => {
     // 新建百度地图对象 
